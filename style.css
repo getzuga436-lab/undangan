@@ -16,7 +16,7 @@ html, body {
 }
 /*//! BAGIAN KIRI */
 .left-side {
-    width: 61%; /* Lebar layar kiri 50% */
+    width: 71%; /* Lebar layar kiri 50% */
     background-color: #fcd3d3;
     overflow: hidden;
     display: flex;
@@ -38,7 +38,7 @@ html, body {
 }
 /*//! BAGIAN KANAN */
 .right-side {
-    width: 39%; /* Lebar layar kanan 50% */
+    width: 29%; /* Lebar layar kanan 50% */
     background-color: #dfdfdf;
     height: 100vh;
     overflow-y: auto;
@@ -77,24 +77,24 @@ html, body {
     text-align: center;
 }
 .gunungbawah {
-    margin-bottom: 0rem;
+    bottom: 2rem;
     width: 100%;
     position:absolute;
 }
 .rumah {
-    margin-bottom: -18rem;
+    bottom: 2rem;
     width: 100%;
     position:absolute;
 }
 .pohonkiri1 {
-    margin-top: -2rem;
+    top: 20rem;
     left: -2rem;
     width: 30%;
     position:absolute;
     z-index: 3;
 }
 .pohonkiri2 {
-    margin-top: 12rem;
+    top: 32rem;
     left: -3.9rem;
     width: 50%;
     position:absolute;
@@ -102,22 +102,8 @@ html, body {
 }
 .bungakiri {
     bottom: -4rem;
-    left: -3.5rem;
-    width: 70%;
-    position:absolute;
-    z-index: 3;
-}
-.pohonkanan1 {
-    margin-top: -2rem;
-    right: -1rem;
-    width: 30%;
-    position:absolute;
-    z-index: 3;
-}
-.pohonkanan2 {
-    margin-top: 12rem;
-    right: -5rem;
-    width: 50%;
+    left: -5rem;
+    width: 80%;
     position:absolute;
     z-index: 3;
 }
@@ -128,10 +114,25 @@ html, body {
     position:absolute;
     z-index: 3;
 }
-.kipaskiri {
-    bottom: -1rem;
-    left: 3rem;
+.pohonkanan1 {
+    top: 20rem;
+    right: -1rem;
+    width: 30%;
+    position:absolute;
+    z-index: 3;
+}
+.pohonkanan2 {
+    top: 32rem;
+    right: -5rem;
     width: 50%;
+    position:absolute;
+    z-index: 3;
+}
+
+.kipaskiri {
+    bottom: 2rem;
+    left: 5rem;
+    width: 40%;
     position:absolute;
     z-index: 1;
 }
