@@ -52,21 +52,37 @@ html, body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(img/background.png);
-    background-size: cover;
+    background: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.85)), url(img/background.png);
+    
+    /* KEMBALIKAN KE COVER AGAR TIDAK LEPAS DAN BERULANG */
+    background-size: cover; 
     background-position: center;
+    background-repeat: no-repeat;
+    
     z-index: 999; /* Lapisan tertinggi, menutup semua halaman */
+    
+    /* Efek transisi bergeser ke atas saat tombol diklik (tetap dipertahankan) */
     transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
-    padding: 2rem;
-}
+    overflow: hidden; /* Mencegah gambar dekorasi memicu scrollbar liar */
 
+    /* Titik pusat efek zoom berada di tengah-tengah layar */
+    transform-origin: center center;
+
+    /* Pemicu animasi saat halaman pertama kali dimuat */
+    animation: bgSinematik 2.5s ease-out forwards;
+}
 /* Class bantuan saat tombol diklik (efek tirai terangkat ke atas) */
 .welcome-cover.terbuka {
     transform: translateY(-100vh);
     opacity: 0;
     pointer-events: none; /* Mencegah klik hantu setelah tertutup */
 }
-
+.text-welcome {
+    position: relative;
+    z-index: 10; /* Berada di depan gunung (z-index: 1) dan pohon/bunga (z-index: 3) */
+    width: 100%;
+    padding: 2rem;
+}
 /* Desain Teks & Tombol di Tirai Depan */
 .wel1 {
     font-family: "Lavishly Yours", cursive;
@@ -98,7 +114,7 @@ html, body {
     padding: 0.8rem 2.5rem;
     border: none;
     border-radius: 2rem;
-    background-color: #a87e7e;
+    background-color: #cf9673;
     color: white;
     font-family: "Castoro Titling", serif;
     font-size: 0.9rem;
@@ -106,6 +122,7 @@ html, body {
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(168, 126, 126, 0.4);
     transition: all 0.3s ease;
+    z-index: 999;
 }
 .btn-buka-baru:hover {
     background-color: #8f6767;
@@ -354,6 +371,63 @@ html, body {
     opacity: 1;
     transform: translateY(0);
 }
+/* --- ELEMEN SEBELAH KIRI --- */
+.gunungbawah {
+    bottom: 2rem;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    
+    /* Pemicu animasi: durasi 1.5 detik, melambat halus di akhir */
+    animation: masukBawah 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.rumah {
+    bottom: 2rem;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    
+    /* Sengaja diberikan durasi sedikit berbeda (1.8s) agar rumah 
+       muncul sedikit lebih lambat setelah gunung kokoh di belakangnya */
+    animation: masukBawah 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.pohonkiri1 {
+    top: 33%; left: -10%; width: 35%; position: absolute; z-index: 3; transform-origin: bottom left;
+    /* Gabungan: masuk dari kiri (durasi 1.2s), lalu lanjut animasi pohon bergoyang */
+    animation: masukKiri 1.2s ease-out forwards, anginPohon 9s ease-in-out infinite 1.2s;
+}
+.pohonkiri2 {
+    bottom: 19%; left: -20%; width: 50%; position: absolute; z-index: 3; transform-origin: bottom left;
+    animation: masukKiri 1.5s ease-out forwards, anginPohon 11s ease-in-out infinite 1.5s;
+}
+.bungakiri {
+    bottom: -7%; left: -12%; width: 80%; position: absolute; z-index: 3; transform-origin: bottom left;
+    animation: masukKiri 1.4s ease-out forwards, ayunBunga 8s ease-in-out infinite 1.4s;
+}
+.kipaskiri {
+    bottom: 5%; left: 30%; width: 30%; position: absolute; z-index: 1; transform-origin: bottom right;
+    animation: masukKiri 1.6s ease-out forwards, kipasMelayang 6.5s ease-in-out infinite 1.6s;
+}
+
+/* --- ELEMEN SEBELAH KANAN --- */
+.pohonkanan1 {
+    top: 33%; right: -5%; width: 30%; position: absolute; z-index: 3; transform-origin: bottom right;
+    /* Gabungan: masuk dari kanan (durasi 1.2s), lalu lanjut animasi pohon bergoyang */
+    animation: masukKanan 1.2s ease-out forwards, anginPohon 8s ease-in-out infinite 1.2s;
+}
+.pohonkanan2 {
+    bottom: 19%; right: -20%; width: 50%; position: absolute; z-index: 3; transform-origin: bottom right;
+    animation: masukKanan 1.5s ease-out forwards, anginPohon 10s ease-in-out infinite 1.5s;
+}
+.bungakanan {
+    bottom: -5%; right: -12%; width: 60%; position: absolute; z-index: 3; transform-origin: bottom right;
+    animation: masukKanan 1.4s ease-out forwards, ayunBunga 10s ease-in-out infinite 1.4s;
+}
+.kipaskanan {
+    bottom: -4%; right: 25%; width: 40%; position: absolute; z-index: 1; transform-origin: bottom right;
+    animation: masukKanan 1.7s ease-out forwards, kipasMelayang 5s ease-in-out infinite 1.7s;
+}
 
 @keyframes fade-atas {
     0% {
@@ -389,6 +463,47 @@ html, body {
     0% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-4px) rotate(1.5deg); }
     100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes masukKiri {
+    0% {
+        transform: translateX(-150px) scale(0.9); /* Mulai dari luar layar kiri & agak kecil */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1); /* Sampai ke posisi asli */
+        opacity: 1;
+    }
+}
+
+@keyframes masukKanan {
+    0% {
+        transform: translateX(150px) scale(0.9); /* Mulai dari luar layar kanan & agak kecil */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1); /* Sampai ke posisi asli */
+        opacity: 1;
+    }
+}
+@keyframes masukBawah {
+    0% {
+        transform: translateY(100px); /* Mulai dari posisi agak ke bawah luar layar */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0); /* Naik pas ke posisi aslinya */
+        opacity: 1;
+    }
+}
+@keyframes bgSinematik {
+    0% {
+        opacity: 0;
+        transform: scale(1.08); /* Mulai dengan efek sedikit zoom-in */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); /* Kembali ke ukuran normal */
+    }
 }
 
 /* //! UKURAN HP */
