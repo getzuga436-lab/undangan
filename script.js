@@ -1,22 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const elemenAnimasi = document.querySelectorAll('.animasi-scroll');
+    const btnBuka = document.getElementById("btnBuka");
+    const cover = document.getElementById("cover");
+    const rightSide = document.getElementById("rightSide");
+
+// --- Logika Buka Undangan Premium ---
+    btnBuka.addEventListener("click", function () {
+        // 1. Angkat tirai cover ke atas
+        welcomeCover.classList.add("terbuka");
+        
+        // 2. Aktifkan kemampuan scroll halaman ke bawah
+        rightSide.style.overflowY = "auto"; 
+    });
+
+    // --- Animasi muncul/hilang saat scroll (punya kamu, dipertahankan) ---
+    const elemenAnimasi = document.querySelectorAll(".animasi-scroll");
 
     const opsi = {
-        root: document.querySelector('.right-side'),
-        rootMargin: "0px 0px -70px 0px", // trigger 80px sebelum batas bawah
+        root: rightSide, // penting: root harus .right-side, karena itu yang discroll (bukan window)
+        rootMargin: "0px 0px -70px 0px",
         threshold: 0.15
     };
 
     const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
+        entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                entry.target.classList.add('muncul');    // → masuk: fade naik
+                entry.target.classList.add("muncul");
             } else {
-                entry.target.classList.remove('muncul'); // → keluar: fade turun balik
+                entry.target.classList.remove("muncul");
             }
-            // ❌ Tidak ada unobserve() agar terus dipantau
+            // tidak pakai unobserve() supaya animasi bisa berulang saat scroll naik-turun
         });
     }, opsi);
 
-    elemenAnimasi.forEach(el => observer.observe(el));
+    elemenAnimasi.forEach(function (el) {
+        observer.observe(el);
+    });
 });

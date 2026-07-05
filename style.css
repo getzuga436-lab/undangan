@@ -9,14 +9,14 @@ html, body {
     height: 100vh;
 }
 .split-container {
-  display: flex;
+    display: flex;
     width: 100vw;
     height: 100vh;
-    
 }
+
 /*//! BAGIAN KIRI */
 .left-side {
-    width: 71%; 
+    flex: 1;
     background-color: #fcd3d3;
     overflow: hidden;
     display: flex;
@@ -24,40 +24,137 @@ html, body {
     align-items: center;
     flex-direction: column;
 }
-.hero1 {
-    font-family: "Fleur De Leah", cursive;
-    font-size: 500%;
-    font-weight: 400;
-    font-style: normal;
-}
-.hero2 {
-    font-family: "times new roman", cursive;
-    font-size: 300%;
-    font-weight: 400;
-    font-style: normal;
-}
+
 /*//! BAGIAN KANAN */
 .right-side {
     width: clamp(320px, 29vw, 480px);
     background-color: #dfdfdf;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden; /* dikunci dulu */
     position: relative;
 }
+.right-side::-webkit-scrollbar {
+    width: 6px; 
+}
+.right-side::-webkit-scrollbar-track {
+    background: transparent; 
+}
+.right-side::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Hitam transparan tipis */
+    border-radius: 10px;
+}
 
-/*//! HALAMAN 1 */
+
+/* //!🌟 STYLING WELCOME SPLASH SCREEN */
+.welcome-cover {
+    position: absolute; /* Mengunci penuh di dalam .right-side */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(img/background.png);
+    background-size: cover;
+    background-position: center;
+    z-index: 999; /* Lapisan tertinggi, menutup semua halaman */
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
+    padding: 2rem;
+}
+
+/* Class bantuan saat tombol diklik (efek tirai terangkat ke atas) */
+.welcome-cover.terbuka {
+    transform: translateY(-100vh);
+    opacity: 0;
+    pointer-events: none; /* Mencegah klik hantu setelah tertutup */
+}
+
+/* Desain Teks & Tombol di Tirai Depan */
+.wel1 {
+    font-family: "Lavishly Yours", cursive;
+    font-size: 3rem;
+    color: #4a4a4a;
+    margin-bottom: 0.5rem;
+}
+.wel2 {
+    font-family: "Castoro Titling", serif;
+    font-size: 2rem;
+    color: #a87e7e;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+}
+.wel3 {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+.nama-tamu {
+    font-family: "Castoro Titling", serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 2.5rem;
+}
+.btn-buka-baru {
+    padding: 0.8rem 2.5rem;
+    border: none;
+    border-radius: 2rem;
+    background-color: #a87e7e;
+    color: white;
+    font-family: "Castoro Titling", serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(168, 126, 126, 0.4);
+    transition: all 0.3s ease;
+}
+.btn-buka-baru:hover {
+    background-color: #8f6767;
+    transform: scale(1.05);
+}
+
+
+/*//! HALAMAN 1 (COVER) */
 .halaman-1 {
     background-image: url(img/background.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
     position: relative;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
+
+.btn-buka {
+    position: relative;
+    z-index: 10;           /* di atas gambar dekorasi di dalam cover */
+    margin-top: 2rem;
+    padding: 0.7rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    background-color: #fff;
+    font-family: "Castoro Titling", serif;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-buka:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+.btn-buka:active {
+    transform: translateY(0);
+}
+.btn-buka.hilang {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
 /* .tex-hal1 {
     padding-top: 5rem;
     min-height: 100vh;
@@ -76,27 +173,28 @@ html, body {
     font-style: normal;
     text-align: center;
 } */
+
 .gunungbawah {
     bottom: 2rem;
     width: 100%;
-    position:absolute;
+    position: absolute;
 }
 .rumah {
     bottom: 2rem;
     width: 100%;
-    position:absolute;
+    position: absolute;
 }
 .pohonkiri1 {
-    top: 33%;      
-    left: -3.5%;    
-    width: 30%;
+    top: 33%;
+    left: -10%;
+    width: 35%;
     position: absolute;
     z-index: 3;
     transform-origin: bottom left;
     animation: anginPohon 9s ease-in-out infinite;
 }
 .pohonkiri2 {
-    top: 53%;      
+    bottom: 19%;
     left: -20%;
     width: 50%;
     position: absolute;
@@ -106,7 +204,7 @@ html, body {
 }
 .pohonkanan1 {
     top: 33%;
-    right: -3%;
+    right: -5%;
     width: 30%;
     position: absolute;
     z-index: 3;
@@ -114,7 +212,7 @@ html, body {
     animation: anginPohon 8s ease-in-out infinite;
 }
 .pohonkanan2 {
-    top: 53%;
+    bottom: 19%;
     right: -20%;
     width: 50%;
     position: absolute;
@@ -142,22 +240,21 @@ html, body {
 }
 .kipaskiri {
     bottom: 5%;
-    left: 20%;
-    width: 40%;
+    left: 30%;
+    width: 30%;
     position: absolute;
     z-index: 1;
-    transform-origin: bottom right; 
+    transform-origin: bottom right;
     animation: kipasMelayang 6.5s ease-in-out infinite;
 }
 .kipaskanan {
-    bottom: -5%;
-    right: 15%;
-    width: 50%;
+    bottom: -4%;
+    right: 25%;
+    width: 40%;
     position: absolute;
     z-index: 1;
-    transform-origin: bottom right; 
+    transform-origin: bottom right;
     animation: kipasMelayang 5s ease-in-out infinite;
-    
 }
 .kupu {
     z-index: 1;
@@ -173,12 +270,12 @@ html, body {
     position: absolute;
     filter: brightness(0);
 }
+
 /*//! HALAMAN 2 */
 .halaman-2 {
     margin: 0;
     min-height: 50vh;
     background-color: rgb(95, 150, 106);
-    margin-bottom: -1   ;
 }
 .b1 {
     width: 20%;
@@ -204,7 +301,6 @@ html, body {
     margin: 0;
     min-height: 120vh;
     background-color: rgb(189, 141, 141);
-    padding-top: -5rem;
 }
 .kata-1 {
     border-radius: 1rem;
@@ -246,12 +342,9 @@ html, body {
     margin: 0;
     min-height: 100vh;
     background-color: rgb(95, 150, 106);
-    padding-top: -5rem;
 }
 
-
-
-/* //! ANIMASI */
+/* //! ANIMASI SCROLL */
 .animasi-scroll {
     opacity: 0;
     transform: translateY(50px);
@@ -262,52 +355,41 @@ html, body {
     transform: translateY(0);
 }
 
-
 @keyframes fade-atas {
-	0% {
-		opacity: 0;
-		transform: translateY(50px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes ayunBunga {
-    0% {transform: rotate(0deg) scale(1) translateY(0);}
-    20% {transform: rotate(-3deg) scaleX(0.98) translateY(1px);}
-    45% {transform: rotate(4deg) scaleX(1.02) translateY(-2px);}
-    70% {transform: rotate(-1deg) scaleX(0.99) translateY(0);}
-    85% {transform: rotate(2deg) scaleX(1.01) translateY(-1px);}
-    100% {transform: rotate(0deg) scale(1) translateY(0);}
+    0% { transform: rotate(0deg) scale(1) translateY(0); }
+    20% { transform: rotate(-3deg) scaleX(0.98) translateY(1px); }
+    45% { transform: rotate(4deg) scaleX(1.02) translateY(-2px); }
+    70% { transform: rotate(-1deg) scaleX(0.99) translateY(0); }
+    85% { transform: rotate(2deg) scaleX(1.01) translateY(-1px); }
+    100% { transform: rotate(0deg) scale(1) translateY(0); }
 }
 
 @keyframes anginPohon {
-    0% {transform: rotate(0deg) skewX(0deg);}
-    30% {transform: rotate(-1.5deg) skewX(-1deg);}
-    35% {transform: rotate(-1.2deg) skewX(-0.8deg);}
-    40% {transform: rotate(-1.6deg) skewX(-1.2deg);}
-    65% {transform: rotate(2deg) skewX(1.5deg);}
-    80% {transform: rotate(1.8deg) skewX(1deg);}
-    100% {transform: rotate(0deg) skewX(0deg);}
+    0% { transform: rotate(0deg) skewX(0deg); }
+    30% { transform: rotate(-1.5deg) skewX(-1deg); }
+    35% { transform: rotate(-1.2deg) skewX(-0.8deg); }
+    40% { transform: rotate(-1.6deg) skewX(-1.2deg); }
+    65% { transform: rotate(2deg) skewX(1.5deg); }
+    80% { transform: rotate(1.8deg) skewX(1deg); }
+    100% { transform: rotate(0deg) skewX(0deg); }
 }
 
 @keyframes kipasMelayang {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        /* Naik sedikit dan miring tipis */
-        transform: translateY(-4px) rotate(1.5deg);
-    }
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(1.5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
 }
-
-
 
 /* //! UKURAN HP */
 @media (max-width: 768px) {
@@ -317,6 +399,9 @@ html, body {
     .right-side {
         width: 100% !important;
         flex-grow: 1;
+    }
+    .halaman-1 {
+        width: 100% !important;
     }
     .split-container {
         display: block;
