@@ -1,0 +1,191 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.main-wrapper {
+    height: 100vh;
+}
+.split-container {
+  display: flex; /* Mengaktifkan flexbox untuk membagi kolom */
+    width: 100vw;
+    height: 100vh;
+    
+}
+/*//! BAGIAN KIRI */
+.left-side {
+    width: 70%; /* Lebar layar kiri 50% */
+    background-color: #fcd3d3;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.hero1 {
+    font-family: "Fleur De Leah", cursive;
+    font-size: 500%;
+    font-weight: 400;
+    font-style: normal;
+}
+.hero2 {
+    font-family: "times new roman", cursive;
+    font-size: 300%;
+    font-weight: 400;
+    font-style: normal;
+}
+/*//! BAGIAN KANAN */
+.right-side {
+    width: 30%; /* Lebar layar kanan 50% */
+    background-color: #dfdfdf;
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+/*//! HALAMAN 1 */
+.halaman-1 {
+    background-image: url(img/sampul.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.tex-hal1 {
+    padding-top: 5rem;
+    min-height: 100vh;
+    position: relative;
+}
+.hal1 {
+    font-family: "Lavishly Yours", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+.hal2 {
+    font-family: "Castoro Titling", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+/*//! HALAMAN 2 */
+.halaman-2 {
+    margin: 0;
+    min-height: 50vh;
+    background-color: rgb(79, 148, 93);
+    margin-bottom: -1   ;
+
+}
+.b1 {
+    width: 20%;
+    height: auto;
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    filter: invert();
+}
+.pembuka {
+    border-radius: 1rem;
+    text-align: center;
+    font-family: "work sans";
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #dfdfdf;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/*//! HALAMAN 3 */
+.halaman-3 {
+    margin: 0;
+    min-height: 120vh;
+    background-color: rgb(180, 180, 180);
+    padding-top: -5rem;
+}
+.kata-1 {
+    border-radius: 1rem;
+    text-align: center;
+    font-family: "work sans";
+    font-style: italic;
+}
+.foto-mempelai {
+    padding-top: 1rem;
+    width: 20%;
+    object-fit: cover;
+    align-items: center;
+    justify-content: center;
+}
+.mempelai {
+    padding-top: 1rem;
+    font-family: "Castoro Titling", serif;
+    font-size: 150%;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 0rem;
+}
+.dan {
+    padding: 1rem;
+    font-family: "times new roman", cursive;
+    font-size: 130%;
+    font-style: normal;
+    margin: -0.2rem;
+}
+.mertua {
+    font-family: "times new roman", cursive;
+    font-size: 100%;
+    font-style: normal;
+    margin: -0.2rem;
+}
+
+/* //! HALAMAN 4 */
+.halaman-4 {
+    margin: 0;
+    min-height: 100vh;
+    background-color: rgb(222, 222, 222);
+    padding-top: -5rem;
+}
+
+
+
+
+/* //! ANIMASI */
+.animasi-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animasi-scroll.muncul {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@keyframes fade-atas {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+/* //! UKURAN HP */
+@media (max-width: 768px) {
+    .left-side {
+        display: none !important;
+    }
+    .right-side {
+        width: 100% !important;
+        flex-grow: 1;
+    }
+    .split-container {
+        display: block;
+        width: 100%;
+    }
+}
