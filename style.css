@@ -38,7 +38,7 @@ html, body {
 }
 /*//! BAGIAN KANAN */
 .right-side {
-    width: 29%; /* Lebar layar kanan 50% */
+    width: clamp(320px, 29vw, 480px);
     background-color: #dfdfdf;
     height: 100vh;
     overflow-y: auto;
@@ -87,60 +87,59 @@ html, body {
     position:absolute;
 }
 .pohonkiri1 {
-    top: 20rem;
-    left: -2rem;
+    top: 33%;      /* dulu: 20rem */
+    left: -3.5%;     /* dulu: -2rem */
     width: 30%;
-    position:absolute;
+    position: absolute;
     z-index: 3;
 }
 .pohonkiri2 {
-    top: 32rem;
-    left: -3.9rem;
+    top: 53%;      /* dulu: 32rem */
+    left: -20%;
     width: 50%;
-    position:absolute;
-    z-index: 3;
-}
-.bungakiri {
-    bottom: -4rem;
-    left: -5rem;
-    width: 80%;
-    position:absolute;
-    z-index: 3;
-}
-.bungakanan {
-    bottom: -3rem;
-    right: -3.5rem;
-    width: 60%;
-    position:absolute;
+    position: absolute;
     z-index: 3;
 }
 .pohonkanan1 {
-    top: 20rem;
-    right: -1rem;
+    top: 33%;
+    right: -3%;
     width: 30%;
-    position:absolute;
+    position: absolute;
     z-index: 3;
 }
 .pohonkanan2 {
-    top: 32rem;
-    right: -5rem;
+    top: 53%;
+    right: -20%;
     width: 50%;
-    position:absolute;
+    position: absolute;
     z-index: 3;
 }
-
+.bungakiri {
+    bottom: -7%;
+    left: -12%;
+    width: 80%;
+    position: absolute;
+    z-index: 3;
+}
+.bungakanan {
+    bottom: -5%;
+    right: -12%;
+    width: 60%;
+    position: absolute;
+    z-index: 3;
+}
 .kipaskiri {
-    bottom: 2rem;
-    left: 5rem;
+    bottom: 5%;
+    left: 20%;
     width: 40%;
-    position:absolute;
+    position: absolute;
     z-index: 1;
 }
 .kipaskanan {
-    bottom: -4rem;
-    right: 6rem;
+    bottom: -5%;
+    right: 15%;
     width: 50%;
-    position:absolute;
+    position: absolute;
     z-index: 1;
 }
 
