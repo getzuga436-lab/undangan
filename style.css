@@ -16,7 +16,7 @@ html, body {
 }
 /*//! BAGIAN KIRI */
 .left-side {
-    width: 70%; /* Lebar layar kiri 50% */
+    width: 61%; /* Lebar layar kiri 50% */
     background-color: #fcd3d3;
     overflow: hidden;
     display: flex;
@@ -38,7 +38,7 @@ html, body {
 }
 /*//! BAGIAN KANAN */
 .right-side {
-    width: 30%; /* Lebar layar kanan 50% */
+    width: 39%; /* Lebar layar kanan 50% */
     background-color: #dfdfdf;
     height: 100vh;
     overflow-y: auto;
@@ -47,15 +47,22 @@ html, body {
 
 /*//! HALAMAN 1 */
 .halaman-1 {
-    background-image: url(img/sampul.jpg);
+    background-image: url(img/background.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .tex-hal1 {
     padding-top: 5rem;
     min-height: 100vh;
     position: relative;
+    z-index: 10;
 }
 .hal1 {
     font-family: "Lavishly Yours", cursive;
@@ -69,6 +76,72 @@ html, body {
     font-style: normal;
     text-align: center;
 }
+.gunungbawah {
+    margin-bottom: 0rem;
+    width: 100%;
+    position:absolute;
+}
+.rumah {
+    margin-bottom: -18rem;
+    width: 100%;
+    position:absolute;
+}
+.pohonkiri1 {
+    margin-top: -2rem;
+    left: -2rem;
+    width: 30%;
+    position:absolute;
+    z-index: 3;
+}
+.pohonkiri2 {
+    margin-top: 12rem;
+    left: -3.9rem;
+    width: 50%;
+    position:absolute;
+    z-index: 3;
+}
+.bungakiri {
+    bottom: -4rem;
+    left: -3.5rem;
+    width: 70%;
+    position:absolute;
+    z-index: 3;
+}
+.pohonkanan1 {
+    margin-top: -2rem;
+    right: -1rem;
+    width: 30%;
+    position:absolute;
+    z-index: 3;
+}
+.pohonkanan2 {
+    margin-top: 12rem;
+    right: -5rem;
+    width: 50%;
+    position:absolute;
+    z-index: 3;
+}
+.bungakanan {
+    bottom: -3rem;
+    right: -3.5rem;
+    width: 60%;
+    position:absolute;
+    z-index: 3;
+}
+.kipaskiri {
+    bottom: -1rem;
+    left: 3rem;
+    width: 50%;
+    position:absolute;
+    z-index: 1;
+}
+.kipaskanan {
+    bottom: -4rem;
+    right: 6rem;
+    width: 50%;
+    position:absolute;
+    z-index: 1;
+}
 
 /*//! HALAMAN 2 */
 .halaman-2 {
@@ -76,7 +149,6 @@ html, body {
     min-height: 50vh;
     background-color: rgb(79, 148, 93);
     margin-bottom: -1   ;
-
 }
 .b1 {
     width: 20%;
