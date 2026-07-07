@@ -193,7 +193,12 @@ html, body {
     font-style: normal;
     text-align: center;
 } */
-
+.video-mempelai {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0.5rem 0;
+}
 .gunungbawah {
     bottom: 2rem;
     width: 100%;
@@ -380,6 +385,25 @@ html, body {
     font-size: 0.95rem;
     margin: 0; /* Menghilangkan margin bawaan paragraf agar tidak berjarak jauh */
     line-height: 1.3;
+}
+.pohonkiri3 {
+    top: -1%;
+    left: -15%;
+    width: 45%;
+    position: absolute;
+    z-index: 0;
+    transform-origin: bottom left;
+    animation: anginPohon 9s ease-in-out infinite;
+}
+.pohonkanan3 {
+    top: -8%;
+    right: -5%;
+    width: 30%;
+    position: absolute;
+    z-index: 3;
+    transform-origin: bottom right;
+    animation: anginPohon 8s ease-in-out infinite;
+
 }
 
 /* //! HALAMAN 4 */
