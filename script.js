@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // === 🛠️ SCRIPT TAMBAHAN: AMBIL NAMA DARI LINK URL ===
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTamu = urlParams.get('to');
+    const elemenNama = document.getElementById('nama-tamu');
+
+    if (namaTamu && elemenNama) {
+        // decodeURIComponent mengubah karakter seperti %20 menjadi spasi asli
+        elemenNama.innerText = decodeURIComponent(namaTamu);
+    }
+    // ====================================================
+
     const btnBuka = document.getElementById("btnBuka");
     
     // PERBAIKAN: Ubah "cover" menjadi "welcomeCover" agar sesuai dengan ID di HTML
