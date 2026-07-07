@@ -47,36 +47,39 @@ html, body {
 
 /* //!🌟 STYLING WELCOME SPLASH SCREEN */
 .welcome-cover {
-    position: absolute; /* Mengunci penuh di dalam .right-side */
+    position: fixed; 
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    left: auto;
+    right: 0;
+    width: clamp(320px, 29vw, 480px);height: 100vh;
     background: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.85)), url(img/background.png);
-    
-    /* KEMBALIKAN KE COVER AGAR TIDAK LEPAS DAN BERULANG */
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    
-    z-index: 999; /* Lapisan tertinggi, menutup semua halaman */
-    
-    /* Efek transisi bergeser ke atas saat tombol diklik (tetap dipertahankan) */
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
-    overflow: hidden; /* Mencegah gambar dekorasi memicu scrollbar liar */
-
-    /* Titik pusat efek zoom berada di tengah-tengah layar */
+    z-index: 9999;
+    transform: translateY(0);
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease, visibility 1.2s;
+    overflow: hidden;
     transform-origin: center center;
+}
 
-    /* Pemicu animasi saat halaman pertama kali dimuat */
-    animation: bgSinematik 2.5s ease-out forwards;
-}
-/* Class bantuan saat tombol diklik (efek tirai terangkat ke atas) */
+/* Saat tombol diklik dan class .terbuka ditambahkan via JS */
 .welcome-cover.terbuka {
-    transform: translateY(-100vh);
-    opacity: 0;
-    pointer-events: none; /* Mencegah klik hantu setelah tertutup */
+    animation: none;
+    transform: translateY(-100vh) !important; 
+    opacity: 0 !important;
+    pointer-events: none;
+    visibility: hidden;
 }
+
+/* Hentikan sisa animasi elemen anak agar tidak merusak pergerakan transisi */
+.welcome-cover.terbuka img,
+.welcome-cover.terbuka .text-welcome {
+    animation-play-state: paused !important;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
 .text-welcome {
     position: relative;
     z-index: 10; /* Berada di depan gunung (z-index: 1) dan pohon/bunga (z-index: 3) */
@@ -317,9 +320,10 @@ html, body {
 .halaman-3 {
     margin: 0;
     min-height: 120vh;
-    background-color: rgb(189, 141, 141);
+    background-color: rgb(227, 184, 184);
 }
 .kata-1 {
+    margin-top: 1rem;
     border-radius: 1rem;
     text-align: center;
     font-family: "work sans";
@@ -364,9 +368,13 @@ html, body {
 /* //! ANIMASI SCROLL */
 .animasi-scroll {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
+.animasi-bawah { transform: translateY(-50px); }
+.animasi-kiri  { transform: translateX(-50px); } 
+.animasi-kanan  { transform: translateX(50px); } 
+.animasi-zoom  { transform: scale(0.85); }
+.animasi-atas { transform: translateY(50px); }
 .animasi-scroll.muncul {
     opacity: 1;
     transform: translateY(0);
@@ -429,15 +437,10 @@ html, body {
     animation: masukKanan 1.7s ease-out forwards, kipasMelayang 5s ease-in-out infinite 1.7s;
 }
 
+
 @keyframes fade-atas {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% {opacity: 0; transform: translateY(50px);}
+    100% {opacity: 1; transform: translateY(0);}
 }
 
 @keyframes ayunBunga {
@@ -465,45 +468,17 @@ html, body {
     100% { transform: translateY(0) rotate(0deg); }
 }
 @keyframes masukKiri {
-    0% {
-        transform: translateX(-150px) scale(0.9); /* Mulai dari luar layar kiri & agak kecil */
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0) scale(1); /* Sampai ke posisi asli */
-        opacity: 1;
-    }
+    0% {transform: translateX(-150px) scale(0.9); opacity: 0;}
+    100% {transform: translateX(0) scale(1); opacity: 1;}
 }
 
 @keyframes masukKanan {
-    0% {
-        transform: translateX(150px) scale(0.9); /* Mulai dari luar layar kanan & agak kecil */
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0) scale(1); /* Sampai ke posisi asli */
-        opacity: 1;
-    }
+    0% {transform: translateX(150px) scale(0.9); opacity: 0;}
+    100% {transform: translateX(0) scale(1); opacity: 1;}
 }
 @keyframes masukBawah {
-    0% {
-        transform: translateY(100px); /* Mulai dari posisi agak ke bawah luar layar */
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0); /* Naik pas ke posisi aslinya */
-        opacity: 1;
-    }
-}
-@keyframes bgSinematik {
-    0% {
-        opacity: 0;
-        transform: scale(1.08); /* Mulai dengan efek sedikit zoom-in */
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1); /* Kembali ke ukuran normal */
-    }
+    0% {transform: translateY(100px); opacity: 0;}
+    100% {transform: translateY(0); opacity: 1;}
 }
 
 /* //! UKURAN HP */

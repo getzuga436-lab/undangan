@@ -1,22 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
     const btnBuka = document.getElementById("btnBuka");
-    const cover = document.getElementById("cover");
+    
+    // PERBAIKAN: Ubah "cover" menjadi "welcomeCover" agar sesuai dengan ID di HTML
+    const cover = document.getElementById("welcomeCover"); 
     const rightSide = document.getElementById("rightSide");
 
-// --- Logika Buka Undangan Premium ---
-    btnBuka.addEventListener("click", function () {
-        // 1. Angkat tirai cover ke atas
-        welcomeCover.classList.add("terbuka");
-        
-        // 2. Aktifkan kemampuan scroll halaman ke bawah
-        rightSide.style.overflowY = "auto"; 
-    });
+    // --- Logika Buka Undangan Premium ---
+    if (btnBuka) {
+        btnBuka.addEventListener("click", function () {
+            // Sekarang variabel 'cover' sudah sukses mengambil elemen dari HTML
+            if (cover) {
+                cover.classList.add("terbuka");
+            }
+            
+            // 2. Aktifkan kemampuan scroll halaman ke bawah
+            if (rightSide) {
+                rightSide.style.overflowY = "auto"; 
+            }
+        });
+    }
 
-    // --- Animasi muncul/hilang saat scroll (punya kamu, dipertahankan) ---
+    // --- Animasi muncul/hilang saat scroll (Tetap dipertahankan) ---
     const elemenAnimasi = document.querySelectorAll(".animasi-scroll");
-
     const opsi = {
-        root: rightSide, // penting: root harus .right-side, karena itu yang discroll (bukan window)
+        root: rightSide,
         rootMargin: "0px 0px -70px 0px",
         threshold: 0.15
     };
@@ -28,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 entry.target.classList.remove("muncul");
             }
-            // tidak pakai unobserve() supaya animasi bisa berulang saat scroll naik-turun
         });
     }, opsi);
 
