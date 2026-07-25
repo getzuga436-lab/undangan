@@ -1,0 +1,53 @@
+/* Kontainer Utama Efek Daun */
+.daun-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: clamp(320px, 29vw, 480px);
+    overflow: hidden;
+    z-index: 9998; /* Di bawah welcome-cover tapi di atas konten halaman */
+    pointer-events: none;
+    transform: translateZ(0);
+}
+.right-side {
+    position: relative; /* Wajib ada sebagai pembatas area daun jika dibutuhkan */
+}
+
+/* Bentuk Dasar Daun */
+.daun {
+    position: absolute;
+    top: -50px; /* Mulai dari luar layar atas */
+    width: 10px;
+    height: 20px;
+    background: linear-gradient(to bottom right, #606c38, #283618); /* Warna hijau daun alami */
+    border-radius: 0 100% 0 100%; /* Membuat efek bentuk kelopak daun */
+    opacity: 0.7;
+}
+
+/* Variasi Posisi, Ukuran, Durasi, dan Jeda Jatuh Tiap Daun */
+.daun:nth-child(1) { left: 10%; width: 10px; height: 18px; animation: jatuh 12s linear infinite; animation-delay: 0s; }
+.daun:nth-child(2) { left: 35%; width: 12px; height: 22px; animation: jatuh 15s linear infinite; animation-delay: -2s; }
+.daun:nth-child(3) { left: 55%; width: 16px; height: 26px; animation: jatuh 10s linear infinite; animation-delay: -5s; }
+.daun:nth-child(4) { left: 75%; width: 14px; height: 24px; animation: jatuh 14s linear infinite; animation-delay: -3s; }
+.daun:nth-child(5) { left: 90%; width: 7px; height: 17px; animation: jatuh 11s linear infinite; animation-delay: -7s; }
+
+/* Animasi Pergerakan Daun (Gugur, Meliuk, dan Berputar) */
+@keyframes jatuh {
+    0% {
+        top: -50px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8; /* Daun perlahan terlihat saat mulai turun */
+    }
+    50% {
+        transform: translateX(50px) rotate(180deg); /* Meliuk ke kanan sembari berputar */
+    }
+    100% {
+        top: 100vh; /* Turun sampai ujung bawah layar */
+        transform: translateX(-50px) rotate(360deg); /* Meliuk ke kiri sebelum hilang */
+        opacity: 0;
+    }
+}

@@ -35,21 +35,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const elemenAnimasi = document.querySelectorAll(".animasi-scroll");
     const opsi = {
         root: rightSide,
-        rootMargin: "0px 0px -70px 0px",
+        rootMargin: "0px 0px -60px 0px",
         threshold: 0.15
     };
 
     const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("muncul");
-            } else {
-                entry.target.classList.remove("muncul");
-            }
-        });
-    }, opsi);
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    // 1. Saat elemen masuk ke layar -> TAMPILKAN (Muncul)
+                    entry.target.classList.add("muncul");
+                } else {
+                    // 2. Saat elemen keluar dari layar, kita cek posisinya
+                    // Jika "top" lebih besar dari 0, berarti elemen tersebut terdorong ke BAWAH layar (Anda men-scroll ke atas).
+                    // Maka HAPUS class 'muncul' agar siap dianimasikan lagi nanti.
+                    if (entry.boundingClientRect.top > 0) {
+                        entry.target.classList.remove("muncul");
+                    }
+                    // Jika elemen keluar di ATAS layar (Anda lanjut men-scroll jauh ke bawah),
+                    // class 'muncul' tidak akan dihapus, sehingga elemennya "tetap ada".
+                }
+            });
+        }, opsi);
 
     elemenAnimasi.forEach(function (el) {
         observer.observe(el);
     });
 });
+

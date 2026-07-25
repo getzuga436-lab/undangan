@@ -1,0 +1,46 @@
+/* =========================================
+   STYLING UNTUK COUNTDOWN (HITUNG MUNDUR)
+   ========================================= */
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+
+.cd-box {
+    background: #ffffff;
+    border: 1px solid rgba(168, 126, 126, 0.2);
+    border-radius: 12px;
+    width: 65px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.cd-box:hover {
+    transform: translateY(-3px);
+}
+
+.cd-angka {
+    font-family: "Castoro Titling", serif;
+    font-size: 1.4rem;
+    color: #a87e7e;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.cd-label {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.65rem;
+    color: #777777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
