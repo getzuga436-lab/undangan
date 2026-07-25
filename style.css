@@ -750,6 +750,23 @@ body {
     transform: scale(1.1);
 }
 
+/* =========================================
+   STYLING MODAL ZOOM FOTO GALERI
+   ========================================= */
+.galeri-item {
+    cursor: pointer; /* Mengubah kursor menjadi tangan saat diarahkan ke foto */
+}
+
+.modal-backdrop.show {
+    backdrop-filter: blur(8px); /* Efek blur estetik di belakang popup foto */
+    background-color: rgba(0, 0, 0, 0.85); /* Latar belakang gelap transparan */
+}
+
+#modalImage {
+    max-height: 85vh;
+    object-fit: contain;
+}
+
 @media (max-width: 768px) {
 
     .halaman-4,

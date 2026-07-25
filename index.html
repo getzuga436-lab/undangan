@@ -241,17 +241,29 @@
                         <p class="subjudul-galeri animasi-scroll animasi-atas">Momen Bahagia Kami</p>
 
                         <div class="galeri-grid">
-                            <div class="galeri-item item-1 animasi-scroll animasi-zoom">
+                            <div class="galeri-item item-1 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
                                 <img src="img/mempelai/prewed1.jpeg" alt="Prewedding 1">
                             </div>
-                            <div class="galeri-item item-2 animasi-scroll animasi-zoom">
+                            <div class="galeri-item item-2 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
                                 <img src="img/mempelai/prewed2.jpeg" alt="Prewedding 2">
                             </div>
-                            <div class="galeri-item item-3 animasi-scroll animasi-zoom">
+                            <div class="galeri-item item-3 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
                                 <img src="img/mempelai/prewed3.jpeg" alt="Prewedding 3">
                             </div>
-                            <div class="galeri-item item-4 animasi-scroll animasi-zoom">
+                            <div class="galeri-item item-4 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
                                 <img src="img/mempelai/prewed4.jpeg" alt="Prewedding 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODAL POPUP UNTUK MEMPERBESAR FOTO -->
+                <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content bg-transparent border-0">
+                            <div class="modal-body text-center position-relative p-0">
+                                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" alt="Zoomed Prewedding">
                             </div>
                         </div>
                     </div>

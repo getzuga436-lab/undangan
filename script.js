@@ -62,3 +62,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Fungsi untuk membuka foto ke dalam modal popup
+function bukaModal(element) {
+    const imgElement = element.querySelector("img");
+    const modalImage = document.getElementById("modalImage");
+    
+    if (imgElement && modalImage) {
+        // Ambil sumber (src) dari gambar yang diklik, lalu masukkan ke dalam modal
+        modalImage.src = imgElement.src;
+        
+        // Tampilkan modal menggunakan fungsi bawaan Bootstrap 5
+        const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
+        myModal.show();
+    }
+}
