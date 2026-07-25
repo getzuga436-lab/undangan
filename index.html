@@ -257,13 +257,26 @@
                     </div>
                 </div>
 
-                <!-- MODAL POPUP UNTUK MEMPERBESAR FOTO -->
+                <!-- MODAL POPUP GALERI DENGAN NAVIGASI SLIDE -->
                 <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content bg-transparent border-0">
-                            <div class="modal-body text-center position-relative p-0">
-                                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-content bg-transparent border-0 position-relative">
+                            <!-- Tombol Close -->
+                            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                            
+                            <div class="modal-body text-center position-relative p-0 d-flex align-items-center justify-content-center">
+                                <!-- Tombol Previous (Sebelumnya) -->
+                                <button type="button" class="btn btn-dark position-absolute start-0 ms-2 rounded-circle z-3 p-2 d-flex align-items-center justify-content-center" onclick="geserFoto(-1)" style="width: 45px; height: 45px; opacity: 0.8;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+
+                                <!-- Gambar Utama di Modal -->
                                 <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" alt="Zoomed Prewedding">
+
+                                <!-- Tombol Next (Berikutnya) -->
+                                <button type="button" class="btn btn-dark position-absolute end-0 me-2 rounded-circle z-3 p-2 d-flex align-items-center justify-content-center" onclick="geserFoto(1)" style="width: 45px; height: 45px; opacity: 0.8;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
                             </div>
                         </div>
                     </div>

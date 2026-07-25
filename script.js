@@ -62,17 +62,93 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Fungsi untuk membuka foto ke dalam modal popup
+// Variabel untuk melacak urutan foto yang sedang aktif
+let currentIndex = 0;
+let galeriImages = [];
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Ambil semua elemen gambar yang ada di dalam galeri-grid
+    const imgElements = document.querySelectorAll(".galeri-item img");
+    galeriImages = Array.from(imgElements).map(img => img.src);
+});
+
+// Fungsi untuk membuka modal berdasarkan foto yang diklik
 function bukaModal(element) {
     const imgElement = element.querySelector("img");
     const modalImage = document.getElementById("modalImage");
     
     if (imgElement && modalImage) {
-        // Ambil sumber (src) dari gambar yang diklik, lalu masukkan ke dalam modal
+        // Cari posisi index gambar saat ini di dalam array galeri
+        currentIndex = galeriImages.indexOf(imgElement.src);
+        
+        // Tampilkan gambar ke modal
         modalImage.src = imgElement.src;
         
-        // Tampilkan modal menggunakan fungsi bawaan Bootstrap 5
+        // Tampilkan modal Bootstrap 5
         const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
         myModal.show();
+    }
+}
+
+// Fungsi untuk menggeser foto ke depan (+1) atau ke belakang (-1) dengan animasi halus
+function geserFoto(arah) {
+    const modalImage = document.getElementById("modalImage");
+    if (!modalImage) return;
+
+    // 1. Jalankan animasi keluar (fade-out / sedikit mengecil)
+    modalImage.classList.add("ganti-slide");
+
+    setTimeout(() => {
+        // 2. Ubah index foto setelah animasi setengah jalan
+        currentIndex += arah;
+
+        if (currentIndex >= galeriImages.length) {
+            currentIndex = 0; // Putar balik ke awal
+        } else if (currentIndex < 0) {
+            currentIndex = galeriImages.length - 1; // Pindah ke akhir
+        }
+
+        // 3. Ganti sumber gambar
+        modalImage.src = galeriImages[currentIndex];
+
+        // 4. Hilangkan kelas animasi agar gambar kembali muncul mulus (fade-in)
+        modalImage.classList.remove("ganti-slide");
+    }, 150); // Jeda waktu 150 milidetik agar transisinya pas dan natural
+}
+
+// ==========================================
+// FITUR SWIPE (SENTUHAN LAYAR HP) PADA MODAL
+// ==========================================
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modalBody = document.querySelector("#imageModal .modal-body");
+
+    if (modalBody) {
+        // Deteksi awal sentuhan jari di layar
+        modalBody.addEventListener("touchstart", function (event) {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+
+        // Deteksi saat jari diangkat dari layar
+        modalBody.addEventListener("touchend", function (event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipeGesture();
+        }, { passive: true });
+    }
+});
+
+// Menghitung arah geseran (kiri atau kanan)
+function handleSwipeGesture() {
+    const batasGeser = 50; // Minimal jarak geser dalam piksel agar terdeteksi
+
+    if (touchEndX < touchStartX - batasGeser) {
+        // Geser ke Kiri -> Tampilkan foto berikutnya (Next)
+        geserFoto(1);
+    } 
+    if (touchEndX > touchStartX + batasGeser) {
+        // Geser ke Kanan -> Tampilkan foto sebelumnya (Previous)
+        geserFoto(-1);
     }
 }

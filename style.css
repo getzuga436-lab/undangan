@@ -767,6 +767,40 @@ body {
     object-fit: contain;
 }
 
+/* =========================================
+   PENGISIAN & ANIMASI GALERI MODAL SLIDE
+   ========================================= */
+
+#modalImage {
+    max-height: 85vh;
+    object-fit: contain;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transisi halus */
+    opacity: 1;
+}
+
+/* Kelas bantu untuk efek animasi ganti foto */
+#modalImage.ganti-slide {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Desain Tombol Navigasi Modal agar Lebih Elegan */
+#imageModal .btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+#imageModal .btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+#imageModal .btn:active {
+    transform: scale(0.95);
+}
+
 @media (max-width: 768px) {
 
     .halaman-4,
