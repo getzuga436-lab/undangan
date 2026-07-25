@@ -735,8 +735,8 @@ body {
 
 /* Variasi tinggi card agar bentuk grid terlihat dinamis/masonry look */
 .galeri-item.item-1 img { height: 190px; }
-.galeri-item.item-2 img { height: 140px; }
-.galeri-item.item-3 img { height: 140px; }
+.galeri-item.item-2 img { height: 190px; }
+.galeri-item.item-3 img { height: 190px; }
 .galeri-item.item-4 img { height: 190px; }
 
 /* Efek Interaktif Saat Disentuh/Hover */
