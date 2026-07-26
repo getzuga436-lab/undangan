@@ -345,7 +345,7 @@ body {
 .halaman-2 {
     margin: 0;
     min-height: 50vh;
-    background-color: rgb(95, 150, 106);
+    background-color: rgb(92, 8, 8);
 }
 
 .b1 {
@@ -397,7 +397,7 @@ body {
     background-color: rgba(255, 255, 255, 0.751);
     border-radius: 210px 210px 0 0;
     z-index: 1;
-    outline: 11px solid #ffffff36;
+    outline: 11px solid #670d0d7b;
 }
 
 .konten-kapsul {
@@ -580,7 +580,7 @@ body {
     max-width: 90%;
     background-color: rgba(255, 255, 255, 0.927); /* Latar putih kapsul pindah langsung ke sini */
     border-radius: 180px; /* Bentuk kapsul melengkung atas-bawah */
-    outline: 11px solid #ffffff36;
+    outline: 11px solid #750a0a36;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
