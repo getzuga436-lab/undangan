@@ -96,59 +96,87 @@ body {
 
 /* Hentikan sisa animasi elemen anak agar tidak merusak pergerakan transisi */
 .welcome-cover.terbuka img,
-.welcome-cover.terbuka .text-welcome {
+.welcome-cover.terbuka .kapsul-welcome {
     animation-play-state: paused !important;
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
-.text-welcome {
+/* =========================================
+   KAPSUL TRANSPARAN WELCOME COVER
+   ========================================= */
+.kapsul-welcome {
     position: relative;
-    z-index: 10;
-    /* Berada di depan gunung (z-index: 1) dan pohon/bunga (z-index: 3) */
-    width: 100%;
-    padding: 2rem;
+    z-index: 5;
+    width: 85%;
+    height: 90%;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.374); /* Transparan putih */
+    backdrop-filter: blur(8px); /* Efek frosted glass / kaca buram */
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 20rem 20rem 0rem 0rem; /* Bentuk kapsul melengkung */
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    outline: 8px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 1.2rem;
 }
 
-/* Desain Teks & Tombol di Tirai Depan */
+.text-welcome {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    
+    /* Mengetengahkan posisi container dan konten di dalamnya */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Mengetengahkan tombol & div secara horizontal */
+    justify-content: center; /* Mengetengahkan secara vertikal */
+    text-align: center;      /* Mengetengahkan semua baris teks */
+}
+
+/* Desain Teks & Tombol di Dalam Kapsul */
 .wel1 {
     font-family: "Great Vibes", cursive;
-    font-size: 3rem;
+    font-size: 2.7rem;
     color: #4a4a4a;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .wel2 {
     font-family: "Great Vibes", cursive;
-    font-size: 2rem;
-    color: #4a4a4a;
-    letter-spacing: 2px;
-    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    color: #a87e7e;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
 }
 
 .wel3 {
     font-family: "Work Sans", sans-serif;
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.3rem;
 }
 
 .nama-tamu {
     font-family: "Castoro Titling", serif;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: bold;
-    color: #4a4a4a;
-    margin-bottom: 2.5rem;
+    color: #333;
+    margin-bottom: 1.8rem;
 }
 
 .btn-buka-baru {
-    padding: 0.8rem 2.5rem;
+    padding: 0.7rem 2.2rem;
     border: none;
     border-radius: 2rem;
     background-color: #cf9673;
     color: white;
     font-family: "Castoro Titling", serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 1px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(168, 126, 126, 0.4);
@@ -160,7 +188,6 @@ body {
     background-color: #8f6767;
     transform: scale(1.05);
 }
-
 
 /*//! HALAMAN 1 (COVER) */
 .halaman-1 {
@@ -234,12 +261,6 @@ body {
 }
 
 .gunungbawah {
-    bottom: 2rem;
-    width: 100%;
-    position: absolute;
-}
-
-.rumah {
     bottom: 2rem;
     width: 100%;
     position: absolute;
@@ -375,35 +396,115 @@ body {
     background-image: url(img/background.png);
     background-color: rgb(227, 184, 184);
     position: relative;
-    /* Menjadi patokan posisi kapsul absolute */
-    padding: 3rem ;
+    padding: 3rem;
     overflow: hidden;
 }
-
+/* Styling Border Atas Dekoratif Halaman 3 */
+.border-atas-hal3 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 150%; /* Batasi lebar agar rapi */
+    z-index: 0;
+    pointer-events: none;
+}
 .kapsul-dasar {
     position: absolute;
     width: 100%;
     max-width: 90%;
     height: 90%;
-    background-color: rgba(255, 255, 255, 0.927);
+    background-color: rgba(255, 255, 255, 0.751);
     border-radius: 210px 210px 0 0;
     z-index: 1;
-    /* Di bawah teks */
     outline: 11px solid #ffffff36;
-
 }
 
 .konten-kapsul {
     position: relative;
     z-index: 2;
-    /* Menaruh teks di atas background shape */
     width: 100%;
     max-width: 90%;
-    padding: 1rem 1rem 1rem 1rem;
-    /* Menjaga teks tidak menempel ke tepi lengkungan */
-
-    /* Mengatur jarak rapat antar komponen teks & gambar */
+    padding: 1rem;
     gap: 0.8rem;
+}
+/* =========================================
+   WADAH BORDER ATAS HALAMAN 3
+   ========================================= */
+.wadah-border-atas {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;         
+    pointer-events: none;
+    padding-bottom: 60px; 
+}
+
+.border-atas-hal3 {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* =========================================
+   AKSEN BUNGA DI BELAKANG FOTO MEMPELAI
+   ========================================= */
+
+/* Container pembungkus foto & bunga agar presisi */
+.pembungkus-foto-mempelai {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Style dasar bunga aksen di belakang foto */
+.bunga-bg-mempelai {
+    position: absolute;
+    width: 110%; /* Ukuran bunga sedikit lebih besar dari foto */
+    height: auto;
+    z-index: 1;  /* Berada di belakang foto */
+    opacity: 0.85; /* Kejelasan warna bunga */
+    pointer-events: none; /* Mencegah kendala klik */
+}
+
+/* Bunga Mempelai Pria (Posisi Asli) */
+.bunga-pria {
+    top: -10%;
+    left: -20%;
+    width: 70%;
+    transform: rotate(-15deg);
+}
+
+/* Bunga Mempelai Wanita (DIBALIK HORIZONTAL / FLIP) */
+.bunga-wanita {
+    padding: 0;
+    top: -20%;
+    right: -20%;
+    width: 80%;
+    /* scaleX(-1) digunakan untuk membalik cermin gambar bunga */
+    transform: scaleX(-1) rotate(-15deg);
+}
+
+/* Penyesuaian foto mempelai agar tampil di depan bunga */
+.foto-mempelai {
+    position: relative;
+    z-index: 2; /* Menjamin foto selalu berada di atas bunga */
+    width: 60%;
+    object-fit: cover;
+    margin: 0.5rem 0;
+    border-radius: 1rem;  
+    background-color: #f4d4d4;
+    border: 0.5rem solid #f4f1eb; 
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.foto-mempelai:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
 }
 
 .kata-1 {
@@ -413,21 +514,6 @@ body {
     line-height: 1.4;
     position: relative;
     margin: 0 0 1rem 0;
-}
-
-.foto-mempelai {
-    width: 60%;
-    object-fit: cover;
-    margin: 1rem 1rem;
-    border-radius: 1rem;  
-    border: 0.5rem solid #f4f1eb; 
-    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.foto-mempelai:hover {
-    transform: scale(1.02);
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
 }
 
 .mempelai {
@@ -441,72 +527,68 @@ body {
 .dan {
     font-family: "times new roman", cursive;
     font-size: 1.5rem;
-    margin: 1rem 1rem ;
+    margin: 1rem 1rem;
 }
 
 .mertua {
     font-family: "times new roman", cursive;
     font-size: 0.95rem;
     margin: 0;
-    /* Menghilangkan margin bawaan paragraf agar tidak berjarak jauh */
     line-height: 1.3;
 }
 
-.pohonkiri3 {
+.wrap-pohonkiri3 {
+    position: absolute;
     top: -1%;
     left: -15%;
     width: 45%;
-    position: absolute;
     z-index: 0;
+}
+.pohonkiri3 {
+    display: block;
+    width: 100%;
     transform-origin: bottom left;
     animation: anginPohon 9s ease-in-out infinite;
 }
-
-.pohonkanan3 {
+.wrap-pohonkanan3 {
+    position: absolute;
     top: -8%;
     right: -5%;
     width: 30%;
-    position: absolute;
     z-index: 3;
+}
+.pohonkanan3 {
+    display: block;
+    width: 100%;
     transform-origin: bottom right;
     animation: anginPohon 8s ease-in-out infinite;
-
 }
 
-/* Gunung di Halaman 3: tampil di depan background mirip sampul */
+/* Gunung di Halaman 3 */
 .halaman-3 .gunungbawah {
     bottom: 2rem;
     left: 0;
     width: 100%;
     position: absolute;
     z-index: 0;
-    /* di depan background, di bawah kapsul */
     animation: masukBawah 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
+
 
 /* //! HALAMAN 4 */
 .halaman-4 {
     position: relative;
     margin: 0;
-    min-height: 180vh; /* Diperpanjang agar muat dua kapsul */
-    background-image: linear-gradient(180deg, rgba(36, 127, 80, 0.35), rgba(207, 150, 115, 0.06));
+    min-height: auto; 
+    
+    /* Jadikan foto sebagai background di belakang kapsul */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/prewed1.png');
+    background-size: cover;
+    background-position: 50% 30%; /*kiri,kanan, atas, bawah*/
+    background-attachment: scroll; 
     display: flex;
-    gap: 4rem; /* Jarak renggang antara kapsul Akad dan Resepsi */
-    padding: 4rem 1rem;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-/* Wadah pembungkus tiap kapsul */
-.halaman-4 {
-    position: relative;
-    margin: 0;
-    min-height: auto; /* Biarkan menyesuaikan isi secara otomatis */
-    background-image: linear-gradient(180deg, rgba(36, 127, 80, 0.35), rgba(207, 150, 115, 0.06));
-    display: flex;
-    gap: 3rem; /* Jarak aman antar kapsul */
-    padding: 4rem 1rem;
+    gap: 3rem; /* Jarak aman antar bagian */
+    padding: 6rem 1rem;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -534,8 +616,8 @@ body {
     position: relative;
     z-index: 5;
     width: 100%;
-    padding: 6rem 1.5rem; /*panjang,lebar*/
-    gap: 1rem;
+    padding: 6rem 1.5rem; /* Padding atas dan bawah kapsul */
+    gap: 5rem; /* Jarak yang luas antara Akad, Resepsi, dan Countdown */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -669,15 +751,16 @@ body {
     min-width: 80px;
 }
 
+
 /* //! HALAMAN 5 (GALERI FOTO MODERN) */
 .halaman-5 {
     position: relative;
     margin: 0;
     min-height: auto !important; /* Hentikan paksaan satu layar penuh */
-    height: auto;
+    height: 100vh;
     background-image: linear-gradient(180deg, rgba(207, 150, 115, 0.15), rgba(36, 127, 80, 0.25));
     display: flex;
-    padding: 3rem 1.5rem 4rem 1.5rem; /* Atur jarak atas dan bawah sesuai kebutuhan */
+    padding: 2rem 1.5rem 4rem 1.5rem; /* Atur jarak atas dan bawah sesuai kebutuhan */
     align-items: center;
     justify-content: center;
     flex-direction: column;

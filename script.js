@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const elemenAnimasi = document.querySelectorAll(".animasi-scroll");
     const opsi = {
         root: rightSide,
-        rootMargin: "0px 0px -60px 0px",
+        rootMargin: "0px 0px -80px 0px",
         threshold: 0.15
     };
 
