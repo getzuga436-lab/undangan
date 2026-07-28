@@ -869,7 +869,7 @@ body {
     position: relative;
     margin: 0;
     min-height: auto; 
-    background-image: linear-gradient(180deg, rgba(114, 14, 14, 0.15), rgba(104, 9, 9, 0.25));
+    background-image: linear-gradient(180deg, rgb(100, 10, 10), rgb(104, 9, 9));
     display: flex;
     padding: 1rem 1rem 1rem 1rem; /* Atur jarak atas dan bawah sesuai kebutuhan */
     align-items: center;
@@ -887,7 +887,7 @@ body {
 /* Judul Utama */
 .judul-utama-interaksi {
     font-family: 'Great Vibes', cursive;
-    color: #995448;
+    color: #a53521;
     font-size: 2.2rem;
     margin: 0;
 }
@@ -910,7 +910,7 @@ body {
 
 /* Tombol Kirim */
 .btn-kirim-custom {
-    background-color: #cf9673 !important;
+    background-color: #862121 !important;
     color: white !important;
     border-radius: 50px !important;
     padding: 0.7rem !important;
@@ -919,13 +919,13 @@ body {
 }
 
 .btn-kirim-custom:hover {
-    background-color: #bd8462 !important;
+    background-color: #501111 !important;
 }
 
 /* Judul Daftar Ucapan Tamu Lain */
 .judul-daftar-ucapan {
     font-family: 'Great Vibes', cursive;
-    color: #a87e7e;
+    color: #a53521;
     font-size: 2rem;
     margin-bottom: 1rem;
 }

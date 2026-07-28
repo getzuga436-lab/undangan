@@ -157,16 +157,16 @@ function handleSwipeGesture() {
 document.addEventListener("DOMContentLoaded", function () {
     const SHEETDB_URL = "https://sheetdb.io/api/v1/uz1s2ehtu3l54"; 
     
-    // 1. Ambil nama dari parameter URL (?to=...)
+    // 1. Ambil nama dari parameter URL (?to=...) dan masukkan ke kotak input nama secara otomatis
     const urlParams = new URLSearchParams(window.location.search);
     const namaTamuUrl = urlParams.get('to');
-    const elemenNama = document.getElementById('nama-tamu');
+    const inputNamaPengirim = document.getElementById('namaPengirim');
 
-    if (elemenNama) {
+    if (inputNamaPengirim) {
         if (namaTamuUrl) {
-            elemenNama.innerText = decodeURIComponent(namaTamuUrl);
+            inputNamaPengirim.value = decodeURIComponent(namaTamuUrl);
         } else {
-            elemenNama.innerText = "Tamu Undangan";
+            inputNamaPengirim.value = ""; // Kosong jika dibuka tanpa link khusus
         }
     }
 
@@ -182,7 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
         formGabungan.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            let nama = elemenNama ? elemenNama.innerText : "Tamu Undangan";
+            // Mengambil data nama langsung dari kotak input yang diisi/dibaca dari URL
+            let nama = inputNamaPengirim ? inputNamaPengirim.value.trim() : "Tamu Undangan";
             let kehadiran = document.getElementById("rsvpStatus").value;
             let pesan = document.getElementById("pesanUcapan").value.trim();
             
@@ -191,12 +192,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
             });
 
-            if (!kehadiran || !pesan) return;
+            if (!nama || !kehadiran || !pesan) {
+                alert("Semua kolom harus diisi!");
+                return;
+            }
 
             btnKirim.disabled = true;
             btnKirim.innerText = "Mengirim...";
 
-            // Kirim data ke Google Sheets (Pastikan kolom Google Sheet Anda: nama, kehadiran, pesan, tanggal)
+            // Kirim data ke Google Sheets
             fetch(SHEETDB_URL, {
                 method: 'POST',
                 headers: {
@@ -213,6 +217,12 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 alert("Terima kasih! Konfirmasi kehadiran dan ucapan Anda berhasil dikirim.");
                 formGabungan.reset();
+                
+                // Jika ingin setelah reset nama dari URL tetap muncul kembali di kotak input:
+                if (namaTamuUrl && inputNamaPengirim) {
+                    inputNamaPengirim.value = decodeURIComponent(namaTamuUrl);
+                }
+
                 btnKirim.disabled = false;
                 btnKirim.innerText = "Kirim Konfirmasi & Ucapan";
                 muatUcapan(); // Segera perbarui daftar ucapan di layar
