@@ -279,6 +279,61 @@
                     </div>
                 </div>
 
+
+
+                <!--//TODO HALAMAN RSVP & UCAPAN GABUNGAN -->
+                <div class="halaman-interaksi d-flex flex-column align-items-center text-center justify-content-center py-5">
+                    <div class="kapsul-pembungkus-interaksi w-100 p-4">
+                        
+                        <!-- Judul Bagian -->
+                        <div class="mb-4">
+                            <h3 id="nama-tamu" class="judul-utama-interaksi">Doa & Ucapan</h3>
+                        </div>
+
+                        <hr class="garis-pemisah">
+
+                        <!-- Form Gabungan RSVP & Ucapan -->
+                        <form id="formGabungan" class="d-flex flex-column gap-3 text-start">
+                            
+                            <!-- Kolom Nama Tamu -->
+                            <div>
+                                <label class="form-label small text-secondary fw-bold">Nama Anda:</label>
+                                <input type="text" id="namaPengirim" class="form-control input-custom" placeholder="Nama Anda..." required>
+                            </div>
+
+                            <!-- Konfirmasi Kehadiran -->
+                            <div>
+                                <label class="form-label small text-secondary fw-bold">Konfirmasi Kehadiran (RSVP):</label>
+                                <select id="rsvpStatus" class="form-select select-custom" required>
+                                    <option value="" disabled selected>Pilih Kehadiran...</option>
+                                    <option value="Hadir">Hadir</option>
+                                    <option value="Tidak Hadir">Tidak Hadir</option>
+                                    <option value="Masih Ragu-ragu">Masih Ragu-ragu</option>
+                                </select>
+                            </div>
+
+                            <!-- Ucapan & Doa Restu -->
+                            <div>
+                                <label class="form-label small text-secondary fw-bold">Ucapan & Doa Restu:</label>
+                                <textarea id="pesanUcapan" class="form-control textarea-custom" rows="3" placeholder="Tulis ucapan atau doa restu untuk mempelai..." required></textarea>
+                            </div>
+
+                            <button type="submit" id="btnKirimSemua" class="btn mt-2 w-100 btn-kirim-custom">
+                                Kirim Konfirmasi & Ucapan
+                            </button>
+                        </form>
+
+                        <hr class="garis-pemisah-2">
+
+                        <!-- Daftar Ucapan yang Masuk dari Tamu Lain -->
+                        <h4 class="judul-daftar-ucapan text-center">Ucapan Tamu Lainnya</h4>
+                        <div id="daftarUcapan" class="text-start wadah-scroll-ucapan">
+                            <p class="text-center text-muted small">Memuat ucapan...</p>
+                        </div>
+
+                    </div>
+                </div>
+
     <script src="script.js"></script>
     <!-- Tambahkan script baru ini -->
     <script src="countdown.js"></script>

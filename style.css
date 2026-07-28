@@ -863,6 +863,84 @@ body {
     transform: scale(0.95);
 }
 
+
+/* //! HALAMAN 6 (UCAPAN) */
+.halaman-interaksi {
+    position: relative;
+    margin: 0;
+    min-height: auto; 
+    background-image: linear-gradient(180deg, rgba(114, 14, 14, 0.15), rgba(104, 9, 9, 0.25));
+    display: flex;
+    padding: 1rem 1rem 1rem 1rem; /* Atur jarak atas dan bawah sesuai kebutuhan */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+/* Styling untuk Kapsul Pembungkus Utama */
+.kapsul-pembungkus-interaksi {
+    margin: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Judul Utama */
+.judul-utama-interaksi {
+    font-family: 'Great Vibes', cursive;
+    color: #995448;
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+/* Garis Pemisah */
+.garis-pemisah {
+    border-top: 1px dashed #ccc;
+    margin: 1.5rem 0;
+}
+
+.garis-pemisah-2 {
+    border-top: 1px dashed #ccc;
+    margin: 2rem 0 1.5rem 0;
+}
+
+/* Kustomisasi Kotak Input & Select */
+.input-custom, .select-custom, .textarea-custom {
+    border-radius: 10px !important;
+}
+
+/* Tombol Kirim */
+.btn-kirim-custom {
+    background-color: #cf9673 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    padding: 0.7rem !important;
+    font-weight: 500 !important;
+    border: none !important;
+}
+
+.btn-kirim-custom:hover {
+    background-color: #bd8462 !important;
+}
+
+/* Judul Daftar Ucapan Tamu Lain */
+.judul-daftar-ucapan {
+    font-family: 'Great Vibes', cursive;
+    color: #a87e7e;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Area Kotak Scroll Daftar Ucapan */
+.wadah-scroll-ucapan {
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    padding-right: 5px;
+}
+
+
+
+
 @media (max-width: 768px) {
 
     .halaman-4,

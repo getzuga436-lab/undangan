@@ -152,3 +152,128 @@ function handleSwipeGesture() {
         geserFoto(-1);
     }
 }
+
+// UCAPAN, DOA & RSVP GABUNGAN
+document.addEventListener("DOMContentLoaded", function () {
+    const SHEETDB_URL = "https://sheetdb.io/api/v1/uz1s2ehtu3l54"; 
+    
+    // 1. Ambil nama dari parameter URL (?to=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTamuUrl = urlParams.get('to');
+    const elemenNama = document.getElementById('nama-tamu');
+
+    if (elemenNama) {
+        if (namaTamuUrl) {
+            elemenNama.innerText = decodeURIComponent(namaTamuUrl);
+        } else {
+            elemenNama.innerText = "Tamu Undangan";
+        }
+    }
+
+    const formGabungan = document.getElementById("formGabungan");
+    const daftarUcapan = document.getElementById("daftarUcapan");
+    const btnKirim = document.getElementById("btnKirimSemua");
+
+    // Muat daftar ucapan saat halaman pertama kali dibuka
+    muatUcapan();
+
+    // 2. Proses saat tombol kirim ditekan
+    if (formGabungan) {
+        formGabungan.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let nama = elemenNama ? elemenNama.innerText : "Tamu Undangan";
+            let kehadiran = document.getElementById("rsvpStatus").value;
+            let pesan = document.getElementById("pesanUcapan").value.trim();
+            
+            // Format tanggal Indonesia
+            let tanggal = new Date().toLocaleDateString("id-ID", {
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+
+            if (!kehadiran || !pesan) return;
+
+            btnKirim.disabled = true;
+            btnKirim.innerText = "Mengirim...";
+
+            // Kirim data ke Google Sheets (Pastikan kolom Google Sheet Anda: nama, kehadiran, pesan, tanggal)
+            fetch(SHEETDB_URL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    data: [
+                        { 'nama': nama, 'kehadiran': kehadiran, 'pesan': pesan, 'tanggal': tanggal }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Terima kasih! Konfirmasi kehadiran dan ucapan Anda berhasil dikirim.");
+                formGabungan.reset();
+                btnKirim.disabled = false;
+                btnKirim.innerText = "Kirim Konfirmasi & Ucapan";
+                muatUcapan(); // Segera perbarui daftar ucapan di layar
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Gagal mengirim data, silakan coba lagi.");
+                btnKirim.disabled = false;
+                btnKirim.innerText = "Kirim Konfirmasi & Ucapan";
+            });
+        });
+    }
+
+    // 3. Fungsi untuk mengambil data dari Google Sheets dan menampilkannya ke web
+    function muatUcapan() {
+        if (!daftarUcapan) return;
+
+        fetch(SHEETDB_URL)
+            .then(response => response.json())
+            .then(data => {
+                daftarUcapan.innerHTML = "";
+                
+                if (!data || data.length === 0) {
+                    daftarUcapan.innerHTML = "<p class='text-center text-muted small'>Belum ada ucapan. Jadilah yang pertama memberikan doa!</p>";
+                    return;
+                }
+
+                // Urutkan dari yang paling baru dikirim (dibalik)
+                data.reverse().forEach(item => {
+                    if (!item.pesan) return; // Lewatkan jika baris kosong
+                    
+                    // Tentukan warna badge berdasarkan status kehadiran
+                    let badgeWarna = 'secondary';
+                    if (item.kehadiran === 'Hadir') badgeWarna = 'success';
+                    else if (item.kehadiran === 'Tidak Hadir') badgeWarna = 'danger';
+                    else if (item.kehadiran === 'Masih Ragu-ragu') badgeWarna = 'warning';
+
+                    let card = document.createElement("div");
+                    card.className = "card mb-2 p-3 border-0 shadow-sm";
+                    card.style.backgroundColor = "#fdfbfb";
+                    card.style.borderRadius = "12px";
+                    card.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <strong style="font-size: 0.9rem; color: #333;"><i class="bi bi-person-circle"></i> ${escapeHtml(item.nama)}</strong>
+                            <span class="badge bg-${badgeWarna}" style="font-size: 0.65rem;">${escapeHtml(item.kehadiran || 'Hadir')}</span>
+                        </div>
+                        <p class="mb-1 text-secondary" style="font-size: 0.85rem; line-height: 1.4; word-break: break-word;">${escapeHtml(item.pesan)}</p>
+                        <small class="text-muted" style="font-size: 0.7rem; display: block; text-align: right;">${item.tanggal || ''}</small>
+                    `;
+                    daftarUcapan.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Error memuat ucapan:', error);
+                daftarUcapan.innerHTML = "<p class='text-center text-danger small'>Gagal memuat daftar ucapan.</p>";
+            });
+    }
+
+    // Fungsi pengaman teks agar terhindar dari script berbahaya (XSS)
+    function escapeHtml(text) {
+        if (!text) return "";
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+});
