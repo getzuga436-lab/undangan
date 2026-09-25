@@ -17,9 +17,15 @@ body {
 }
 
 /*//! BAGIAN KIRI */
+/*//! BAGIAN KIRI */
 .left-side {
     flex: 1;
-    background-color: #fcd3d3;
+    /* Tambahkan background gambar dan efek gradasi gelap tipis agar teks terbaca jelas */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -30,14 +36,14 @@ body {
     position: relative;
     font-family: "Great Vibes", cursive;
     font-size: 5rem;
-    color: #000000;
+    color: #f7f5f5;
     z-index: 1;
 }
 .hero2 {
     position: relative;
     font-family: "Great Vibes", cursive;
     font-size: 2rem;
-    color: #000000;
+    color: #f4f3f3;
     z-index: 1;
 }
 
@@ -578,7 +584,7 @@ body {
     min-height: auto; 
     
     /* Jadikan foto sebagai background di belakang kapsul */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/prewed1.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/prewed1.JPG');
     background-size: cover;
     background-position: 50% 30%; /*kiri,kanan, atas, bawah*/
     background-attachment: scroll; 
@@ -595,7 +601,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 90%;
-    background-color: rgba(255, 255, 255, 0.927); /* Latar putih kapsul pindah langsung ke sini */
+    background-color: rgba(255, 255, 255, 0.651); /* Latar putih kapsul pindah langsung ke sini */
     border-radius: 180px; /* Bentuk kapsul melengkung atas-bawah */
     outline: 11px solid #750a0a36;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -632,7 +638,7 @@ body {
     font-family: "Great Vibes", cursive; /* Menggunakan font kaligrafi klasik yang sesuai */
     font-size: 3rem;
     font-weight: 500;
-    color: #a87e7e;
+    color: #591818;
     letter-spacing: 0rem;
     margin-bottom: 0.3rem;
 }
@@ -640,7 +646,7 @@ body {
 .tanggal {
     font-family: "Work Sans", sans-serif;
     font-size: 1.05rem;
-    color: #4a4a4a;
+    color: #050505;
     margin-bottom: 0.2rem;
     font-weight: 500;
 }
@@ -663,7 +669,7 @@ body {
     font-family: "Work Sans", sans-serif;
     font-weight: 600; 
     font-size: 1.05rem;
-    color: #4a4a4a;
+    color: #080808;
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
 }
@@ -671,7 +677,7 @@ body {
 .alamat-lokasi {
     font-family: "Work Sans", sans-serif;
     font-size: 0.9rem;
-    color: #777777;
+    color: #100f0f;
     margin-bottom: 0; /* Ubah kembali ke 0 agar tombol Maps menempel kembali */
     line-height: 1.4; 
 }
