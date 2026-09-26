@@ -17,11 +17,10 @@ body {
 }
 
 /*//! BAGIAN KIRI */
-/*//! BAGIAN KIRI */
 .left-side {
     flex: 1;
     /* Tambahkan background gambar dan efek gradasi gelap tipis agar teks terbaca jelas */
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.JPG');
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -52,7 +51,7 @@ body {
     /* Lebar otomatis menyesuaikan tinggi layar (100vh) dikali rasio 9:16 (0.5625) */
     width: calc(100vh * (9 / 16));
     max-width: 100vw; /* Pengaman agar tidak melebihi layar */
-    background-color: #dfdfdf;
+    background-color: #dfdfdf00;
     height: 100vh;
     overflow-y: auto;
     position: relative;
@@ -70,6 +69,28 @@ body {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
+.background-dasar-utama {
+    position: fixed; 
+    top: 0;
+    right: 0; /* Posisikan ke sudut kanan layar, ubah dari left: 0 */
+    left: auto; 
+    width: calc(100vh * (9 / 16)); /* Samakan persis dengan lebar .right-side */
+    max-width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Tetap di lapisan paling belakang */
+    pointer-events: none;
+}
+
+/* Pastikan elemen-elemen setelahnya memiliki z-index di atas 0 agar bisa menutupi background dasar */
+.welcome-cover {
+    position: fixed; /* Khusus welcome cover tetap menutupi penuh di atas */
+    z-index: 9999;
+    /* ... properti welcome cover lainnya ... */
+}
+
+/* Contoh untuk halaman yang ingin MENUTUPI background dasar (latar belakang solid/tidak transparan) */
+
 
 
 /* //!🌟 STYLING WELCOME SPLASH SCREEN */
@@ -368,7 +389,7 @@ body {
 .halaman-2 {
     margin: 0;
     min-height: 50vh;
-    background-color: rgb(92, 8, 8);
+    background-color: rgba(92, 8, 8, 0.824);
 }
 
 .b1 {
@@ -578,18 +599,20 @@ body {
 
 
 /* //! HALAMAN 4 */
+/*//! HALAMAN 4 */
 .halaman-4 {
     position: relative;
     margin: 0;
     min-height: auto; 
     
-    /* Jadikan foto sebagai background di belakang kapsul */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/prewed1.JPG');
-    background-size: cover;
-    background-position: 50% 30%; /*kiri,kanan, atas, bawah*/
-    background-attachment: scroll; 
+    /* Tambahkan latar belakang semi-transparan dan efek kaca buram */
+    background-color: rgba(255, 255, 255, 0); 
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 2; /* Pastikan berada di atas background dasar utama */
+
     display: flex;
-    gap: 3rem; /* Jarak aman antar bagian */
+    gap: 3rem; 
     padding: 6rem 1rem;
     align-items: center;
     justify-content: center;
@@ -760,7 +783,8 @@ body {
     margin: 0;
     min-height: auto !important; /* Hentikan paksaan satu layar penuh */
     height: 100vh;
-    background-image: linear-gradient(180deg, rgba(207, 150, 115, 0.15), rgba(36, 127, 80, 0.25));
+    z-index: 2;
+    background-image: linear-gradient(180deg, rgba(207, 150, 115, 0.15), rgb(74, 7, 7));
     display: flex;
     padding: 2rem 1.5rem 4rem 1.5rem; /* Atur jarak atas dan bawah sesuai kebutuhan */
     align-items: center;
