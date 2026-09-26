@@ -20,7 +20,7 @@ body {
 .left-side {
     flex: 1;
     /* Tambahkan background gambar dan efek gradasi gelap tipis agar teks terbaca jelas */
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.JPG');
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -828,9 +828,9 @@ body {
     position: relative;
     overflow: hidden;
     border-radius: 16px;
-    background-color: #fff;
+    background-color: #6a0c0c;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    border: 3px solid #ffffff;
+    border: 3px solid #4f1313;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
