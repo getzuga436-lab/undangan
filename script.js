@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ====================================================
 
     const btnBuka = document.getElementById("btnBuka");
+    const openingVideo = document.querySelector(".video-mempelai");
     
     // PERBAIKAN: Ubah "cover" menjadi "welcomeCover" agar sesuai dengan ID di HTML
     const cover = document.getElementById("welcomeCover"); 
@@ -19,9 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- Logika Buka Undangan Premium ---
     if (btnBuka) {
         btnBuka.addEventListener("click", function () {
-            // Sekarang variabel 'cover' sudah sukses mengambil elemen dari HTML
             if (cover) {
                 cover.classList.add("terbuka");
+            }
+
+            if (openingVideo) {
+                openingVideo.currentTime = 0;
+                openingVideo.play();
             }
             
             // 2. Aktifkan kemampuan scroll halaman ke bawah
