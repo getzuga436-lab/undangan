@@ -2,24 +2,27 @@ html,
 body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden; /* Mencegah geseran horizontal */
     scroll-behavior: smooth;
 }
 
 .main-wrapper {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
 }
 
 .split-container {
     display: flex;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+    /* Pastikan kontainer utama menggunakan flex row di layar besar */
+    flex-direction: row;
 }
 
-/*//! BAGIAN KIRI */
+/*//! BAGIAN KIRI (Area Statis / Dekoratif) */
 .left-side {
-    flex: 1;
-    /* Tambahkan background gambar dan efek gradasi gelap tipis agar teks terbaca jelas */
+    flex: 1; /* Mengisi sisa ruang di sebelah kiri */
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.JPG');
     background-size: cover;
     background-position: center;
@@ -31,6 +34,7 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
 .hero1 {
     position: relative;
     font-family: "Great Vibes", cursive;
@@ -38,6 +42,7 @@ body {
     color: #f7f5f5;
     z-index: 1;
 }
+
 .hero2 {
     position: relative;
     font-family: "Great Vibes", cursive;
@@ -46,15 +51,19 @@ body {
     z-index: 1;
 }
 
-/*//! BAGIAN KANAN */
+/*//! BAGIAN KANAN (Viewport Khusus / Mobile Ratio) */
 .right-side {
-    /* Lebar otomatis menyesuaikan tinggi layar (100vh) dikali rasio 9:16 (0.5625) */
-    width: calc(100vh * (9 / 16));
-    max-width: 100vw; /* Pengaman agar tidak melebihi layar */
-    background-color: #dfdfdf00;
+    width: 450px;
+    min-width: 450px;
+    flex-shrink: 2; 
     height: 100vh;
     overflow-y: auto;
     position: relative;
+    background: url('img/prewed1.JPG');
+    background-size: cover;
+    background-position: center;
+    box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.1); 
+    
 }
 
 .right-side::-webkit-scrollbar {
@@ -69,29 +78,19 @@ body {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
+
+/* Pastikan background dasar utama juga menggunakan lebar piksel yang sama */
 .background-dasar-utama {
-    position: fixed; 
+    position: absolute;
     top: 0;
-    right: 0; /* Posisikan ke sudut kanan layar, ubah dari left: 0 */
-    left: auto; 
-    width: calc(100vh * (9 / 16)); /* Samakan persis dengan lebar .right-side */
-    max-width: 100vw;
-    height: 100vh;
+    right: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%;
     object-fit: cover;
-    z-index: -1; /* Tetap di lapisan paling belakang */
+    z-index: -1; 
     pointer-events: none;
 }
-
-/* Pastikan elemen-elemen setelahnya memiliki z-index di atas 0 agar bisa menutupi background dasar */
-.welcome-cover {
-    position: fixed; /* Khusus welcome cover tetap menutupi penuh di atas */
-    z-index: 9999;
-    /* ... properti welcome cover lainnya ... */
-}
-
-/* Contoh untuk halaman yang ingin MENUTUPI background dasar (latar belakang solid/tidak transparan) */
-
-
 
 /* //!🌟 STYLING WELCOME SPLASH SCREEN */
 .welcome-cover {
@@ -130,9 +129,9 @@ body {
     transition: opacity 0.4s ease;
 }
 
-/* =========================================
-   KAPSUL TRANSPARAN WELCOME COVER
-   ========================================= */
+/* //!=========================================
+    KAPSUL TRANSPARAN WELCOME COVER
+/* //!=========================================*/
 .kapsul-welcome {
     position: relative;
     z-index: 5;
@@ -154,26 +153,23 @@ body {
     z-index: 10;
     width: 100%;
     padding: 1rem 1.5rem;
-    
-    /* Mengetengahkan posisi container dan konten di dalamnya */
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    align-items: center;    /* Mengetengahkan tombol & div secara horizontal */
-    justify-content: center; /* Mengetengahkan secara vertikal */
-    text-align: center;      /* Mengetengahkan semua baris teks */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-/* Desain Teks & Tombol di Dalam Kapsul */
+/* //!Desain Teks & Tombol di Dalam Kapsul */
 .wel1 {
     font-family: "Great Vibes", cursive;
     font-size: 2.7rem;
     color: #4a4a4a;
     margin-bottom: 0.2rem;
 }
-
 .wel2 {
     font-family: "Great Vibes", cursive;
     font-size: 2.2rem;
@@ -181,14 +177,12 @@ body {
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
 }
-
 .wel3 {
     font-family: "Work Sans", sans-serif;
     font-size: 0.85rem;
     color: #666;
     margin-bottom: 0.3rem;
 }
-
 .nama-tamu {
     font-family: "Castoro Titling", serif;
     font-size: 1.15rem;
@@ -196,12 +190,11 @@ body {
     color: #333;
     margin-bottom: 1.8rem;
 }
-
 .btn-buka-baru {
     padding: 0.7rem 2.2rem;
     border: none;
     border-radius: 2rem;
-    background-color: #cf9673;
+    background-color: #6d1809;
     color: white;
     font-family: "Castoro Titling", serif;
     font-size: 0.85rem;
@@ -211,13 +204,15 @@ body {
     transition: all 0.3s ease;
     z-index: 999;
 }
-
 .btn-buka-baru:hover {
-    background-color: #8f6767;
+    transform: translateY(-2px);
+    background-color: #e2cccc;
+    color: rgb(12, 12, 12);
     transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* =========================================
+/* //!=========================================
    PENGATURAN VIDEO LATAR BELAKANG HALAMAN
    ========================================= */
 .video-mempelai {
@@ -230,7 +225,9 @@ body {
     z-index: 0;
 }
 
-/*//! HALAMAN 1 (COVER) */
+/*//! ============================== */
+        /*//! HALAMAN 1 (COVER) */
+/*//! ============================== */
 .halaman-1 {
     background-image: url(img/background.png);
     background-size: cover;
@@ -244,36 +241,6 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1;
-}
-
-.btn-buka {
-    position: relative;
-    z-index: 10;
-    /* di atas gambar dekorasi di dalam cover */
-    margin-top: 2rem;
-    padding: 0.7rem 2rem;
-    border: none;
-    border-radius: 2rem;
-    background-color: #fff;
-    font-family: "Castoro Titling", serif;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-buka:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-}
-
-.btn-buka:active {
-    transform: translateY(0);
-}
-
-.btn-buka.hilang {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
 }
 
 .tex-hal1 {
@@ -294,29 +261,26 @@ body {
     font-style: normal;
     text-align: center;
 }
-.video-mempelai {
+.background-halaman-1 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Karena lebar container sekarang sudah pas dengan rasio video, cover akan memenuhi layar secara sempurna tanpa terpotong */
-    z-index: 0;
-}
-
-.gunungbawah {
-    bottom: 2rem;
-    width: 100%;
-    position: absolute;
+    object-fit: cover;   /* Memastikan gambar memenuhi area tanpa merusak proporsi */
+    z-index: -1;         /* Ditempatkan di lapisan paling belakang agar teks berada di atasnya */
+    pointer-events: none;
 }
 
 .pohonkiri1 {
-    left: -10%;
-    width: 35%;
+    top: -8%;
+    left: -15%;
+    width: 45%;
     position: absolute;
     z-index: 3;
     transform-origin: bottom left;
-    animation: anginPohon 9s ease-in-out infinite;
+    /* Gabungan: masuk dari kiri (durasi 1.2s), lalu lanjut animasi pohon bergoyang */
+    animation: masukKiri 1.2s ease-out forwards, anginPohon 9s ease-in-out infinite 1.2s;
 }
 
 .pohonkiri2 {
@@ -349,15 +313,6 @@ body {
     animation: anginPohon 10s ease-in-out infinite;
 }
 
-.bungakiri {
-    bottom: -7%;
-    left: -12%;
-    width: 60%;
-    position: absolute;
-    z-index: 3;
-    transform-origin: bottom left;
-    animation: ayunBunga 8s ease-in-out infinite;
-}
 
 .bungakanan {
     bottom: -5%;
@@ -385,97 +340,206 @@ body {
     filter: brightness(0);
 }
 
-/*//! HALAMAN 2 */
+
+/*//! ============================== */
+            /*//! HALAMAN 2 */
+/*//! ============================== */
 .halaman-2 {
     margin: 0;
-    min-height: 50vh;
-    background-color: rgba(92, 8, 8, 0.824);
+    min-height: 60vh; /* Sesuaikan tinggi halaman agar bingkai muat dengan pas */
+    background-color: rgb(118, 9, 9);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    overflow: hidden;
 }
 
-.b1 {
-    width: 20%;
+/* wrapper dan styling pohon kiri atas */
+.pohon-kiri-atas-pembungkus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+.pohon-kiri-atas {
+    display: block;
+    width: 100%;
     height: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    opacity: 0.8;
-    filter: invert();
+    object-fit: contain;
+    transform-origin: top left;
+    animation: anginPohon 9s ease-in-out infinite;
 }
 
-.pembuka {
+/* wrapper dan styling pohon kanan bawah */
+.pohon-kanan-bawah-pembungkus {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+.pohon-kanan-bawah {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform-origin: bottom right;
+    z-index: 2;
+    animation: anginPohon 9s ease-in-out infinite;
+}
+
+/* Motif sarung sabbe belakang */
+.motif-kiri {
+    position: absolute;
+    left: -13px; 
+    top: 50%;
+    transform: translateY(-50%);
+    animation: motifNaikTurun 6s ease-in-out infinite;
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+}
+.motif-kiri2 {
+    position: absolute;
+    left: 120px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+    animation: motifTurunNaik 6s ease-in-out infinite;
+}
+.motif-kiri3 {
+    position: absolute;
+    right: 120px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+    animation: motifTurunNaik 6s ease-in-out infinite;
+}
+.motif-kiri4 {
+    position: absolute;
+    right: -13px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+    animation: motifNaikTurun 6s ease-in-out infinite;
+}
+
+/* Bingkai putih halaman 2 */
+.bingkai-hal2 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 600px;
+    height: 90%;
+    object-fit: fill;
+    z-index: 2;          
+    pointer-events: none;
+}
+
+/* Isi konten di Dalam Bingkai */
+.songkok-bando {
+    position: absolute;
+    top: 70px; 
+    justify-content: center;
+    transform: translateX(-50%);
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    z-index: 5;
+    pointer-events: none;
+}
+.konten-teks-hal2 {
+    position: relative;
+    z-index: 10; 
+    text-align: center;
+    padding: 1rem 1rem;
+    width: 100%;
+    max-width: 350px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fafafa;
+}
+.ayat {
     border-radius: 1rem;
     text-align: center;
-    font-family: "work sans";
+    font-family: "work sans", sans-serif;
     font-style: italic;
-    margin-bottom: 2rem;
-    color: #dfdfdf;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #270000;
+    margin-bottom: 0.5rem;
+}
+.ayat1 {
+    font-family: "work sans", sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #270000;
+    margin: 0;
+}
+.bunga {
+    position: absolute;
+    bottom: 68px; 
+    justify-content: center;
+    transform: translateX(-50%);
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    z-index: 5; 
+    pointer-events: none;
 }
 
-/*//! HALAMAN 3 */
+
+/*//! ============================== */
+            /*//! HALAMAN 3 */
+/*//! ============================== */
 .halaman-3 {
     margin: 0;
     min-height: 160vh;
-    background-image: url(img/background.png);
-    background-color: rgb(227, 184, 184);
     position: relative;
-    padding: 3rem;
     overflow: hidden;
 }
-/* Styling Border Atas Dekoratif Halaman 3 */
-.border-atas-hal3 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 150%; /* Batasi lebar agar rapi */
-    z-index: 0;
-    pointer-events: none;
-}
+
+/* Isi konten di dalam kapsul */
 .kapsul-dasar {
     position: absolute;
-    width: 100%;
-    max-width: 90%;
-    height: 90%;
-    background-color: rgba(255, 255, 255, 0.751);
-    border-radius: 210px 210px 0 0;
-    z-index: 1;
-    outline: 11px solid #670d0d7b;
+    width: 110%;
+    max-width: 200%;
+    height: 100%;
+    border-radius: 0 0 0 0;
+    z-index: 5;
 }
-
 .konten-kapsul {
-    position: relative;
-    z-index: 2;
+    position: center;
+    z-index: 10;
     width: 100%;
     max-width: 90%;
-    padding: 1rem;
-    gap: 0.8rem;
-}
-/* =========================================
-   WADAH BORDER ATAS HALAMAN 3
-   ========================================= */
-.wadah-border-atas {
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 0;         
-    pointer-events: none;
-    padding-bottom: 60px; 
+    padding: 3rem;
+    gap: 3rem;
 }
 
-.border-atas-hal3 {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-/* =========================================
-   AKSEN BUNGA DI BELAKANG FOTO MEMPELAI
-   ========================================= */
-
-/* Container pembungkus foto & bunga agar presisi */
-.pembungkus-foto-mempelai {
+/* Container pembungkus foto & bunga */
+.container-bingkai-bunga {
     position: relative;
     display: inline-flex;
     justify-content: center;
@@ -483,53 +547,60 @@ body {
     width: 100%;
 }
 
-/* Style dasar bunga aksen di belakang foto */
+/* Style dasar bunga di belakang foto */
 .bunga-bg-mempelai {
     position: absolute;
-    width: 110%; /* Ukuran bunga sedikit lebih besar dari foto */
+    width: 110%;
     height: auto;
-    z-index: 1;  /* Berada di belakang foto */
-    opacity: 0.85; /* Kejelasan warna bunga */
-    pointer-events: none; /* Mencegah kendala klik */
+    z-index: 6;
+    pointer-events: none; 
 }
 
-/* Bunga Mempelai Pria (Posisi Asli) */
+.bunga-mawar-bingkai-pria {
+    top: -40px;
+    right: -5px;
+    width: 250px;
+    z-index: 4;
+}
 .bunga-pria {
-    top: -10%;
-    left: -20%;
-    width: 70%;
+    top: 30px;
+    left: -30px;
+    width: 50%;
     transform: rotate(-15deg);
 }
-
-/* Bunga Mempelai Wanita (DIBALIK HORIZONTAL / FLIP) */
+.bunga-mawar-bingkai-wanita {
+    bottom: -40px;
+    left: -5px;
+    width: 250px;
+    z-index: 4;
+    transform: scaley(-1) scalex(-1) ;    
+}
 .bunga-wanita {
-    padding: 0;
-    top: -20%;
-    right: -20%;
-    width: 80%;
-    /* scaleX(-1) digunakan untuk membalik cermin gambar bunga */
-    transform: scaleX(-1) rotate(-15deg);
+    top: 30px;
+    right: -30px;
+    width: 50%;
+    transform: scaley(-1) scalex(-1) rotate(-15deg);
 }
 
-/* Penyesuaian foto mempelai agar tampil di depan bunga */
+
+/* Bingkai Foto Mempelai */
 .foto-mempelai {
     position: relative;
-    z-index: 2; /* Menjamin foto selalu berada di atas bunga */
+    z-index: 7;
     width: 60%;
     object-fit: cover;
     margin: 0.5rem 0;
-    border-radius: 1rem;  
+    border-radius: 128px;  
     background-color: #f4d4d4;
-    border: 0.5rem solid #f4f1eb; 
-    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, 0.162);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .foto-mempelai:hover {
     transform: scale(1.02);
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.523);
 }
 
+/* Warna Teks */
 .kata-1 {
     font-family: "work sans", sans-serif;
     font-style: italic;
@@ -538,7 +609,6 @@ body {
     position: relative;
     margin: 0 0 1rem 0;
 }
-
 .mempelai {
     font-family: "Great Vibes", cursive;
     color: #995448;
@@ -546,13 +616,11 @@ body {
     font-weight: 400;
     margin: 0 0 0.2rem 0;
 }
-
 .dan {
     font-family: "times new roman", cursive;
     font-size: 1.5rem;
     margin: 1rem 1rem;
 }
-
 .mertua {
     font-family: "times new roman", cursive;
     font-size: 0.95rem;
@@ -560,63 +628,193 @@ body {
     line-height: 1.3;
 }
 
-.wrap-pohonkiri3 {
+
+/* Latar Belakang */
+.wrap-pohonkiri-1 {
     position: absolute;
-    top: -1%;
-    left: -15%;
-    width: 45%;
-    z-index: 0;
+    top: -4%;
+    left: -170px;
+    width: 90%;
+    z-index: 2;
 }
-.pohonkiri3 {
+.pohonkiri-1 {
     display: block;
-    width: 100%;
+    width: 90%;
+    transform-origin: bottom left;
+    animation: anginPohon 5s ease-in-out infinite;
+}
+.wrap-pohonkiri-2 {
+    position: absolute;
+    top: 25%;
+    left: -190px;
+    width: 90%;
+    z-index: 4;
+}
+.pohonkiri-2 {
+    display: block;
+    width: 90%;
+    transform-origin: bottom left;
+    animation: anginPohon 7s ease-in-out infinite;
+}
+.wrap-pohonkiri-3 {
+    position: absolute;
+    top: 50%;
+    left: -160px;
+    width: 80%;
+    z-index: 3;
+}
+.pohonkiri-3 {
+    display: block;
+    width: 90%;
     transform-origin: bottom left;
     animation: anginPohon 9s ease-in-out infinite;
 }
-.wrap-pohonkanan3 {
+.wrap-pohonkanan-1 {
     position: absolute;
-    top: -2%;
-    right: -8%;
-    width: 30%;
-    z-index: 3;
+    top: -5%;
+    right: -150px;
+    width: 100%;
+    z-index: 2;
 }
-.pohonkanan3 {
+.pohonkanan-1 {
     display: block;
-    width: 100%;
+    width: 90%;
     transform-origin: bottom right;
-    animation: anginPohon 8s ease-in-out infinite;
+    animation: anginPohon 5s ease-in-out infinite;
 }
-
-/* Gunung di Halaman 3 */
-.halaman-3 .gunungbawah {
-    bottom: 2rem;
-    left: 0;
+.wrap-pohonkanan-2 {
+    position: absolute;
+    top: 15%;
+    right: -150px;
+    width: 80%;
+    z-index: 2;
+}
+.pohonkanan-2 {
+    display: block;
+    width: 90%;
+    transform-origin: bottom right;
+    animation: anginPohon 7s ease-in-out infinite;
+}
+.wrap-pohonkanan-3 {
+    position: absolute;
+    top: 60%;
+    right: -150px;
+    width: 80%;
+    z-index: 4;
+}
+.pohonkanan-3 {
+    display: block;
+    width: 90%;
+    transform-origin: bottom right;
+    animation: anginPohon 9s ease-in-out infinite;
+}
+.bungakiri {
+    position: absolute;
+    bottom: -5%;
+    left: -6%;
+    width: 50%;
+    z-index: 3;
+    transform-origin: bottom left;
+    animation: masukKiri 1.4s ease-out forwards, ayunBunga 8s ease-in-out infinite 1.4s;
+}
+.bungatengah {
+    bottom: -6%;
+    justify-content: center;
     width: 100%;
     position: absolute;
-    z-index: 0;
-    animation: masukBawah 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    z-index: 2;
+    transform-origin: bottom center;
+    animation: ayunKiriKanan 9s ease-in-out infinite;
+}
+.bungakanan {
+    bottom: -4%;
+    right: -6%;
+    width: 50%;
+    position: absolute;
+    z-index: 3;
+    transform-origin: bottom right;
+    animation: masukKanan 1.4s ease-out forwards, ayunBunga 10s ease-in-out infinite 1.4s;
+}
+.awan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: auto;
+    object-fit: cover;
+    z-index: 1; /* Di atas dasar, di bawah teks */
+    pointer-events: none;
+}
+.gunungbawah {
+    position: absolute;
+    bottom: 300px;
+    left: 0;
+    width: 120%;
+    height: auto;
+    object-fit: cover;
+    z-index: 0; /* Di atas dasar, di bawah teks */
+    pointer-events: none;
+}
+.bunga-animasi {
+    animation: mekar 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+}
+.pohonbelakang {
+    position: absolute;
+    bottom: 260px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    max-width: 600px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+}
+.rumah {
+    position: absolute;
+    bottom: 130px;
+    left: 53%;
+    transform: translateX(-50%);
+    width: 530px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+}
+.airterjun {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 115%;
+    max-width: 520px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
 }
 
 
-/* //! HALAMAN 4 */
-/*//! HALAMAN 4 */
+
+/*//! ============================== */
+            /*//! HALAMAN 4 */
+/*//! ============================== */
 .halaman-4 {
     position: relative;
     margin: 0;
-    min-height: auto; 
-    
-    /* Tambahkan latar belakang semi-transparan dan efek kaca buram */
-    background-color: rgba(255, 255, 255, 0); 
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 2; /* Pastikan berada di atas background dasar utama */
-
+    min-height: auto;   
+    z-index: 2;
     display: flex;
     gap: 3rem; 
     padding: 6rem 1rem;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow: hidden; /* Memastikan efek blur tidak meluber keluar */
 }
 
 /* Wadah pembungkus tiap kapsul */
@@ -624,7 +822,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 90%;
-    background-color: rgba(255, 255, 255, 0.651); /* Latar putih kapsul pindah langsung ke sini */
+    background-color: rgba(255, 255, 255, 0.957); /* Latar putih kapsul pindah langsung ke sini */
     border-radius: 180px; /* Bentuk kapsul melengkung atas-bawah */
     outline: 11px solid #750a0a36;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -632,10 +830,6 @@ body {
     justify-content: center;
 }
 
-/* Sembunyikan elemen lama agar tidak bentrok */
-.kapsul-dasar2 {
-    display: none; 
-}
 
 .konten-kapsul2 {
     position: relative;
@@ -781,12 +975,12 @@ body {
 .halaman-5 {
     position: relative;
     margin: 0;
-    min-height: auto !important; /* Hentikan paksaan satu layar penuh */
+    min-height: auto !important;
     height: 100vh;
     z-index: 2;
     background-image: linear-gradient(180deg, rgba(207, 150, 115, 0.15), rgb(74, 7, 7));
     display: flex;
-    padding: 2rem 1.5rem 4rem 1.5rem; /* Atur jarak atas dan bawah sesuai kebutuhan */
+    padding: 2rem 1.5rem 4rem 1.5rem;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -796,7 +990,7 @@ body {
     position: relative;
     z-index: 5;
     width: 100%;
-    max-width: 480px; /* Lebar maksimal agar pas di dalam frame kanan undangan */
+    max-width: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -814,49 +1008,56 @@ body {
     font-size: 0.95rem;
     font-style: italic;
     color: #555555;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Didekatkan sedikit jaraknya ke grid foto */
 }
 
+/* 1. Atur jarak antar foto agar lebih rapat */
 .galeri-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 8px; /* Diubah dari 15px menjadi 8px agar lebih rapat */
     width: 100%;
+    padding: 0 10px;
 }
 
+/* 2. Atur border dan ketegasan card galeri */
 .galeri-item {
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    background-color: #6a0c0c;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    border: 3px solid #4f1313;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    border-radius: 5px; /* Dibuat sedikit lebih kotak/minimalis (sebelumnya 16px) */
+    background-color: #2b0606;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #5a1212; /* Border dibuat lebih tipis dan tegas */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .galeri-item img {
     width: 100%;
-    height: 160px;
+    height: 170px;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
 }
 
-/* Variasi tinggi card agar bentuk grid terlihat dinamis/masonry look */
-.galeri-item.item-1 img { height: 190px; }
-.galeri-item.item-2 img { height: 190px; }
-.galeri-item.item-3 img { height: 190px; }
-.galeri-item.item-4 img { height: 190px; }
+/* Penyesuaian tinggi seragam atau dinamis untuk gaya minimalis */
+.galeri-item.item-1 img, 
+.galeri-item.item-2 img, 
+.galeri-item.item-3 img, 
+.galeri-item.item-4 img { 
+    height: 180px; 
+}
 
-/* Efek Interaktif Saat Disentuh/Hover */
+/* 3. Efek interaktif saat disentuh (Hover) yang bersih */
 .galeri-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 14px 30px rgba(168, 126, 126, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    border-color: #8f2323; /* Border menyala tipis saat di-hover */
     z-index: 10;
 }
 
 .galeri-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 /* =========================================
@@ -986,54 +1187,6 @@ body {
 }
 
 
-
-
-@media (max-width: 768px) {
-
-    .halaman-4,
-    .halaman-5 {
-        padding-top: 2rem;
-    }
-
-    .jadwal-kartu {
-        width: 100%;
-    }
-}
-
-/* Responsive tweaks for very small screens (iPhone SE, narrow phones) */
-@media (max-width: 360px) {
-
-    /* Make decorative images smaller so they don't cover text */
-    .bungakiri {
-        width: 40%;
-        left: -8%;
-        bottom: -5%;
-    }
-
-    .bungakanan {
-        width: 45%;
-        right: -6%;
-        bottom: -6%;
-    }
-
-    .pohonkanan3 {
-        width: 22%;
-        right: -8%;
-        top: -6%;
-        z-index: 0;
-        /* pastikan berada di bawah teks */
-    }
-
-    .pohonkiri3 {
-        width: 35%;
-        left: -12%;
-    }
-
-    .foto-mempelai {
-        width: 28%;
-    }
-}
-
 /* //! ANIMASI SCROLL */
 .animasi-scroll {
     opacity: 0;
@@ -1065,90 +1218,20 @@ body {
     transform: none;
 }
 
-/* --- ELEMEN SEBELAH KIRI --- */
-.gunungbawah {
-    bottom: 23%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-
-    /* Pemicu animasi: durasi 1.5 detik, melambat halus di akhir */
-    animation: masukBawah 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+/* //! ANIMASI MEKAR */
+.animasi-mekar {
+    opacity: 0;
+    transform: scale(0.2);
+    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s ease-out;
 }
 
-.rumah {
-    bottom: 2rem;
-    width: 100%;
-    position: absolute;
-    left: 0;
-
-    /* Sengaja diberikan durasi sedikit berbeda (1.8s) agar rumah 
-       muncul sedikit lebih lambat setelah gunung kokoh di belakangnya */
-    animation: masukBawah 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+/* State saat di-scroll/terlihat di layar */
+.animasi-scroll.muncul.animasi-mekar,
+.animasi-mekar.muncul {
+    opacity: 1;
+    transform: scale(1);
 }
 
-.pohonkiri1 {
-    top: -8%;
-    left: -15%;
-    width: 45%;
-    position: absolute;
-    z-index: 3;
-    transform-origin: bottom left;
-    /* Gabungan: masuk dari kiri (durasi 1.2s), lalu lanjut animasi pohon bergoyang */
-    animation: masukKiri 1.2s ease-out forwards, anginPohon 9s ease-in-out infinite 1.2s;
-}
-
-.bungakiri {
-    bottom: -8%;
-    left: -10%;
-    width: 70%;
-    position: absolute;
-    z-index: 3;
-    transform-origin: bottom left;
-    animation: masukKiri 1.4s ease-out forwards, ayunBunga 8s ease-in-out infinite 1.4s;
-}
-
-.kipaskiri {
-    bottom: 5%;
-    left: 30%;
-    width: 30%;
-    position: absolute;
-    z-index: 1;
-    transform-origin: bottom right;
-    animation: masukKiri 1.6s ease-out forwards, kipasMelayang 6.5s ease-in-out infinite 1.6s;
-}
-
-/* --- ELEMEN SEBELAH KANAN --- */
-.pohonkanan1 {
-    top: -3%;
-    right: -10%;
-    width: 40%;
-    position: absolute;
-    z-index: 3;
-    transform-origin: bottom right;
-    /* Gabungan: masuk dari kanan (durasi 1.2s), lalu lanjut animasi pohon bergoyang */
-    animation: masukKanan 1.2s ease-out forwards, anginPohon 8s ease-in-out infinite 1.2s;
-}
-
-.bungakanan {
-    bottom: -7%;
-    right: -12%;
-    width: 70%;
-    position: absolute;
-    z-index: 3;
-    transform-origin: bottom right;
-    animation: masukKanan 1.4s ease-out forwards, ayunBunga 10s ease-in-out infinite 1.4s;
-}
-
-.kipaskanan {
-    bottom: -4%;
-    right: 25%;
-    width: 40%;
-    position: absolute;
-    z-index: 1;
-    transform-origin: bottom right;
-    animation: masukKanan 1.7s ease-out forwards, kipasMelayang 5s ease-in-out infinite 1.7s;
-}
 
 
 @keyframes fade-atas {
@@ -1164,28 +1247,28 @@ body {
 }
 
 @keyframes ayunBunga {
-    0% {
-        transform: rotate(0deg) scale(1) translateY(0);
+0%, 100% {
+        transform: rotate(-3deg) translateX(-10px);
+        animation-timing-function: ease-in-out;
     }
-
-    20% {
-        transform: rotate(-3deg) scaleX(0.98) translateY(1px);
+    50% {
+        transform: rotate(3deg) translateX(10px);
+        animation-timing-function: ease-in-out;
     }
+}
 
-    45% {
-        transform: rotate(4deg) scaleX(1.02) translateY(-2px);
+@keyframes ayunKiriKanan {
+0%, 100% {
+        transform: translateX(0) rotate(0deg);
     }
-
-    70% {
-        transform: rotate(-1deg) scaleX(0.99) translateY(0);
+    25% {
+        transform: translateX(-15px) rotate(-4deg);
     }
-
-    85% {
-        transform: rotate(2deg) scaleX(1.01) translateY(-1px);
+    50% {
+        transform: translateX(0) rotate(0deg);
     }
-
-    100% {
-        transform: rotate(0deg) scale(1) translateY(0);
+    75% {
+        transform: translateX(15px) rotate(4deg);
     }
 }
 
@@ -1269,6 +1352,37 @@ body {
     }
 }
 
+@keyframes mekar {
+    0% {
+        transform: scale(0.2); /* Mulai dari ukuran sangat kecil */
+        opacity: 0;            /* Mulai dari transparan (tidak terlihat) */
+    }
+    100% {
+        transform: scale(1);   /* Kembali ke ukuran normal */
+        opacity: 1;            /* Sepenuhnya terlihat */
+    }
+}
+
+
+/* Animasi naik turun untuk motif sarung */
+@keyframes motifNaikTurun {
+    0%, 100% {
+        transform: translateY(calc(-50% - 6px));
+    }
+
+    50% {
+        transform: translateY(calc(-50% + 6px));
+    }
+}
+@keyframes motifTurunNaik {
+    0%, 100% {
+        transform: translateY(calc(-50% + 6px));
+    }
+
+    50% {
+        transform: translateY(calc(-50% - 6px));
+    }
+}
 /* =========================================
    ANIMASI KAPSUL: FADE IN + ZOOM DARI BAWAH
    ========================================= */
@@ -1288,30 +1402,3 @@ body {
 
 
 /* //! UKURAN HP */
-@media (max-width: 768px) {
-    .left-side {
-        display: none !important;
-    }
-
-    .right-side {
-        width: 100% !important;
-        flex-grow: 1;
-    }
-
-    .halaman-1 {
-        width: 100% !important;
-    }
-
-    .split-container {
-        display: block;
-        width: 100%;
-    }
-
-    .welcome-cover {
-        width: 100% !important;
-        max-width: 100% !important;
-        left: 0 !important;
-        right: 0 !important;
-    }
-}
-
