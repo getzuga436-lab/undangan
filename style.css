@@ -98,8 +98,8 @@ body {
     top: 0;
     left: auto;
     right: 0;
-    width: calc(100vh * (9 / 16));
-    max-width: 100vw;
+    width: 100%;
+    max-width: 450px;
     height: 100vh;
     background: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.85)), url(img/background.png);
     background-size: cover;
@@ -346,7 +346,7 @@ body {
 /*//! ============================== */
 .halaman-2 {
     margin: 0;
-    min-height: 60vh; /* Sesuaikan tinggi halaman agar bingkai muat dengan pas */
+    min-height: 600px; /* Atau gunakan height: 700px; */
     background-color: rgb(118, 9, 9);
     position: relative;
     display: flex;
@@ -391,6 +391,44 @@ body {
     transform-origin: bottom right;
     z-index: 2;
     animation: anginPohon 9s ease-in-out infinite;
+}
+.bunga-kiri-atas-pembungkus{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+.bunga1 {
+    position: relative;
+    display: block;
+    top: 10px;
+    right: -50px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform-origin: bottom right;
+    z-index: 2;
+}
+.bunga-kiri-bawah-pembungkus{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+.bunga2 {
+    position: relative;
+    display: block;
+    bottom: 10px;
+    left: -50px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform-origin: bottom right;
+    z-index: 2;
 }
 
 /* Motif sarung sabbe belakang */
@@ -458,7 +496,7 @@ body {
 /* Isi konten di Dalam Bingkai */
 .songkok-bando {
     position: absolute;
-    top: 70px; 
+    top: 110px; 
     justify-content: center;
     transform: translateX(-50%);
     width: 80px;
@@ -499,7 +537,7 @@ body {
 }
 .bunga {
     position: absolute;
-    bottom: 68px; 
+    bottom: 110px; 
     justify-content: center;
     transform: translateX(-50%);
     width: 100px;
@@ -515,7 +553,7 @@ body {
 /*//! ============================== */
 .halaman-3 {
     margin: 0;
-    min-height: 160vh;
+    min-height: 1600px;
     position: relative;
     overflow: hidden;
 }
@@ -530,21 +568,52 @@ body {
     z-index: 5;
 }
 .konten-kapsul {
-    position: center;
+    position: relative;
+    top: -1rem; /* Ubah dari -1.5rem ke 0 agar posisi awal tidak bergeser aneh */
+    z-index: 10;
+    width: 88%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 1450px; 
+    box-sizing: border-box;
+    padding-top: 0; 
+    padding-bottom: 0;
+    margin: 0 auto;
+    gap: 0.5rem; /* Jarak antar elemen di dalam kapsul */
+}
+.bride {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+}
+.groom {
+    font-family: "Imperial Script", cursive;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 3.5rem;
+    color: #591818;
+}
+.kontainer-kalimat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     z-index: 10;
     width: 100%;
-    max-width: 90%;
-    padding: 3rem;
-    gap: 3rem;
+    padding: 1rem 1rem;
+    box-sizing: border-box;
+    margin-top: 0 !important; 
 }
 
 /* Container pembungkus foto & bunga */
-.container-bingkai-bunga {
+.container-bingkai-bunga-pria {
     position: relative;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 1rem 1rem;
 }
 
 /* Style dasar bunga di belakang foto */
@@ -552,44 +621,49 @@ body {
     position: absolute;
     width: 110%;
     height: auto;
-    z-index: 6;
-    pointer-events: none; 
-}
-
-.bunga-mawar-bingkai-pria {
-    top: -40px;
-    right: -5px;
-    width: 250px;
-    z-index: 4;
+    pointer-events: none;
 }
 .bunga-pria {
     top: 30px;
-    left: -30px;
-    width: 50%;
+    left: -9px;
+    width: 38%;
     transform: rotate(-15deg);
 }
+.bunga-mawar-bingkai-pria {
+    top: -20px;
+    right: 20px;
+    width: 60%;
+    z-index: 4;
+}
+
+.container-bingkai-bunga-wanita {
+    position: relative;
+    display: flex;
+    bottom: 0rem;    
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1rem;
+}
 .bunga-mawar-bingkai-wanita {
-    bottom: -40px;
-    left: -5px;
-    width: 250px;
+    bottom: -20px;
+    left: 20px;
+    width: 60%;
     z-index: 4;
     transform: scaley(-1) scalex(-1) ;    
 }
 .bunga-wanita {
-    top: 30px;
-    right: -30px;
-    width: 50%;
+    top: 60px;
+    right: -2px;
+    width: 38%;
     transform: scaley(-1) scalex(-1) rotate(-15deg);
 }
-
-
 /* Bingkai Foto Mempelai */
 .foto-mempelai {
     position: relative;
     z-index: 7;
     width: 60%;
     object-fit: cover;
-    margin: 0.5rem 0;
+    margin: 0rem 0;
     border-radius: 128px;  
     background-color: #f4d4d4;
     box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, 0.162);
@@ -607,19 +681,24 @@ body {
     font-size: 0.95rem;
     line-height: 1.4;
     position: relative;
+    padding: 0 1rem;
     margin: 0 0 1rem 0;
 }
 .mempelai {
-    font-family: "Great Vibes", cursive;
-    color: #995448;
-    font-size: 2.5rem;
+    font-family: "Imperial Script", cursive;
+    color: #741302;
+    font-size: 60px;
     font-weight: 400;
-    margin: 0 0 0.2rem 0;
+    position: flex;
+    justify-content: center;
+    top: 30%;
+
 }
 .dan {
-    font-family: "times new roman", cursive;
-    font-size: 1.5rem;
-    margin: 1rem 1rem;
+    font-family: "great vibes", cursive;
+    font-size: 5rem;
+    color: #741302;
+    margin: 1rem 0rem;
 }
 .mertua {
     font-family: "times new roman", cursive;
@@ -809,6 +888,9 @@ body {
     min-height: auto;   
     z-index: 2;
     display: flex;
+    background-color: rgba(255, 253, 253, 0.087);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
     gap: 3rem; 
     padding: 6rem 1rem;
     align-items: center;
@@ -821,10 +903,10 @@ body {
 .kapsul-pembungkus-jadwal {
     position: relative;
     width: 100%;
-    max-width: 90%;
+    max-width: 95%;
     background-color: rgba(255, 255, 255, 0.957); /* Latar putih kapsul pindah langsung ke sini */
     border-radius: 180px; /* Bentuk kapsul melengkung atas-bawah */
-    outline: 11px solid #750a0a36;
+    outline: 9px solid #750a0a36;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
@@ -971,7 +1053,97 @@ body {
 }
 
 
-/* //! HALAMAN 5 (GALERI FOTO MODERN) */
+/*//! ============================== */
+            /*//! HALAMAN 5 (REKENING) */
+/*//! ============================== */
+.halaman-2 {
+    margin: 0;
+    min-height: 650px; /* Atau gunakan height: 700px; */
+    background-color: rgb(118, 9, 9);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    overflow: hidden;
+}
+
+/* Bingkai putih halaman 2 */
+.bingkai-hal5 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 650px;
+    height: 100%;
+    align-items: center;
+    object-fit: fill;
+    z-index: 2;          
+    pointer-events: none;
+}
+.Hal5 {
+    position: absolute;
+    left: 22%;
+    top: 50px;
+    height: 80px;
+    width: 365px;
+    z-index: 10;
+}
+.hal-5 {
+    font-family: "Imperial Script", cursive;
+    font-weight: 590;
+    font-style: normal;
+    font-size: 3.5rem;
+    color: #501111;
+}
+
+.container-rekening {
+    position: relative;
+    bottom: -1rem;
+    width: 365px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    gap: 10px;
+    z-index: 10;
+}
+.bagian-atas {
+    /* 1. KUNCI UTAMA: Ubah dari absolute ke relative agar Flexbox induk bekerja */
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%; 
+    z-index: 10;
+    border-radius: 8px;
+    align-self: center;
+}
+.rekening1 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.bagian-bawah {
+    position: relative;
+    display: flex;
+    width: 85%; /* Samakan menjadi 100% agar ukurannya sejajar dengan bagian atas */
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.rekening2 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* //! HALAMAN 6 (GALERI FOTO MODERN) */
 .halaman-5 {
     position: relative;
     margin: 0;
@@ -1073,19 +1245,26 @@ body {
 }
 
 #modalImage {
+    max-width: 100%;
     max-height: 85vh;
     object-fit: contain;
+    transform-origin: center;
+    touch-action: none;
+    user-select: none;
+    cursor: zoom-in;
+    transition: transform 0.12s ease-out, opacity 0.3s ease;
+    opacity: 1;
 }
 
-/* =========================================
-   PENGISIAN & ANIMASI GALERI MODAL SLIDE
-   ========================================= */
+#imageModal .modal-body {
+    overflow: hidden;
+    touch-action: none;
+}
 
-#modalImage {
-    max-height: 85vh;
-    object-fit: contain;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Transisi halus */
-    opacity: 1;
+.kontrol-zoom .btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.35rem 0.65rem;
 }
 
 /* Kelas bantu untuk efek animasi ganti foto */
@@ -1219,20 +1398,21 @@ body {
 }
 
 /* //! ANIMASI MEKAR */
-.animasi-mekar {
+.bunga-mekar {
     opacity: 0;
-    transform: scale(0.2);
-    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s ease-out;
+    transform: scale(0.15) translateY(30px) rotate(-10deg);
+    transition: 
+        transform 2.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+        opacity 1s ease-out;
+    transform-origin: center; 
+    will-change: transform, opacity; /* Optimalisasi performa rendering */
+    display: inline-block;
 }
 
-/* State saat di-scroll/terlihat di layar */
-.animasi-scroll.muncul.animasi-mekar,
-.animasi-mekar.muncul {
+.bunga-mekar.aktif {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0) rotate(0deg);
 }
-
-
 
 @keyframes fade-atas {
     0% {

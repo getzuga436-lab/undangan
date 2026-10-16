@@ -70,6 +70,19 @@ document.addEventListener("DOMContentLoaded", function () {
 // Variabel untuk melacak urutan foto yang sedang aktif
 let currentIndex = 0;
 let galeriImages = [];
+let zoomScale = 1;
+let zoomOffsetX = 0;
+let zoomOffsetY = 0;
+const zoomPointers = new Map();
+let pinchStartDistance = 0;
+let pinchStartScale = 1;
+let panStartX = 0;
+let panStartY = 0;
+let panStartOffsetX = 0;
+let panStartOffsetY = 0;
+let swipeStartX = 0;
+let swipeStartScale = 1;
+let wasPinching = false;
 
 document.addEventListener("DOMContentLoaded", function () {
     // Ambil semua elemen gambar yang ada di dalam galeri-grid
@@ -88,6 +101,7 @@ function bukaModal(element) {
         
         // Tampilkan gambar ke modal
         modalImage.src = imgElement.src;
+        resetZoom();
         
         // Tampilkan modal Bootstrap 5
         const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
@@ -115,47 +129,139 @@ function geserFoto(arah) {
 
         // 3. Ganti sumber gambar
         modalImage.src = galeriImages[currentIndex];
+        resetZoom();
 
         // 4. Hilangkan kelas animasi agar gambar kembali muncul mulus (fade-in)
         modalImage.classList.remove("ganti-slide");
     }, 150); // Jeda waktu 150 milidetik agar transisinya pas dan natural
 }
 
-// ==========================================
-// FITUR SWIPE (SENTUHAN LAYAR HP) PADA MODAL
-// ==========================================
-let touchStartX = 0;
-let touchEndX = 0;
-
 document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("imageModal");
     const modalBody = document.querySelector("#imageModal .modal-body");
+    const modalImage = document.getElementById("modalImage");
 
-    if (modalBody) {
-        // Deteksi awal sentuhan jari di layar
-        modalBody.addEventListener("touchstart", function (event) {
-            touchStartX = event.changedTouches[0].screenX;
-        }, { passive: true });
+    if (modalBody && modalImage) {
+        modalImage.addEventListener("wheel", function (event) {
+            event.preventDefault();
+            ubahZoom(event.deltaY < 0 ? 0.25 : -0.25);
+        }, { passive: false });
 
-        // Deteksi saat jari diangkat dari layar
-        modalBody.addEventListener("touchend", function (event) {
-            touchEndX = event.changedTouches[0].screenX;
-            handleSwipeGesture();
-        }, { passive: true });
+        modalImage.addEventListener("dblclick", function () {
+            if (zoomScale > 1) {
+                resetZoom();
+            } else {
+                setZoom(2);
+            }
+        });
+
+        modalImage.addEventListener("pointerdown", function (event) {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            event.preventDefault();
+            modalImage.setPointerCapture(event.pointerId);
+            zoomPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+            if (zoomPointers.size === 1) {
+                swipeStartX = event.clientX;
+                swipeStartScale = zoomScale;
+                panStartX = event.clientX;
+                panStartY = event.clientY;
+                panStartOffsetX = zoomOffsetX;
+                panStartOffsetY = zoomOffsetY;
+                wasPinching = false;
+            } else if (zoomPointers.size === 2) {
+                const [first, second] = zoomPointers.values();
+                pinchStartDistance = Math.hypot(second.x - first.x, second.y - first.y);
+                pinchStartScale = zoomScale;
+                wasPinching = true;
+            }
+        });
+
+        modalImage.addEventListener("pointermove", function (event) {
+            if (!zoomPointers.has(event.pointerId)) return;
+            zoomPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+            if (zoomPointers.size >= 2) {
+                const [first, second] = zoomPointers.values();
+                const distance = Math.hypot(second.x - first.x, second.y - first.y);
+                if (pinchStartDistance > 0) {
+                    setZoom(pinchStartScale * distance / pinchStartDistance);
+                }
+            } else if (zoomScale > 1) {
+                const pointer = zoomPointers.get(event.pointerId);
+                zoomOffsetX = panStartOffsetX + pointer.x - panStartX;
+                zoomOffsetY = panStartOffsetY + pointer.y - panStartY;
+                renderZoom();
+            }
+        });
+
+        const endPointer = function (event) {
+            if (!zoomPointers.has(event.pointerId)) return;
+            const pointer = { x: event.clientX, y: event.clientY };
+            zoomPointers.set(event.pointerId, pointer);
+            zoomPointers.delete(event.pointerId);
+
+            if (zoomPointers.size === 1) {
+                const remaining = zoomPointers.values().next().value;
+                panStartX = remaining.x;
+                panStartY = remaining.y;
+                panStartOffsetX = zoomOffsetX;
+                panStartOffsetY = zoomOffsetY;
+            } else if (zoomPointers.size === 0) {
+                if (!wasPinching && swipeStartScale <= 1 && zoomScale <= 1 &&
+                    Math.abs(pointer.x - swipeStartX) > 50) {
+                    geserFoto(pointer.x < swipeStartX ? 1 : -1);
+                }
+                pinchStartDistance = 0;
+            }
+        };
+
+        modalImage.addEventListener("pointerup", endPointer);
+        modalImage.addEventListener("pointercancel", endPointer);
+    }
+
+    if (modal) {
+        modal.addEventListener("hidden.bs.modal", resetZoom);
+        modal.addEventListener("keydown", function (event) {
+            if (event.key === "+" || event.key === "=") {
+                event.preventDefault();
+                ubahZoom(0.25);
+            } else if (event.key === "-") {
+                event.preventDefault();
+                ubahZoom(-0.25);
+            } else if (event.key === "0") {
+                resetZoom();
+            }
+        });
     }
 });
 
-// Menghitung arah geseran (kiri atau kanan)
-function handleSwipeGesture() {
-    const batasGeser = 50; // Minimal jarak geser dalam piksel agar terdeteksi
+function ubahZoom(perubahan) {
+    setZoom(zoomScale + perubahan);
+}
 
-    if (touchEndX < touchStartX - batasGeser) {
-        // Geser ke Kiri -> Tampilkan foto berikutnya (Next)
-        geserFoto(1);
-    } 
-    if (touchEndX > touchStartX + batasGeser) {
-        // Geser ke Kanan -> Tampilkan foto sebelumnya (Previous)
-        geserFoto(-1);
+function setZoom(skala) {
+    zoomScale = Math.min(4, Math.max(1, skala));
+    if (zoomScale === 1) {
+        zoomOffsetX = 0;
+        zoomOffsetY = 0;
     }
+    renderZoom();
+}
+
+function renderZoom() {
+    const modalImage = document.getElementById("modalImage");
+    if (!modalImage) return;
+
+    modalImage.style.transform = `translate3d(${zoomOffsetX}px, ${zoomOffsetY}px, 0) scale(${zoomScale})`;
+    modalImage.style.cursor = zoomScale > 1 ? "grab" : "zoom-in";
+}
+
+function resetZoom() {
+    zoomScale = 1;
+    zoomOffsetX = 0;
+    zoomOffsetY = 0;
+    renderZoom();
 }
 
 // UCAPAN, DOA & RSVP GABUNGAN

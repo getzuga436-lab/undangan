@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Arizonia&family=Birthstone&family=Castoro+Titling&family=Fleur+De+Leah&family=Great+Vibes&family=Lavishly+Yours&family=Monsieur+La+Doulaise&family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Imperial+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="falling-leaf.css">
     <link rel="stylesheet" href="countdown.css">
@@ -81,6 +82,12 @@
                     </div>
                     <div class="pohon-kanan-bawah-pembungkus animasi-scroll animasi-kanan">
                         <img src="img/Halaman2/PohonKanan2.png" alt="Pohon Kanan Bawah" class="pohon-kanan-bawah">
+                    </div>
+                    <div class="bunga-kiri-atas-pembungkus animasi-scroll bunga-mekar">
+                        <img src="img/Halaman2/BungaKanan2.png" class="bunga1">
+                    </div>   
+                    <div class="bunga-kiri-bawah-pembungkus animasi-scroll bunga-mekar">
+                        <img src="img/Halaman2/BungaKiri2.png" class="bunga2">
                     </div>   
                     <img src="img/Halaman2/Motif1_2.png" alt="Motif Kiri" class="motif-kiri">
                     <img src="img/Halaman2/Motif3_2.png" alt="Motif Kiri" class="motif-kiri2">
@@ -95,7 +102,7 @@
                         </p>
                         <p class="ayat1 animasi-scroll animasi-atas">"Q.S. Ar-Rum : 21"</p>
                     </div>
-                    <img src="img/Halaman2/MotifBunga.png" alt="bunga" class="bunga animasi-scroll">
+                    <img src="img/Halaman2/MotifBunga.png" alt="bunga" class="bunga animasi-zoom animasi-scroll">
                     </div>
 
                 <!--//TODO HALAMAN 3 -->
@@ -133,34 +140,41 @@
                     <img src="img/Halaman3/BingkaiPengantin.png" class="kapsul-dasar animasi-scroll animasi-zoom" alt="Bingkai Pengantin">
 
                     <!-- //TODO Konten Kapsul -->
-                    <div class="konten-kapsul d-flex flex-column align-items-center justify-content-center">
-                        <p class="kata-1 animasi-scroll animasi-bawah">
-                            Together with our parents, We request the honor of your presence at our wedding day
-                        </p>
+                        <div class="konten-kapsul d-flex flex-column align-items-center justify-content-start">
+                            <div class="bride animasi-scroll bunga-mekar">
+                                <h1 class="groom">Groom & Bride</h1>
+                            </div>
+                            <div class="kontainer-kalimat">
+                                <p class="kata-1 animasi-scroll animasi-bawah">
+                                    Menjemput rida Allah SWT, kami berjalan beriringan untuk menyempurnakan separuh agama. Bersama ini, kami mengundang Anda untuk menjadi saksi ikatan suci kami, Semoga langkah kaki kami senantiasa diberkahi-Nya
+                                </p>
+                            </div>
 
                         <!-- //TODO MEMPELAI PRIA -->
-                        <div class="container-bingkai-bunga animasi-scroll animasi-atas">
+                        <div class="container-bingkai-bunga-pria animasi-scroll animasi-atas">
                             <img src="img/bungabingkai.png" class="bunga-bg-mempelai bunga-pria" alt="Aksen Bunga Pria">
                             <img src="img/Halaman3/BungaBingkaiAtas1.png" class="bunga-bg-mempelai bunga-mawar-bingkai-pria">                             
                             <img src="img/mempelai/mempelai-pria.jpg" class="foto-mempelai img-fluid" alt="Foto Mempelai Pria">
                         </div>
                         <div class="p1 animasi-scroll animasi-kiri">
-                            <h1 class="mempelai">Muh. Risaldi</h1>
+                            <h1 class="mempelai">Aldi</h1>
+                            <h1 class="mertua">MUH. RISALDI, S.M.</h1>
                             <p class="mertua">Putra Pertama Dari</p>
                             <p class="mertua">Bapak Sahardi dan Ibu Idawati</p>
                         </div>
                         <h2 class="dan animasi-scroll animasi-bawah">&</h2>
 
                         <!-- //TODO MEMPELAI WANITA -->
-                        <div class="container-bingkai-bunga animasi-scroll animasi-atas">
+                        <div class="container-bingkai-bunga-wanita animasi-scroll animasi-atas">
                             <img src="img/bungabingkai.png" class="bunga-bg-mempelai bunga-wanita" alt="Aksen Bunga Wanita">
                             <img src="img/Halaman3/BungaBingkaiAtas1.png" class="bunga-bg-mempelai bunga-mawar-bingkai-wanita">     
                             <img src="img/mempelai/mempelai-perempuan.jpg" class="foto-mempelai img-fluid" alt="Foto Mempelai Wanita">
                         </div>
                         <div class="p1 animasi-scroll animasi-kanan">
-                            <h1 class="mempelai">Hardiyanti Rahmah, S.T.</h1>
+                            <h1 class="mempelai">Rahmah</h1>
+                            <h1 class="mertua">HARDIYANTI RAHMAH, S.T.</h1>
                             <p class="mertua">Putri Kedua Dari</p>
-                            <p class="mertua">Bapak Muhammad Arsyad dan Ibu Rosniati</p>
+                            <p class="mertua">Bapak H. Muhammad Arsyad T. dan Ibu Hj. Rosniati</p>
                         </div>
                     </div>
                 </div>
@@ -255,7 +269,40 @@
                     </div>
                 </div>
 
-<!--//TODO HALAMAN 5 (GALERI PREWED) -->
+
+                <!--//TODO HALAMAN 5 -->
+                <div class="halaman-2">
+                    <div class="Hal5 animasi-scroll animasi-zoom">
+                        <h1 class="hal-5">Wedding Gift</h1>
+                    </div>
+                    <div class="container-rekening animasi-scroll animasi-zoom">
+                        <div class="bagian-atas">
+                            <img src="img/Halaman5/Rekening1.png" class="rekening1">
+                        </div>
+                        <div class="bagian-bawah">
+                            <img src="img/Halaman5/Rekening2.png" class="rekening1">
+                        </div>
+                    </div>
+                    <div class="pohon-kiri-atas-pembungkus animasi-scroll animasi-kiri">
+                        <img src="img/Halaman2/PohonKiri2.png" alt="Pohon Kiri Atas" class="pohon-kiri-atas">
+                    </div>
+                    <div class="pohon-kanan-bawah-pembungkus animasi-scroll animasi-kanan">
+                        <img src="img/Halaman2/PohonKanan2.png" alt="Pohon Kanan Bawah" class="pohon-kanan-bawah">
+                    </div>
+                    <div class="bunga-kiri-atas-pembungkus animasi-scroll bunga-mekar">
+                        <img src="img/Halaman2/BungaKanan2.png" class="bunga1">
+                    </div>   
+                    <div class="bunga-kiri-bawah-pembungkus animasi-scroll bunga-mekar">
+                        <img src="img/Halaman2/BungaKiri2.png" class="bunga2">
+                    </div>   
+                    <img src="img/Halaman2/Motif1_2.png" alt="Motif Kiri" class="motif-kiri">
+                    <img src="img/Halaman2/Motif3_2.png" alt="Motif Kiri" class="motif-kiri2">
+                    <img src="img/Halaman2/Motif4_2.png" alt="Motif Kiri" class="motif-kiri3">
+                    <img src="img/Halaman2/Motif2_2.png" alt="Motif Kiri" class="motif-kiri4">   
+                    <img src="img/Halaman2/BingkaiHal2.png" class="bingkai-hal5 animasi-scroll animasi-zoom">
+                </div>
+
+<!--//TODO HALAMAN 6 (GALERI PREWED) -->
                 <div class="halaman-5 d-flex flex-column align-items-center text-center justify-content-center">
                     <div class="konten-galeri-baru d-flex flex-column align-items-center">
                         <h1 class="judul-galeri animasi-scroll animasi-atas">Galeri Foto</h1>
@@ -293,6 +340,12 @@
 
                                 <!-- Gambar Utama di Modal -->
                                 <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" alt="Zoomed Prewedding">
+
+                                <div class="kontrol-zoom position-absolute bottom-0 start-50 translate-middle-x mb-3 d-flex align-items-center gap-2 z-3">
+                                    <button type="button" class="btn btn-dark rounded-circle" onclick="ubahZoom(-0.5)" aria-label="Perkecil foto">−</button>
+                                    <button type="button" class="btn btn-dark rounded-pill" onclick="resetZoom()" aria-label="Reset zoom">Reset</button>
+                                    <button type="button" class="btn btn-dark rounded-circle" onclick="ubahZoom(0.5)" aria-label="Perbesar foto">+</button>
+                                </div>
 
                                 <!-- Tombol Next (Berikutnya) -->
                                 <button type="button" class="btn btn-dark position-absolute end-0 me-2 rounded-circle z-3 p-2 d-flex align-items-center justify-content-center" onclick="geserFoto(1)" style="width: 45px; height: 45px; opacity: 0.8;">

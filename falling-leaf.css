@@ -20,7 +20,7 @@
     top: -50px; /* Mulai dari luar layar atas */
     width: 10px;
     height: 20px;
-    background: linear-gradient(to bottom right, #606c38, #283618); /* Warna hijau daun alami */
+    background: linear-gradient(to bottom right, #5c1111, #283618); /* Warna hijau daun alami */
     border-radius: 0 100% 0 100%; /* Membuat efek bentuk kelopak daun */
     opacity: 0.7;
 }
