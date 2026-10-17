@@ -346,7 +346,10 @@ body {
 /*//! ============================== */
 .halaman-2 {
     margin: 0;
-    min-height: 600px; /* Atau gunakan height: 700px; */
+    min-height: 600px; 
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
     background-color: rgb(118, 9, 9);
     position: relative;
     display: flex;
@@ -361,7 +364,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 150px;
+    width: 40%;
     z-index: 2;
     pointer-events: none;
 }
@@ -379,7 +382,7 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 150px;
+    width: 40%;
     z-index: 2;
     pointer-events: none;
 }
@@ -486,7 +489,7 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 600px;
+    max-width: 450px;
     height: 90%;
     object-fit: fill;
     z-index: 2;          
@@ -496,7 +499,7 @@ body {
 /* Isi konten di Dalam Bingkai */
 .songkok-bando {
     position: absolute;
-    top: 110px; 
+    top: 15%; 
     justify-content: center;
     transform: translateX(-50%);
     width: 80px;
@@ -509,7 +512,7 @@ body {
     position: relative;
     z-index: 10; 
     text-align: center;
-    padding: 1rem 1rem;
+    padding: 1rem 2.5rem;
     width: 100%;
     max-width: 350px; 
     display: flex;
@@ -537,10 +540,10 @@ body {
 }
 .bunga {
     position: absolute;
-    bottom: 110px; 
+    bottom: 15%; 
     justify-content: center;
     transform: translateX(-50%);
-    width: 100px;
+    width: 25%;
     height: auto;
     object-fit: contain;
     z-index: 5; 
@@ -553,7 +556,7 @@ body {
 /*//! ============================== */
 .halaman-3 {
     margin: 0;
-    min-height: 1600px;
+    min-height: 1700px;
     position: relative;
     overflow: hidden;
 }
@@ -685,7 +688,7 @@ body {
     margin: 0 0 1rem 0;
 }
 .mempelai {
-    font-family: "Imperial Script", cursive;
+    font-family: "Alex Brush", cursive;
     color: #741302;
     font-size: 60px;
     font-weight: 400;
@@ -695,16 +698,19 @@ body {
 
 }
 .dan {
-    font-family: "great vibes", cursive;
+    font-family: "Alex Brush", cursive;
+    font-weight: 400;
     font-size: 5rem;
     color: #741302;
     margin: 1rem 0rem;
+    padding: 1.5rem;
 }
 .mertua {
     font-family: "times new roman", cursive;
     font-size: 0.95rem;
     margin: 0;
     line-height: 1.3;
+    padding: 0rem 1rem;
 }
 
 
@@ -906,7 +912,7 @@ body {
     max-width: 95%;
     background-color: rgba(255, 255, 255, 0.957); /* Latar putih kapsul pindah langsung ke sini */
     border-radius: 180px; /* Bentuk kapsul melengkung atas-bawah */
-    outline: 9px solid #750a0a36;
+    outline: 5px solid #690b0b;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
@@ -1011,7 +1017,7 @@ body {
 .waktu {
     font-family: "Work Sans", sans-serif;
     font-size: 0.9rem;
-    color: #777777;
+    color: #646161;
     margin-bottom: 0;
 }
 
@@ -1147,17 +1153,36 @@ body {
 .halaman-5 {
     position: relative;
     margin: 0;
-    min-height: auto !important;
-    height: 100vh;
-    z-index: 2;
-    background-image: linear-gradient(180deg, rgba(207, 150, 115, 0.15), rgb(74, 7, 7));
+    height: 800px;
+    z-index: 1;
+    background-image: linear-gradient(180deg, rgba(123, 122, 122, 0.534), rgb(74, 7, 7));
     display: flex;
-    padding: 2rem 1.5rem 4rem 1.5rem;
-    align-items: center;
-    justify-content: center;
+    padding: 0rem 1.5rem 4rem 1.5rem;
     flex-direction: column;
 }
+.judul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    top: -100px;
+    z-index: 3;
+}
+.judul-galeri {
+    font-family: "Lavishly Yours", cursive;
+    font-size: 3.5rem;
+    color: #771515;
+    margin-bottom: 0.1rem;
+    z-index: 3;
+}
 
+.subjudul-galeri {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #0c0c0c;
+    margin-bottom: 1.5rem; /* Didekatkan sedikit jaraknya ke grid foto */
+}
 .konten-galeri-baru {
     position: relative;
     z-index: 5;
@@ -1166,21 +1191,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.judul-galeri {
-    font-family: "Lavishly Yours", cursive;
-    font-size: 3.5rem;
-    color: #a87e7e;
-    margin-bottom: 0.1rem;
-}
-
-.subjudul-galeri {
-    font-family: "Work Sans", sans-serif;
-    font-size: 0.95rem;
-    font-style: italic;
-    color: #555555;
-    margin-bottom: 1.5rem; /* Didekatkan sedikit jaraknya ke grid foto */
 }
 
 /* 1. Atur jarak antar foto agar lebih rapat */
@@ -1582,3 +1592,33 @@ body {
 
 
 /* //! UKURAN HP */
+@media (max-width: 450px) {
+    .split-container {
+        width: 100%;
+    }
+
+    .left-side {
+        display: none;
+    }
+
+    .right-side {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .welcome-cover {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .halaman-2{
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }    
+}
