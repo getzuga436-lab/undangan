@@ -221,7 +221,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Menyesuaikan video agar tidak terpotong dan menutupi area secara proporsional */
+    object-fit: cover; /* Memenuhi area secara proporsional; sisi video dapat terpotong jika rasio berbeda */
     z-index: 0;
 }
 
@@ -406,7 +406,7 @@ body {
 .bunga1 {
     position: relative;
     display: block;
-    top: 10px;
+    top: 20px;
     right: -50px;
     width: 100%;
     height: auto;
@@ -499,10 +499,10 @@ body {
 /* Isi konten di Dalam Bingkai */
 .songkok-bando {
     position: absolute;
-    top: 15%; 
+    top: 14%; 
     justify-content: center;
     transform: translateX(-50%);
-    width: 80px;
+    width: 18%;
     height: auto;
     object-fit: contain;
     z-index: 5;
@@ -512,7 +512,7 @@ body {
     position: relative;
     z-index: 10; 
     text-align: center;
-    padding: 1rem 2.5rem;
+    padding: 1rem 2rem;
     width: 100%;
     max-width: 350px; 
     display: flex;
@@ -543,7 +543,7 @@ body {
     bottom: 15%; 
     justify-content: center;
     transform: translateX(-50%);
-    width: 25%;
+    width: 20%;
     height: auto;
     object-fit: contain;
     z-index: 5; 
@@ -556,7 +556,7 @@ body {
 /*//! ============================== */
 .halaman-3 {
     margin: 0;
-    min-height: 1700px;
+    min-height: 1600px;
     position: relative;
     overflow: hidden;
 }
@@ -798,7 +798,7 @@ body {
     bottom: -5%;
     left: -6%;
     width: 50%;
-    z-index: 3;
+    z-index: 4;
     transform-origin: bottom left;
     animation: masukKiri 1.4s ease-out forwards, ayunBunga 8s ease-in-out infinite 1.4s;
 }
@@ -807,7 +807,7 @@ body {
     justify-content: center;
     width: 100%;
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     transform-origin: bottom center;
     animation: ayunKiriKanan 9s ease-in-out infinite;
 }
@@ -816,7 +816,7 @@ body {
     right: -6%;
     width: 50%;
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     transform-origin: bottom right;
     animation: masukKanan 1.4s ease-out forwards, ayunBunga 10s ease-in-out infinite 1.4s;
 }
@@ -877,9 +877,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 115%;
-    max-width: 520px;
     height: auto;
-    z-index: 1;
+    z-index: 3;
     pointer-events: none;
 }
 
@@ -1062,18 +1061,40 @@ body {
 /*//! ============================== */
             /*//! HALAMAN 5 (REKENING) */
 /*//! ============================== */
-.halaman-2 {
+.halaman-5 {
     margin: 0;
     min-height: 650px; /* Atau gunakan height: 700px; */
     background-color: rgb(118, 9, 9);
     position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     padding: 3rem 1rem;
     overflow: hidden;
 }
-
+.halaman-rekening {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.Hal5 {
+    position: relative;
+    margin-top: 15%;
+    width: 100%;
+    max-width: 365px;
+    box-sizing: border-box;
+    z-index: 10;
+    text-align: center;
+}
+.hal-5 {
+    font-family: "Imperial Script", cursive;
+    font-weight: 590;
+    font-style: normal;
+    font-size: 3.5rem;
+    color: #501111;
+}
 /* Bingkai putih halaman 2 */
 .bingkai-hal5 {
     position: absolute;
@@ -1086,25 +1107,10 @@ body {
     z-index: 2;          
     pointer-events: none;
 }
-.Hal5 {
-    position: absolute;
-    left: 22%;
-    top: 50px;
-    height: 80px;
-    width: 365px;
-    z-index: 10;
-}
-.hal-5 {
-    font-family: "Imperial Script", cursive;
-    font-weight: 590;
-    font-style: normal;
-    font-size: 3.5rem;
-    color: #501111;
-}
 
 .container-rekening {
     position: relative;
-    bottom: -1rem;
+    bottom: 0rem;
     width: 365px;
     height: 450px;
     display: flex;
@@ -1115,7 +1121,6 @@ body {
     z-index: 10;
 }
 .bagian-atas {
-    /* 1. KUNCI UTAMA: Ubah dari absolute ke relative agar Flexbox induk bekerja */
     position: relative; 
     display: flex;
     justify-content: center;
@@ -1150,7 +1155,7 @@ body {
 }
 
 /* //! HALAMAN 6 (GALERI FOTO MODERN) */
-.halaman-5 {
+.halaman-6 {
     position: relative;
     margin: 0;
     height: 800px;
@@ -1206,10 +1211,10 @@ body {
 .galeri-item {
     position: relative;
     overflow: hidden;
-    border-radius: 5px; /* Dibuat sedikit lebih kotak/minimalis (sebelumnya 16px) */
+    border-radius: 2px; /* Dibuat sedikit lebih kotak/minimalis (sebelumnya 16px) */
     background-color: #2b0606;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #5a1212; /* Border dibuat lebih tipis dan tegas */
+    border: 0px solid #5a1212;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }

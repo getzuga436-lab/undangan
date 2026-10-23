@@ -1,4 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const ambilKonten = function (jalur) {
+        return jalur.split(".").reduce(function (nilai, bagian) {
+            return nilai == null ? undefined : nilai[bagian];
+        }, window.kontenUndangan);
+    };
+
+    document.querySelectorAll("[data-konten]").forEach(function (elemen) {
+        const nilai = ambilKonten(elemen.dataset.konten);
+        if (Array.isArray(nilai)) {
+            elemen.replaceChildren();
+            nilai.forEach(function (baris, index) {
+                if (index > 0) {
+                    elemen.appendChild(document.createElement("br"));
+                }
+                elemen.appendChild(document.createTextNode(baris));
+            });
+        } else if (typeof nilai === "string") {
+            elemen.textContent = nilai;
+        } else {
+            throw new Error("Konten undangan tidak ditemukan: " + elemen.dataset.konten);
+        }
+    });
+
+    document.querySelectorAll("[data-konten-href]").forEach(function (elemen) {
+        const nilai = ambilKonten(elemen.dataset.kontenHref);
+        if (typeof nilai !== "string") {
+            throw new Error("URL konten undangan tidak ditemukan: " + elemen.dataset.kontenHref);
+        }
+        elemen.href = nilai;
+    });
+
     // === 🛠️ SCRIPT TAMBAHAN: AMBIL NAMA DARI LINK URL ===
     const urlParams = new URLSearchParams(window.location.search);
     const namaTamu = urlParams.get('to');
@@ -26,7 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (openingVideo) {
                 openingVideo.currentTime = 0;
-                openingVideo.play();
+                openingVideo.play().catch(function (error) {
+                    console.error("Video pembuka gagal diputar:", error);
+                });
             }
             
             // 2. Aktifkan kemampuan scroll halaman ke bawah

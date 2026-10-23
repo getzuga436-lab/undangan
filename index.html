@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aldi & Rahmah</title>
+    <title data-konten="pageTitle"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Arizonia&family=Birthstone&family=Castoro+Titling&family=Fleur+De+Leah&family=Great+Vibes&family=Lavishly+Yours&family=Monsieur+La+Doulaise&family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Imperial+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="falling-leaf.css">
     <link rel="stylesheet" href="countdown.css">
 </head>
 
@@ -19,30 +18,22 @@
         <div class="split-container d-flex w-100">
             <!-- //TODO BAGIAN KIRI -->
             <div class="left-side">
-                <h1 class="hero1">The Wedding Of</h1>
-                <p class="hero2">Aldi & Rahmah</p>
+                <h1 class="hero1" data-konten="hero.title"></h1>
+                <p class="hero2" data-konten="hero.names"></p>
             </div>
 
             <!-- //TODO BAGIAN KANAN -->
             <div class="right-side" id="rightSide">
                 <img src="img/prewed1.JPG" alt="Background Dasar" class="background-dasar-utama">
-                <div class="daun-container">
-                    <div class="daun"></div>
-                    <div class="daun"></div>
-                    <div class="daun"></div>
-                    <div class="daun"></div>
-                    <div class="daun"></div>
-                </div>
-
                 <div class="welcome-cover d-flex flex-column justify-content-center align-items-center" id="welcomeCover">
                     
                     <!-- //! KAPSUL TRANSPARAN WELCOME COVER -->
                     <div class="kapsul-welcome d-flex flex-column align-items-center text-center">
                         <div class="text-welcome text-center">
-                            <h1 class="wel1">The Wedding Of</h1>
-                            <h2 class="wel2">Aldi & Rahmah</h2>
-                            <p class="wel3">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-                            <div class="nama-tamu" id="nama-tamu">Vanny Dinda Syafira</div>
+                            <h1 class="wel1" data-konten="opening.title"></h1>
+                            <h2 class="wel2" data-konten="opening.names"></h2>
+                            <p class="wel3" data-konten="opening.greeting"></p>
+                            <div class="nama-tamu" id="nama-tamu" data-konten="opening.guestName"></div>
                             <button class="btn-buka-baru" id="btnBuka" type="button">Buka Undangan</button>
                         </div>
                     </div>
@@ -59,7 +50,10 @@
 
                 <!--//TODO HALAMAN 1 (COVER) -->
                 <div class="halaman-1" id="cover">
-                    <img src="img/1.jpg" alt="Latar Belakang Halaman 1" class="background-halaman-1">
+                    <video class="video-mempelai" loop playsinline preload="metadata" poster="img/1.jpg">
+                        <source src="img/Halaman1/opening1.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
                     <!-- <div class="tex-hal1">
                         <h1 class="hal1">The Wedding Of</h1>
                         <h2 class="hal2">Aldi & Rahmah</h2>
@@ -97,10 +91,9 @@
                     <img src="img/Halaman2/BingkaiHal2.png" class="bingkai-hal2 animasi-scroll animasi-zoom">
                     <!-- Konten Teks di Atas Bingkai -->
                     <div class="konten-teks-hal2">
-                        <p class="ayat animasi-scroll animasi-atas">
-                            “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan diantaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.”
+                        <p class="ayat animasi-scroll animasi-atas" data-konten="quote.text">
                         </p>
-                        <p class="ayat1 animasi-scroll animasi-atas">"Q.S. Ar-Rum : 21"</p>
+                        <p class="ayat1 animasi-scroll animasi-atas" data-konten="quote.reference"></p>
                     </div>
                     <img src="img/Halaman2/MotifBunga.png" alt="bunga" class="bunga animasi-zoom animasi-scroll">
                     </div>
@@ -145,9 +138,7 @@
                                 <h1 class="groom">Groom & Bride</h1>
                             </div>
                             <div class="kontainer-kalimat">
-                                <p class="kata-1 animasi-scroll animasi-bawah">
-                                    Menjemput rida Allah SWT, kami berjalan beriringan untuk menyempurnakan separuh agama. Bersama ini, kami mengundang Anda untuk menjadi saksi ikatan suci kami, Semoga langkah kaki kami senantiasa diberkahi-Nya
-                                </p>
+                                <p class="kata-1 animasi-scroll animasi-bawah" data-konten="invitationText"></p>
                             </div>
 
                         <!-- //TODO MEMPELAI PRIA -->
@@ -157,10 +148,10 @@
                             <img src="img/mempelai/mempelai-pria.webp" class="foto-mempelai img-fluid" alt="Foto Mempelai Pria">
                         </div>
                         <div class="p1 animasi-scroll animasi-kiri">
-                            <h1 class="mempelai">Aldi</h1>
-                            <h1 class="mertua">MUH. RISALDI, S.M.</h1>
-                            <p class="mertua">Putra Pertama Dari</p>
-                            <p class="mertua">Bapak Sahardi dan Ibu Idawati</p>
+                            <h1 class="mempelai" data-konten="groom.nickname"></h1>
+                            <h1 class="mertua" data-konten="groom.fullName"></h1>
+                            <p class="mertua" data-konten="groom.childOrder"></p>
+                            <p class="mertua" data-konten="groom.parents"></p>
                         </div>
                         <h2 class="dan animasi-scroll animasi-bawah">&</h2>
 
@@ -171,10 +162,10 @@
                             <img src="img/mempelai/mempelai-perempuan.webp" class="foto-mempelai img-fluid" alt="Foto Mempelai Wanita">
                         </div>
                         <div class="p1 animasi-scroll animasi-kanan">
-                            <h1 class="mempelai">Rahmah</h1>
-                            <h1 class="mertua">HARDIYANTI RAHMAH, S.T.</h1>
-                            <p class="mertua">Putri Pertama Dari</p>
-                            <p class="mertua">Bapak H. Muhammad Arsyad T. dan Ibu Hj. Rosniati</p>
+                            <h1 class="mempelai" data-konten="bride.nickname"></h1>
+                            <h1 class="mertua" data-konten="bride.fullName"></h1>
+                            <p class="mertua" data-konten="bride.childOrder"></p>
+                            <p class="mertua" data-konten="bride.parents"></p>
                         </div>
                     </div>
                 </div>
@@ -188,32 +179,32 @@
                             
                             <!--//TODO 1. AKAD NIKAH -->
                             <div class="jadwal-kartu w-100">
-                                <h1 class="judul-jadwal animasi-scroll animasi-atas">Akad Nikah</h1>
-                                <p class="tanggal animasi-scroll animasi-bawah">Jumat, 20 November 2026</p>
-                                <p class="waktu animasi-scroll animasi-bawah">09:00 WITA</p>
+                                <h1 class="judul-jadwal animasi-scroll animasi-atas" data-konten="events.0.title"></h1>
+                                <p class="tanggal animasi-scroll animasi-bawah" data-konten="events.0.date"></p>
+                                <p class="waktu animasi-scroll animasi-bawah" data-konten="events.0.time"></p>
 
                                 <div class="frame-pembatas w-100 d-flex justify-content-center animasi-scroll animasi-zoom">
                                     <img src="img/border.png" class="img-pembatas" alt="Garis Pembatas">
                                 </div>
 
-                                <p class="nama-lokasi animasi-scroll animasi-atas">Gedung Asrama Haji Makassar</p>
-                                <p class="alamat-lokasi animasi-scroll animasi-atas">Jl. Asrama H. Sudiang, Sudiang, <br>Kec. Biringkanaya, Kota Makassar</p>
+                                <p class="nama-lokasi animasi-scroll animasi-atas" data-konten="events.0.location"></p>
+                                <p class="alamat-lokasi animasi-scroll animasi-atas" data-konten="events.0.address"></p>
                             </div>
 
                             <!--//TODO 2. RESEPSI MEMPELAI WANITA -->
                             <div class="jadwal-kartu w-100">
-                                <h1 class="judul-jadwal animasi-scroll animasi-atas">Resepsi Mempelai Wanita</h1>
-                                <p class="tanggal animasi-scroll animasi-bawah">Jumat, 20 November 2026</p>
-                                <p class="waktu animasi-scroll animasi-bawah">10:00 - 15:00 WITA</p>
+                                <h1 class="judul-jadwal animasi-scroll animasi-atas" data-konten="events.1.title"></h1>
+                                <p class="tanggal animasi-scroll animasi-bawah" data-konten="events.1.date"></p>
+                                <p class="waktu animasi-scroll animasi-bawah" data-konten="events.1.time"></p>
 
                                 <div class="frame-pembatas w-100 d-flex justify-content-center animasi-scroll animasi-zoom">
                                     <img src="img/border.png" class="img-pembatas" alt="Garis Pembatas">
                                 </div>
 
-                                <p class="nama-lokasi animasi-scroll animasi-atas">Gedung Asrama Haji Makassar</p>
-                                <p class="alamat-lokasi animasi-scroll animasi-atas">Jl. Asrama H. Sudiang, Sudiang, <br>Kec. Biringkanaya, Kota Makassar</p>
+                                <p class="nama-lokasi animasi-scroll animasi-atas" data-konten="events.1.location"></p>
+                                <p class="alamat-lokasi animasi-scroll animasi-atas" data-konten="events.1.address"></p>
 
-                                <a href="https://maps.google.com/?q=WG7Q%2B65C,+Jl.+Asrama+H.+Sudiang,+Sudiang,+Kec.+Biringkanaya,+Kota+Makassar" target="_blank" class="btn-maps-simpel">
+                                <a data-konten-href="events.1.mapUrl" target="_blank" class="btn-maps-simpel">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right: 6px; margin-bottom: 2px;">
                                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                     </svg>
@@ -223,18 +214,18 @@
 
                             <!--//TODO 3. RESEPSI MEMPELAI PRIA -->
                             <div class="jadwal-kartu w-100">
-                                <h1 class="judul-jadwal animasi-scroll animasi-atas">Resepsi Mempelai Pria</h1>
-                                <p class="tanggal animasi-scroll animasi-bawah">Sabtu, 21 November 2026</p>
-                                <p class="waktu animasi-scroll animasi-bawah">11:00 - 20:00 WITA</p>
+                                <h1 class="judul-jadwal animasi-scroll animasi-atas" data-konten="events.2.title"></h1>
+                                <p class="tanggal animasi-scroll animasi-bawah" data-konten="events.2.date"></p>
+                                <p class="waktu animasi-scroll animasi-bawah" data-konten="events.2.time"></p>
 
                                 <div class="frame-pembatas w-100 d-flex justify-content-center animasi-scroll animasi-zoom">
                                     <img src="img/border.png" class="img-pembatas" alt="Garis Pembatas">
                                 </div>
 
-                                <p class="nama-lokasi animasi-scroll animasi-atas">Rumah Mempelai Pria</p>
-                                <p class="alamat-lokasi animasi-scroll animasi-atas">Purnakarya <br>Kec. Tanralili, Kabupaten Maros</p>
+                                <p class="nama-lokasi animasi-scroll animasi-atas" data-konten="events.2.location"></p>
+                                <p class="alamat-lokasi animasi-scroll animasi-atas" data-konten="events.2.address"></p>
                                 
-                                <a href="https://maps.google.com/?q=-5.137115,119.603237" target="_blank" class="btn-maps-simpel">
+                                <a data-konten-href="events.2.mapUrl" target="_blank" class="btn-maps-simpel">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right: 6px; margin-bottom: 2px;">
                                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                     </svg>
@@ -244,7 +235,7 @@
 
                             <!--//TODO 4. COUNTDOWN (Menjadi penutup di bawah) -->
                             <div class="jadwal-kartu w-100 mt-3">
-                                <h1 class="judul-jadwal animasi-scroll animasi-atas">Wedding Countdown</h1>
+                                <h1 class="judul-jadwal animasi-scroll animasi-atas" data-konten="countdown.title"></h1>
                                 <div id="countdown" class="countdown">
                                     <div class="cd-box">
                                         <span class="cd-angka" id="cd-hari">0</span>
@@ -270,19 +261,19 @@
                 </div>
 
 
-                <!--//TODO HALAMAN 5 -->
-                <div class="halaman-2">
+                <!--//! HALAMAN 5 -->
+                <div class="halaman-2 halaman-rekening">
                     <div class="Hal5 animasi-scroll animasi-zoom">
                         <h1 class="hal-5">Wedding Gift</h1>
                     </div>
-                    <div class="container-rekening animasi-scroll animasi-zoom">
-                        <div class="bagian-atas">
-                            <img src="img/Halaman5/Rekening1.png" class="rekening1">
+                        <div class="container-rekening animasi-scroll animasi-zoom">
+                            <div class="bagian-atas">
+                                <img src="img/Halaman5/Rekening1.png" class="rekening1">
+                            </div>
+                            <div class="bagian-bawah">
+                                <img src="img/Halaman5/Rekening2.png" class="rekening1">
+                            </div>
                         </div>
-                        <div class="bagian-bawah">
-                            <img src="img/Halaman5/Rekening2.png" class="rekening1">
-                        </div>
-                    </div>
                     <div class="pohon-kiri-atas-pembungkus animasi-scroll animasi-kiri">
                         <img src="img/Halaman2/PohonKiri2.png" alt="Pohon Kiri Atas" class="pohon-kiri-atas">
                     </div>
@@ -303,7 +294,7 @@
                 </div>
 
 <!--//TODO HALAMAN 6 (GALERI PREWED) -->
-                <div class="halaman-5 d-flex flex-column align-items-center text-center justify-content-center">
+                <div class="halaman-6 d-flex flex-column align-items-center text-center justify-content-center">
                     <div class="judul">
                         <h1 class="judul-galeri animasi-scroll animasi-atas">Galeri Foto</h1>
                         <p class="subjudul-galeri animasi-scroll animasi-atas">Momen Bahagia Kami</p>
@@ -413,6 +404,7 @@
                     </div>
                 </div>
 
+    <script src="konten-undangan.js"></script>
     <script src="script.js"></script>
     <!-- Tambahkan script baru ini -->
     <script src="countdown.js"></script>

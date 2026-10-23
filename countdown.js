@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const targetDate = new Date("November 20, 2026 09:00:00").getTime();
+    const targetDate = new Date(window.kontenUndangan.countdown.targetDate).getTime();
     
     // Ambil elemen angkanya langsung
     const elHari = document.getElementById("cd-hari");
