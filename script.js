@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const btnBuka = document.getElementById("btnBuka");
     const openingVideo = document.querySelector(".video-mempelai");
+    let videoDimulai = false;
     
     // PERBAIKAN: Ubah "cover" menjadi "welcomeCover" agar sesuai dengan ID di HTML
     const cover = document.getElementById("welcomeCover"); 
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (openingVideo) {
+                videoDimulai = true;
                 openingVideo.currentTime = 0;
                 openingVideo.play().catch(function (error) {
                     console.error("Video pembuka gagal diputar:", error);
@@ -76,6 +78,25 @@ document.addEventListener("DOMContentLoaded", function () {
         rootMargin: "0px 0px -80px 0px",
         threshold: 0.15
     };
+
+    if (openingVideo) {
+        const videoObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) {
+                    openingVideo.pause();
+                } else if (videoDimulai && openingVideo.paused) {
+                    openingVideo.play().catch(function (error) {
+                        console.error("Video pembuka gagal dilanjutkan:", error);
+                    });
+                }
+            });
+        }, {
+            root: rightSide,
+            threshold: 0.1
+        });
+
+        videoObserver.observe(openingVideo);
+    }
 
     const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -297,11 +318,12 @@ function resetZoom() {
     renderZoom();
 }
 
-// UCAPAN, DOA & RSVP GABUNGAN
+// UCAPAN, DOA & RSVP GABUNGAN (VERSI GOOGLE APPS SCRIPT)
 document.addEventListener("DOMContentLoaded", function () {
-    const SHEETDB_URL = "https://sheetdb.io/api/v1/uz1s2ehtu3l54"; 
+    // 1. GANTI URL INI DENGAN URL APPS SCRIPT ANDA NANTI
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbx_k7EC2-ZZBWfB8PsyqJ0HFkALO1MxU8nhIjpYYgHm3K_0bP17IsIuzzYi4XR9z7E/exec"; 
     
-    // 1. Ambil nama dari parameter URL (?to=...) dan masukkan ke kotak input nama secara otomatis
+    // Ambil nama dari parameter URL (?to=...)
     const urlParams = new URLSearchParams(window.location.search);
     const namaTamuUrl = urlParams.get('to');
     const inputNamaPengirim = document.getElementById('namaPengirim');
@@ -310,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (namaTamuUrl) {
             inputNamaPengirim.value = decodeURIComponent(namaTamuUrl);
         } else {
-            inputNamaPengirim.value = ""; // Kosong jika dibuka tanpa link khusus
+            inputNamaPengirim.value = ""; 
         }
     }
 
@@ -326,12 +348,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formGabungan.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Mengambil data nama langsung dari kotak input yang diisi/dibaca dari URL
             let nama = inputNamaPengirim ? inputNamaPengirim.value.trim() : "Tamu Undangan";
             let kehadiran = document.getElementById("rsvpStatus").value;
             let pesan = document.getElementById("pesanUcapan").value.trim();
             
-            // Format tanggal Indonesia
             let tanggal = new Date().toLocaleDateString("id-ID", {
                 day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
             });
@@ -344,25 +364,23 @@ document.addEventListener("DOMContentLoaded", function () {
             btnKirim.disabled = true;
             btnKirim.innerText = "Mengirim...";
 
+            // PERUBAHAN DI SINI: Menggunakan FormData agar tidak terkena blokir CORS Google
+            let formData = new FormData();
+            formData.append("nama", nama);
+            formData.append("kehadiran", kehadiran);
+            formData.append("pesan", pesan);
+            formData.append("tanggal", tanggal);
+
             // Kirim data ke Google Sheets
-            fetch(SHEETDB_URL, {
+            fetch(GAS_URL, {
                 method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    data: [
-                        { 'nama': nama, 'kehadiran': kehadiran, 'pesan': pesan, 'tanggal': tanggal }
-                    ]
-                })
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
                 alert("Terima kasih! Konfirmasi kehadiran dan ucapan Anda berhasil dikirim.");
                 formGabungan.reset();
                 
-                // Jika ingin setelah reset nama dari URL tetap muncul kembali di kotak input:
                 if (namaTamuUrl && inputNamaPengirim) {
                     inputNamaPengirim.value = decodeURIComponent(namaTamuUrl);
                 }
@@ -380,11 +398,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 3. Fungsi untuk mengambil data dari Google Sheets dan menampilkannya ke web
+    // 3. Fungsi untuk mengambil data dari Google Sheets (GET)
     function muatUcapan() {
         if (!daftarUcapan) return;
 
-        fetch(SHEETDB_URL)
+        // Mengambil data dari GAS
+        fetch(GAS_URL)
             .then(response => response.json())
             .then(data => {
                 daftarUcapan.innerHTML = "";
@@ -396,9 +415,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Urutkan dari yang paling baru dikirim (dibalik)
                 data.reverse().forEach(item => {
-                    if (!item.pesan) return; // Lewatkan jika baris kosong
+                    if (!item.pesan) return; 
                     
-                    // Tentukan warna badge berdasarkan status kehadiran
                     let badgeWarna = 'secondary';
                     if (item.kehadiran === 'Hadir') badgeWarna = 'success';
                     else if (item.kehadiran === 'Tidak Hadir') badgeWarna = 'danger';
@@ -425,9 +443,15 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Fungsi pengaman teks agar terhindar dari script berbahaya (XSS)
     function escapeHtml(text) {
-        if (!text) return "";
-        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        if (text === null || text === undefined) return "";
+        
+        // Paksa konversi ke String agar tidak error jika menerima data angka/tanggal
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 });
