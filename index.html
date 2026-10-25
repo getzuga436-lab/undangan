@@ -18,8 +18,11 @@
         <div class="split-container d-flex w-100">
             <!-- //TODO BAGIAN KIRI -->
             <div class="left-side">
-                <h1 class="hero1" data-konten="hero.title"></h1>
-                <p class="hero2" data-konten="hero.names"></p>
+                <div class="hero-cover">
+                    <h1 class="hero1" data-konten="hero.title"></h1>
+                    <p class="hero2" data-konten="hero.names"></p>
+                    <p class="hero3" data-konten="hero.date"></p>
+                </div>    
             </div>
 
             <!-- //TODO BAGIAN KANAN -->
@@ -32,20 +35,21 @@
                         <div class="text-welcome text-center">
                             <h1 class="wel1" data-konten="opening.title"></h1>
                             <h2 class="wel2" data-konten="opening.names"></h2>
-                            <p class="wel3" data-konten="opening.greeting"></p>
+                            <p class="wel3" data-konten="opening.greeting1"></p>
+                            <p class="wel3" data-konten="opening.greeting2"></p>                            
                             <div class="nama-tamu" id="nama-tamu" data-konten="opening.guestName"></div>
                             <button class="btn-buka-baru" id="btnBuka" type="button">Buka Undangan</button>
                         </div>
                     </div>
 
-                    <img src="img/pohonrumah.png" class="gunungbawah">
+                    <!-- <img src="img/pohonrumah.png" class="gunungbawah">
                     <img src="img/rumah.png" class="rumah">
                     <img src="img/pohonhijaukiri.png" class="pohonkiri1">
                     <img src="img/bungabawahkiri.png" class="bungakiri">
                     <img src="img/pohonhijaukanan.png" class="pohonkanan1">
                     <img src="img/bungabawahkanan.png" class="bungakanan">
                     <img src="img/kupu-model-1.gif" class="kupu">
-                    <img src="img/burung.gif" class="burung">
+                    <img src="img/burung.gif" class="burung"> -->
                 </div>
 
                 <!--//TODO HALAMAN 1 (COVER) -->
@@ -54,19 +58,6 @@
                         <source src="img/Halaman1/opening1.mp4" type="video/mp4">
                         Browser Anda tidak mendukung tag video.
                     </video>
-                    <!-- <div class="tex-hal1">
-                        <h1 class="hal1">The Wedding Of</h1>
-                        <h2 class="hal2">Aldi & Rahmah</h2>
-                    </div>
-
-                    <img src="img/pohonrumah.png" class="gunungbawah">
-                    <img src="img/rumah.png" class="rumah">
-                    <img src="img/pohonhijaukiri.png" class="pohonkiri1">
-                    <img src="img/bungabawahkiri.png" class="bungakiri">
-                    <img src="img/pohonhijaukanan.png" class="pohonkanan1">
-                    <img src="img/bungabawahkanan.png" class="bungakanan">
-                    <img src="img/kupu-model-1.gif" class="kupu">
-                    <img src="img/burung.gif" class="burung"> -->
                 </div>
 
                 <!--//! HALAMAN 2 -->
@@ -313,6 +304,12 @@
                             <div class="galeri-item item-4 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
                                 <img src="img/mempelai/prewed4.webp" alt="Prewedding 4" loading="lazy" decoding="async">
                             </div>
+                            <div class="galeri-item item-5 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
+                                <img src="img/mempelai/prewed4.webp" alt="Prewedding 5" loading="lazy" decoding="async">
+                            </div>
+                            <div class="galeri-item item-6 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
+                                <img src="img/mempelai/prewed1.webp" alt="Prewedding 6" loading="lazy" decoding="async">
+                            </div>                                                        
                         </div>
                     </div>
                 </div>
@@ -321,16 +318,17 @@
                 <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content bg-transparent border-0 position-relative">
-                            <!-- Tombol Close -->
+                            <!--//* Tombol Close -->
                             <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
                             
                             <div class="modal-body text-center position-relative p-0 d-flex align-items-center justify-content-center">
-                                <!-- Tombol Previous (Sebelumnya) -->
+
+                                <!--//* Tombol Previous (Sebelumnya) -->
                                 <button type="button" class="btn btn-dark position-absolute start-0 ms-2 rounded-circle z-3 p-2 d-flex align-items-center justify-content-center" onclick="geserFoto(-1)" style="width: 45px; height: 45px; opacity: 0.8;">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 </button>
 
-                                <!-- Gambar Utama di Modal -->
+                                <!--//* Gambar Utama di Modal -->
                                 <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" alt="Zoomed Prewedding">
 
                                 <div class="kontrol-zoom position-absolute bottom-0 start-50 translate-middle-x mb-3 d-flex align-items-center gap-2 z-3">
@@ -339,7 +337,7 @@
                                     <button type="button" class="btn btn-dark rounded-circle" onclick="ubahZoom(0.5)" aria-label="Perbesar foto">+</button>
                                 </div>
 
-                                <!-- Tombol Next (Berikutnya) -->
+                                <!--//* Tombol Next (Berikutnya) -->
                                 <button type="button" class="btn btn-dark position-absolute end-0 me-2 rounded-circle z-3 p-2 d-flex align-items-center justify-content-center" onclick="geserFoto(1)" style="width: 45px; height: 45px; opacity: 0.8;">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </button>
@@ -400,9 +398,23 @@
                         <div id="daftarUcapan" class="text-start wadah-scroll-ucapan">
                             <p class="text-center text-muted small">Memuat ucapan...</p>
                         </div>
-
                     </div>
                 </div>
+
+                <footer class="text-center py-3">
+                    <small>&copy; 2026 All. Design</small>
+                </footer>
+
+    <!-- Tag Audio (Sembunyikan kontroller bawaan browser) -->
+    <audio id="bgMusic" loop>
+        <source src="Music/Bernaung.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- Tombol Musik Melayang -->
+    <button type="button" id="musicBtn" class="music-btn" aria-label="Kontrol Musik" aria-pressed="false">
+        <img src="img/music.png" class="music-icon" alt="">
+    </button>            
 
     <script src="konten-undangan.js"></script>
     <script src="script.js"></script>

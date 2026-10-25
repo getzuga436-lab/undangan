@@ -4,14 +4,16 @@ window.kontenUndangan = {
     // !HALAMAN KIRI
     hero: {
         title: "The Wedding Of",
-        names: "Aldi & Rahmah"
+        names: "Aldi & Rahmah",
+        date: "20.11.2026"
     },
 
     // !COVER
     opening: {
         title: "The Wedding Of",
         names: "Aldi & Rahmah",
-        greeting: "Kepada Yth. Bapak/Ibu/Saudara/i",
+        greeting1: "Kepada Yth.",
+        greeting2: "Bapak/Ibu/Saudara/i",
         guestName: "Vanny Dinda Syafira"
     },
 

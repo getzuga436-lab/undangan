@@ -1,4 +1,8 @@
+// DATA UNDANGAN DAN PEMBUKA
+const namaTamuUrl = new URLSearchParams(window.location.search).get("to");
+
 document.addEventListener("DOMContentLoaded", function () {
+    // Isi teks dan tautan dari konfigurasi undangan.
     const ambilKonten = function (jalur) {
         return jalur.split(".").reduce(function (nilai, bagian) {
             return nilai == null ? undefined : nilai[bagian];
@@ -30,30 +34,60 @@ document.addEventListener("DOMContentLoaded", function () {
         elemen.href = nilai;
     });
 
-    // === 🛠️ SCRIPT TAMBAHAN: AMBIL NAMA DARI LINK URL ===
-    const urlParams = new URLSearchParams(window.location.search);
-    const namaTamu = urlParams.get('to');
-    const elemenNama = document.getElementById('nama-tamu');
+    // Tampilkan nama tamu dari parameter URL (?to=...).
+    const elemenNama = document.getElementById("nama-tamu");
 
-    if (namaTamu && elemenNama) {
-        // decodeURIComponent mengubah karakter seperti %20 menjadi spasi asli
-        elemenNama.innerText = decodeURIComponent(namaTamu);
+    if (namaTamuUrl && elemenNama) {
+        elemenNama.innerText = decodeURIComponent(namaTamuUrl);
     }
-    // ====================================================
 
     const btnBuka = document.getElementById("btnBuka");
     const openingVideo = document.querySelector(".video-mempelai");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
     let videoDimulai = false;
-    
-    // PERBAIKAN: Ubah "cover" menjadi "welcomeCover" agar sesuai dengan ID di HTML
-    const cover = document.getElementById("welcomeCover"); 
+
+    const cover = document.getElementById("welcomeCover");
     const rightSide = document.getElementById("rightSide");
 
-    // --- Logika Buka Undangan Premium ---
+    // Sinkronkan tombol musik dengan status audio.
+    if (bgMusic && musicBtn) {
+        bgMusic.addEventListener("play", function () {
+            musicBtn.classList.add("diputar");
+            musicBtn.setAttribute("aria-pressed", "true");
+        });
+
+        bgMusic.addEventListener("pause", function () {
+            musicBtn.classList.remove("diputar");
+            musicBtn.setAttribute("aria-pressed", "false");
+        });
+
+        musicBtn.addEventListener("click", function () {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(function (error) {
+                    console.error("Musik undangan gagal diputar:", error);
+                });
+            } else {
+                bgMusic.pause();
+            }
+        });
+    }
+
+    // Buka cover, mulai media, dan aktifkan scroll.
     if (btnBuka) {
         btnBuka.addEventListener("click", function () {
+            if (bgMusic) {
+                bgMusic.play().catch(function (error) {
+                    console.error("Musik undangan gagal diputar:", error);
+                });
+            }
+
             if (cover) {
                 cover.classList.add("terbuka");
+            }
+
+            if (musicBtn) {
+                musicBtn.classList.add("terlihat");
             }
 
             if (openingVideo) {
@@ -63,15 +97,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error("Video pembuka gagal diputar:", error);
                 });
             }
-            
-            // 2. Aktifkan kemampuan scroll halaman ke bawah
             if (rightSide) {
-                rightSide.style.overflowY = "auto"; 
+                rightSide.style.overflowY = "auto";
             }
         });
     }
 
-    // --- Animasi muncul/hilang saat scroll (Tetap dipertahankan) ---
+    // Jeda video saat keluar layar dan ulangi saat terlihat kembali.
     const elemenAnimasi = document.querySelectorAll(".animasi-scroll");
     const opsi = {
         root: rightSide,
@@ -98,30 +130,23 @@ document.addEventListener("DOMContentLoaded", function () {
         videoObserver.observe(openingVideo);
     }
 
+    // Jalankan animasi elemen saat discroll.
     const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    // 1. Saat elemen masuk ke layar -> TAMPILKAN (Muncul)
-                    entry.target.classList.add("muncul");
-                } else {
-                    // 2. Saat elemen keluar dari layar, kita cek posisinya
-                    // Jika "top" lebih besar dari 0, berarti elemen tersebut terdorong ke BAWAH layar (Anda men-scroll ke atas).
-                    // Maka HAPUS class 'muncul' agar siap dianimasikan lagi nanti.
-                    if (entry.boundingClientRect.top > 0) {
-                        entry.target.classList.remove("muncul");
-                    }
-                    // Jika elemen keluar di ATAS layar (Anda lanjut men-scroll jauh ke bawah),
-                    // class 'muncul' tidak akan dihapus, sehingga elemennya "tetap ada".
-                }
-            });
-        }, opsi);
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("muncul");
+            } else if (entry.boundingClientRect.top > 0) {
+                entry.target.classList.remove("muncul");
+            }
+        });
+    }, opsi);
 
-    elemenAnimasi.forEach(function (el) {
-        observer.observe(el);
+    elemenAnimasi.forEach(function (elemen) {
+        observer.observe(elemen);
     });
 });
 
-// Variabel untuk melacak urutan foto yang sedang aktif
+// GALERI FOTO: STATE, NAVIGASI, DAN ZOOM
 let currentIndex = 0;
 let galeriImages = [];
 let zoomScale = 1;
@@ -138,59 +163,50 @@ let swipeStartX = 0;
 let swipeStartScale = 1;
 let wasPinching = false;
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Ambil semua elemen gambar yang ada di dalam galeri-grid
-    const imgElements = document.querySelectorAll(".galeri-item img");
-    galeriImages = Array.from(imgElements).map(img => img.src);
-});
-
-// Fungsi untuk membuka modal berdasarkan foto yang diklik
+// Dipanggil langsung oleh handler onclick di index.html.
 function bukaModal(element) {
     const imgElement = element.querySelector("img");
     const modalImage = document.getElementById("modalImage");
-    
+
     if (imgElement && modalImage) {
-        // Cari posisi index gambar saat ini di dalam array galeri
         currentIndex = galeriImages.indexOf(imgElement.src);
-        
-        // Tampilkan gambar ke modal
         modalImage.src = imgElement.src;
         resetZoom();
-        
-        // Tampilkan modal Bootstrap 5
-        const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
+
+        const myModal = new bootstrap.Modal(document.getElementById("imageModal"));
         myModal.show();
     }
 }
 
-// Fungsi untuk menggeser foto ke depan (+1) atau ke belakang (-1) dengan animasi halus
+// Dipanggil oleh kontrol navigasi galeri dan gesture swipe.
 function geserFoto(arah) {
     const modalImage = document.getElementById("modalImage");
     if (!modalImage) return;
 
-    // 1. Jalankan animasi keluar (fade-out / sedikit mengecil)
     modalImage.classList.add("ganti-slide");
 
-    setTimeout(() => {
-        // 2. Ubah index foto setelah animasi setengah jalan
+    setTimeout(function () {
         currentIndex += arah;
 
         if (currentIndex >= galeriImages.length) {
-            currentIndex = 0; // Putar balik ke awal
+            currentIndex = 0;
         } else if (currentIndex < 0) {
-            currentIndex = galeriImages.length - 1; // Pindah ke akhir
+            currentIndex = galeriImages.length - 1;
         }
 
-        // 3. Ganti sumber gambar
         modalImage.src = galeriImages[currentIndex];
         resetZoom();
-
-        // 4. Hilangkan kelas animasi agar gambar kembali muncul mulus (fade-in)
         modalImage.classList.remove("ganti-slide");
-    }, 150); // Jeda waktu 150 milidetik agar transisinya pas dan natural
+    }, 150);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Siapkan galeri dan kontrol modal.
+    const imgElements = document.querySelectorAll(".galeri-item img");
+    galeriImages = Array.from(imgElements).map(function (img) {
+        return img.src;
+    });
+
     const modal = document.getElementById("imageModal");
     const modalBody = document.querySelector("#imageModal .modal-body");
     const modalImage = document.getElementById("modalImage");
@@ -318,15 +334,10 @@ function resetZoom() {
     renderZoom();
 }
 
-// UCAPAN, DOA & RSVP GABUNGAN (VERSI GOOGLE APPS SCRIPT)
+// UCAPAN, DOA, DAN RSVP
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. GANTI URL INI DENGAN URL APPS SCRIPT ANDA NANTI
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbx_k7EC2-ZZBWfB8PsyqJ0HFkALO1MxU8nhIjpYYgHm3K_0bP17IsIuzzYi4XR9z7E/exec"; 
-    
-    // Ambil nama dari parameter URL (?to=...)
-    const urlParams = new URLSearchParams(window.location.search);
-    const namaTamuUrl = urlParams.get('to');
-    const inputNamaPengirim = document.getElementById('namaPengirim');
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbx_k7EC2-ZZBWfB8PsyqJ0HFkALO1MxU8nhIjpYYgHm3K_0bP17IsIuzzYi4XR9z7E/exec";
+    const inputNamaPengirim = document.getElementById("namaPengirim");
 
     if (inputNamaPengirim) {
         if (namaTamuUrl) {
@@ -340,20 +351,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const daftarUcapan = document.getElementById("daftarUcapan");
     const btnKirim = document.getElementById("btnKirimSemua");
 
-    // Muat daftar ucapan saat halaman pertama kali dibuka
+    // Muat daftar ucapan saat halaman dibuka.
     muatUcapan();
 
-    // 2. Proses saat tombol kirim ditekan
     if (formGabungan) {
         formGabungan.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            let nama = inputNamaPengirim ? inputNamaPengirim.value.trim() : "Tamu Undangan";
-            let kehadiran = document.getElementById("rsvpStatus").value;
-            let pesan = document.getElementById("pesanUcapan").value.trim();
-            
-            let tanggal = new Date().toLocaleDateString("id-ID", {
-                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            const nama = inputNamaPengirim ? inputNamaPengirim.value.trim() : "Tamu Undangan";
+            const kehadiran = document.getElementById("rsvpStatus").value;
+            const pesan = document.getElementById("pesanUcapan").value.trim();
+            const tanggal = new Date().toLocaleDateString("id-ID", {
+                day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
             });
 
             if (!nama || !kehadiran || !pesan) {
@@ -364,16 +373,14 @@ document.addEventListener("DOMContentLoaded", function () {
             btnKirim.disabled = true;
             btnKirim.innerText = "Mengirim...";
 
-            // PERUBAHAN DI SINI: Menggunakan FormData agar tidak terkena blokir CORS Google
-            let formData = new FormData();
+            const formData = new FormData();
             formData.append("nama", nama);
             formData.append("kehadiran", kehadiran);
             formData.append("pesan", pesan);
             formData.append("tanggal", tanggal);
 
-            // Kirim data ke Google Sheets
             fetch(GAS_URL, {
-                method: 'POST',
+                method: "POST",
                 body: formData
             })
             .then(response => response.json())
@@ -387,10 +394,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 btnKirim.disabled = false;
                 btnKirim.innerText = "Kirim Konfirmasi & Ucapan";
-                muatUcapan(); // Segera perbarui daftar ucapan di layar
+                muatUcapan();
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error("Error mengirim ucapan:", error);
                 alert("Gagal mengirim data, silakan coba lagi.");
                 btnKirim.disabled = false;
                 btnKirim.innerText = "Kirim Konfirmasi & Ucapan";
@@ -398,11 +405,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 3. Fungsi untuk mengambil data dari Google Sheets (GET)
     function muatUcapan() {
         if (!daftarUcapan) return;
 
-        // Mengambil data dari GAS
         fetch(GAS_URL)
             .then(response => response.json())
             .then(data => {
@@ -413,16 +418,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                // Urutkan dari yang paling baru dikirim (dibalik)
                 data.reverse().forEach(item => {
-                    if (!item.pesan) return; 
-                    
-                    let badgeWarna = 'secondary';
-                    if (item.kehadiran === 'Hadir') badgeWarna = 'success';
-                    else if (item.kehadiran === 'Tidak Hadir') badgeWarna = 'danger';
-                    else if (item.kehadiran === 'Masih Ragu-ragu') badgeWarna = 'warning';
+                    if (!item.pesan) return;
 
-                    let card = document.createElement("div");
+                    let badgeWarna = "secondary";
+                    if (item.kehadiran === "Hadir") badgeWarna = "success";
+                    else if (item.kehadiran === "Tidak Hadir") badgeWarna = "danger";
+                    else if (item.kehadiran === "Masih Ragu-ragu") badgeWarna = "warning";
+
+                    const card = document.createElement("div");
                     card.className = "card mb-2 p-3 border-0 shadow-sm";
                     card.style.backgroundColor = "#fdfbfb";
                     card.style.borderRadius = "12px";
@@ -432,21 +436,20 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="badge bg-${badgeWarna}" style="font-size: 0.65rem;">${escapeHtml(item.kehadiran || 'Hadir')}</span>
                         </div>
                         <p class="mb-1 text-secondary" style="font-size: 0.85rem; line-height: 1.4; word-break: break-word;">${escapeHtml(item.pesan)}</p>
-                        <small class="text-muted" style="font-size: 0.7rem; display: block; text-align: right;">${item.tanggal || ''}</small>
+                        <small class="text-muted" style="font-size: 0.7rem; display: block; text-align: right;">${escapeHtml(item.tanggal)}</small>
                     `;
                     daftarUcapan.appendChild(card);
                 });
             })
             .catch(error => {
-                console.error('Error memuat ucapan:', error);
+                console.error("Error memuat ucapan:", error);
                 daftarUcapan.innerHTML = "<p class='text-center text-danger small'>Gagal memuat daftar ucapan.</p>";
             });
     }
 
     function escapeHtml(text) {
-        if (text === null || text === undefined) return "";
-        
-        // Paksa konversi ke String agar tidak error jika menerima data angka/tanggal
+        if (text == null) return "";
+
         return String(text)
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")

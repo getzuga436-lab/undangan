@@ -27,7 +27,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
+        
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -35,20 +35,41 @@ body {
     flex-direction: column;
 }
 
+.hero-cover {
+    position: absolute;
+    bottom: 2rem; /* Sebaiknya gunakan bottom ber-unit agar tidak menempel terlalu bawah */
+    left: 2rem;
+    /* margin-left disatukan ke atribut left di atas agar lebih rapi */
+}
+
 .hero1 {
     position: relative;
-    font-family: "Great Vibes", cursive;
-    font-size: 5rem;
+    font-family: "Times New Roman", serif;
+    font-size: 2rem;
     color: #f7f5f5;
     z-index: 1;
+    margin: 0 0 0.5rem 0; /* Atur jarak ke teks hero2 di bawahnya (0.5rem) */
+    line-height: 1.2;     /* Mengatur tinggi baris agar lebih presisi */
 }
 
 .hero2 {
     position: relative;
     font-family: "Great Vibes", cursive;
-    font-size: 2rem;
+    font-size: 5rem;
     color: #f4f3f3;
     z-index: 1;
+    margin: 1rem 0 0.5rem 0;
+    line-height: 1;
+}
+
+.hero3 {
+    position: relative;
+    font-family: "Times New Roman", serif;
+    font-size: 1.1rem;
+    color: #f4f3f3;
+    z-index: 1;
+    margin: 0;            /* Menghapus margin bawah bawaan tag <p> */
+    line-height: 1.2;
 }
 
 /*//! BAGIAN KANAN (Viewport Khusus / Mobile Ratio) */
@@ -101,7 +122,7 @@ body {
     width: 100%;
     max-width: 450px;
     height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.85)), url(img/background.png);
+    background: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.183)), url(img/cover.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -138,7 +159,7 @@ body {
     width: 85%;
     height: 90%;
     max-width: 100%;
-    background-color: rgba(255, 255, 255, 0.18); /* Transparan putih */
+    background-color: rgba(255, 255, 255, 0.438); /* Transparan putih */
     backdrop-filter: blur(4px); /* Efek frosted glass / kaca buram */
     -webkit-backdrop-filter: blur(3px);
     border-radius: 20rem 20rem 0rem 0rem; /* Bentuk kapsul melengkung */
@@ -165,29 +186,29 @@ body {
 
 /* //!Desain Teks & Tombol di Dalam Kapsul */
 .wel1 {
-    font-family: "Great Vibes", cursive;
-    font-size: 2.7rem;
-    color: #4a4a4a;
-    margin-bottom: 0.2rem;
+    font-family: "times new roman";
+    font-size: 2rem;
+    color: #0c0c0c;
+    margin-bottom: 0.5rem;
 }
 .wel2 {
     font-family: "Great Vibes", cursive;
-    font-size: 2.2rem;
-    color: #a87e7e;
+    font-size: 3rem;
+    color: #4e0707;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
 }
 .wel3 {
     font-family: "Work Sans", sans-serif;
     font-size: 0.85rem;
-    color: #666;
+    color: #131313;
     margin-bottom: 0.3rem;
 }
 .nama-tamu {
     font-family: "Castoro Titling", serif;
     font-size: 1.15rem;
     font-weight: bold;
-    color: #333;
+    color: #060505;
     margin-bottom: 1.8rem;
 }
 .btn-buka-baru {
@@ -1045,7 +1066,7 @@ body {
     background: linear-gradient(90deg, rgba(207, 150, 115, 0.12), rgba(168, 126, 126, 0.06));
     text-decoration: none;
     color: #4a4a4a;
-    border: 1px solid rgba(168, 126, 126, 0.09);
+    border: 1px solid rgba(6, 6, 6, 0.865);
 }
 
 .rsvp-area p {
@@ -1158,9 +1179,9 @@ body {
 .halaman-6 {
     position: relative;
     margin: 0;
-    height: 800px;
+    height: 1000px;
     z-index: 1;
-    background-image: linear-gradient(180deg, rgba(123, 122, 122, 0.534), rgb(74, 7, 7));
+    background-image: linear-gradient(180deg, rgba(246, 243, 243, 0.959), rgb(74, 7, 7));
     display: flex;
     padding: 0rem 1.5rem 4rem 1.5rem;
     flex-direction: column;
@@ -1174,7 +1195,7 @@ body {
     z-index: 3;
 }
 .judul-galeri {
-    font-family: "Lavishly Yours", cursive;
+    font-family: "times new roman";
     font-size: 3.5rem;
     color: #771515;
     margin-bottom: 0.1rem;
@@ -1250,10 +1271,6 @@ body {
 /* =========================================
    STYLING MODAL ZOOM FOTO GALERI
    ========================================= */
-.galeri-item {
-    cursor: pointer; /* Mengubah kursor menjadi tangan saat diarahkan ke foto */
-}
-
 .modal-backdrop.show {
     backdrop-filter: blur(8px); /* Efek blur estetik di belakang popup foto */
     background-color: rgba(0, 0, 0, 0.85); /* Latar belakang gelap transparan */
@@ -1321,7 +1338,7 @@ body {
 /* Styling untuk Kapsul Pembungkus Utama */
 .kapsul-pembungkus-interaksi {
     margin: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.799);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -1379,6 +1396,65 @@ body {
     width: 100%;
     padding-right: 5px;
 }
+
+
+
+/* //*Music */
+/* Tombol melayang di pojok kanan bawah */
+.music-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    border: 0;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.music-btn.terlihat {
+    opacity: 1;
+    visibility: visible;
+}
+
+.music-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+.music-icon {
+    display: block;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+/* Animasi Berputar */
+.music-btn.diputar .music-icon {
+    animation: putarKaset 6s linear infinite;
+}
+
+@keyframes putarKaset {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+/* //*COPYRIGHT */
+.py-3 {
+    background-color: #430a0a;
+    color: #f8f6f6;
+}
+
 
 
 /* //! ANIMASI SCROLL */
