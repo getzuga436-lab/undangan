@@ -458,3 +458,30 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace(/'/g, "&#039;");
     }
 });
+
+//! FUNGSI SALIN NOREK
+function salinRekening(idElemen, tombol) {
+    // 1. Ambil teks nomor rekening berdasarkan ID
+    const noRekening = document.getElementById(idElemen).innerText;
+
+    // 2. Salin teks ke clipboard HP/Komputer
+    navigator.clipboard.writeText(noRekening).then(() => {
+        // Simpan teks asli tombol
+        const teksAsli = tombol.innerHTML;
+
+        // Ubah tampilan tombol sementara sebagai umpan balik
+        tombol.innerHTML = "Disalin!";
+        tombol.style.backgroundColor = "#acacac"; // Warna hijau
+        tombol.style.color = "#343333";
+
+        // Kembalikan tombol ke tampilan semula setelah 2 detik
+        setTimeout(() => {
+            tombol.innerHTML = teksAsli;
+            tombol.style.backgroundColor = ""; 
+            tombol.style.color = "";
+        }, 500);
+    }).catch(err => {
+        console.error("Gagal menyalin teks: ", err);
+        alert("Gagal menyalin nomor rekening.");
+    });
+}

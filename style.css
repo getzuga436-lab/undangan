@@ -5,6 +5,11 @@ body {
     overflow-x: hidden; /* Mencegah geseran horizontal */
     scroll-behavior: smooth;
 }
+:root {
+    --warna-merah: #4e0707;
+    --warna-putih: #f5f4f4;
+
+}
 
 .main-wrapper {
     min-height: 100vh;
@@ -22,17 +27,17 @@ body {
 
 /*//! BAGIAN KIRI (Area Statis / Dekoratif) */
 .left-side {
-    flex: 1; /* Mengisi sisa ruang di sebelah kiri */
+    flex: 1;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/sampulkiri.JPG');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-        
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 0;
 }
 
 .hero-cover {
@@ -1079,119 +1084,24 @@ body {
 }
 
 
-/*//! ============================== */
-            /*//! HALAMAN 5 (REKENING) */
-/*//! ============================== */
-.halaman-5 {
-    margin: 0;
-    min-height: 650px; /* Atau gunakan height: 700px; */
-    background-color: rgb(118, 9, 9);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 3rem 1rem;
-    overflow: hidden;
-}
-.halaman-rekening {
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-.Hal5 {
-    position: relative;
-    margin-top: 15%;
-    width: 100%;
-    max-width: 365px;
-    box-sizing: border-box;
-    z-index: 10;
-    text-align: center;
-}
-.hal-5 {
-    font-family: "Imperial Script", cursive;
-    font-weight: 590;
-    font-style: normal;
-    font-size: 3.5rem;
-    color: #501111;
-}
-/* Bingkai putih halaman 2 */
-.bingkai-hal5 {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 650px;
-    height: 100%;
-    align-items: center;
-    object-fit: fill;
-    z-index: 2;          
-    pointer-events: none;
-}
-
-.container-rekening {
-    position: relative;
-    bottom: 0rem;
-    width: 365px;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    gap: 10px;
-    z-index: 10;
-}
-.bagian-atas {
-    position: relative; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 85%; 
-    z-index: 10;
-    border-radius: 8px;
-    align-self: center;
-}
-.rekening1 {
-    position: relative;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.bagian-bawah {
-    position: relative;
-    display: flex;
-    width: 85%; /* Samakan menjadi 100% agar ukurannya sejajar dengan bagian atas */
-    z-index: 10;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-}
-.rekening2 {
-    position: relative;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
 
 /* //! HALAMAN 6 (GALERI FOTO MODERN) */
 .halaman-6 {
     position: relative;
     margin: 0;
-    height: 1000px;
+    height: 1300px;
     z-index: 1;
-    background-image: linear-gradient(180deg, rgba(246, 243, 243, 0.959), rgb(74, 7, 7));
+    background-image: linear-gradient(180deg, rgba(246, 243, 243, 0.447), rgba(74, 7, 7, 0.427));
     display: flex;
-    padding: 0rem 1.5rem 4rem 1.5rem;
+    padding: 0rem 0.5rem 4rem 0.5rem;
     flex-direction: column;
 }
 .judul {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
-    margin-top: 0;
-    top: -100px;
+    margin-top: 2;
+    top: 2rem;
     z-index: 3;
 }
 .judul-galeri {
@@ -1201,7 +1111,6 @@ body {
     margin-bottom: 0.1rem;
     z-index: 3;
 }
-
 .subjudul-galeri {
     font-family: "Work Sans", sans-serif;
     font-size: 0.95rem;
@@ -1210,29 +1119,31 @@ body {
     margin-bottom: 1.5rem; /* Didekatkan sedikit jaraknya ke grid foto */
 }
 .konten-galeri-baru {
-    position: relative;
+    position: absolute;
+    top: 10rem;
     z-index: 5;
     width: 100%;
     max-width: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0rem 0.5rem 4rem 0.5rem;
 }
 
 /* 1. Atur jarak antar foto agar lebih rapat */
 .galeri-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px; /* Diubah dari 15px menjadi 8px agar lebih rapat */
+    gap: 5px; /* Diubah dari 15px menjadi 8px agar lebih rapat */
     width: 100%;
-    padding: 0 10px;
+    padding: 0 0px;
 }
 
 /* 2. Atur border dan ketegasan card galeri */
 .galeri-item {
     position: relative;
     overflow: hidden;
-    border-radius: 2px; /* Dibuat sedikit lebih kotak/minimalis (sebelumnya 16px) */
+    border-radius: 0px; /* Dibuat sedikit lebih kotak/minimalis (sebelumnya 16px) */
     background-color: #2b0606;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 0px solid #5a1212;
@@ -1242,18 +1153,19 @@ body {
 
 .galeri-item img {
     width: 100%;
-    height: 170px;
+    height: 100%;
     object-fit: cover;
+    object-position: bottom;
     display: block;
     transition: transform 0.5s ease;
 }
 
 /* Penyesuaian tinggi seragam atau dinamis untuk gaya minimalis */
-.galeri-item.item-1 img, 
-.galeri-item.item-2 img, 
-.galeri-item.item-3 img, 
-.galeri-item.item-4 img { 
-    height: 180px; 
+.galeri-item img {
+    width: 100%;
+    aspect-ratio: 4 / 6;
+    object-fit: cover; 
+    display: block;
 }
 
 /* 3. Efek interaktif saat disentuh (Hover) yang bersih */
@@ -1321,6 +1233,182 @@ body {
 #imageModal .btn:active {
     transform: scale(0.95);
 }
+
+
+
+
+/*//! ============================== */
+            /*//! HALAMAN 5 (REKENING) */
+/*//! ============================== */
+.halaman-5 {
+    margin: 0;
+    height: 80%;
+    min-height: 700px; /* Atau gunakan height: 700px; */
+    background-color: rgb(118, 9, 9);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 1rem;
+    overflow: hidden;
+}
+
+.Hal5 {
+    position: relative;
+    margin-top: 4%;
+    width: 100%;
+    max-width: 365px;
+    box-sizing: border-box;
+    z-index: 10;
+    text-align: center;
+    
+}
+.hal-5 {
+    font-family: "Imperial Script", cursive;
+    font-weight: 590;
+    font-style: normal;
+    font-size: 3.5rem;
+    color: #501111;
+}
+/* Bingkai putih halaman 2 */
+.bingkai-hal5 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    object-fit: fill;
+    z-index: 2;          
+    pointer-events: none;
+    top: 0.5rem;
+}
+
+.container-rekening {
+    position: relative;
+    margin-top: 10%;
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    gap: 10px;
+    z-index: 10;
+
+}
+.bagian-atas {
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%; 
+    z-index: 10;
+    border-radius: 8px;
+    align-self: center;
+}
+.rekening1 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.card-rekening {
+    position: absolute;
+    display: grid;
+    top: 35%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+    width: 100%;
+    height: 65%;
+}
+.norek {
+    position: relative;
+    text-align: left;
+    color: var(--warna-putih);
+
+}
+.norek p {
+    position: relative;
+    font-size: 80%; /* Ukuran label "Nomor Rekening" */
+    margin: 0;
+    line-height: 1.2;
+    left: 15%; 
+}
+.norek h3 {
+    position: relative;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.2;
+    left: 15%;
+}
+.nama-norek {
+    position: relative;
+    left: 15%;
+    grid-row-start: 2;
+    line-height: 1.2;
+    align-content: end;
+    color: var(--warna-putih);
+}
+
+.nama-norek p {
+    position: relative;
+    left: 1%;    
+    font-size: 1rem; 
+    bottom: 0.5rem;
+}
+.nama-norek p1 {
+    position: relative;
+    left: 1%;    
+    font-size: 1rem; 
+    bottom: 1.5rem;
+}
+.salin {
+    position: relative;
+    grid-row: 2;
+    grid-column: 2; 
+    display: flex;
+    align-items: flex-end;   
+    right: 15%;
+    justify-content: flex-end; 
+}
+.btn-salin {
+    position: relative;
+    background-color: #806d6d;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15%;
+    right: 1%;
+}
+
+.btn-salin:hover {
+    opacity: 0.9;
+}
+.bagian-bawah {
+    position: relative;
+    display: flex;
+    width: 85%; /* Samakan menjadi 100% agar ukurannya sejajar dengan bagian atas */
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.rekening2 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 /* //! HALAMAN 6 (UCAPAN) */

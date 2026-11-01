@@ -14,7 +14,7 @@ window.kontenUndangan = {
         names: "Aldi & Rahmah",
         greeting1: "Kepada Yth.",
         greeting2: "Bapak/Ibu/Saudara/i",
-        guestName: "Vanny Dinda Syafira"
+        guestName: "Tamu Undangan"
     },
 
     // !AYAT HALAMAN 2
@@ -69,5 +69,19 @@ window.kontenUndangan = {
     countdown: {
         title: "Wedding Countdown",
         targetDate: "2026-11-20T09:00:00"
-    }
+    },
+
+
+    // !NOMOR REKENING
+    rekening: [
+        {
+            norek: "0777884836",
+            nama: "Hardiyanti Rahmah"
+        },
+        {
+            norek: "1700003969262",
+            nama: "Muh. Risaldi"
+        }
+    ]
+
 };

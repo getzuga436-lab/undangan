@@ -252,17 +252,99 @@
                 </div>
 
 
+
+                <!--//TODO HALAMAN RSVP & UCAPAN GABUNGAN -->
+                <div class="halaman-interaksi d-flex flex-column align-items-center text-center justify-content-center py-5">
+                    <div class="kapsul-pembungkus-interaksi w-100 p-4">
+                        
+                        <!-- Judul Bagian -->
+                        <div class="mb-4">
+                            <h3 id="nama-tamu" class="judul-utama-interaksi">Doa & Ucapan</h3>
+                        </div>
+
+                        <hr class="garis-pemisah">
+
+                        <!-- Form Gabungan RSVP & Ucapan -->
+                        <form id="formGabungan" class="d-flex flex-column gap-3 text-start">
+                            
+                            <!-- Kolom Nama Tamu -->
+                            <div>
+                                <label class="form-label small text-secondary fw-bold">Nama Anda:</label>
+                                <input type="text" id="namaPengirim" class="form-control input-custom" placeholder="Nama Anda..." required>
+                            </div>
+
+                            <!-- Konfirmasi Kehadiran -->
+                            <div>
+                                <label class="form-label small text-secondary fw-bold">Konfirmasi Kehadiran (RSVP):</label>
+                                <select id="rsvpStatus" class="form-select select-custom" required>
+                                    <option value="" disabled selected>Pilih Kehadiran...</option>
+                                    <option value="Hadir">Hadir</option>
+                                    <option value="Tidak Hadir">Tidak Hadir</option>
+                                    <option value="Masih Ragu-ragu">Masih Ragu-ragu</option>
+                                </select>
+                            </div>
+
+                            <!-- Ucapan & Doa Restu -->
+                            <div>
+                                <label class="form-label small text-secondary fw-bold">Ucapan & Doa Restu:</label>
+                                <textarea id="pesanUcapan" class="form-control textarea-custom" rows="3" placeholder="Tulis ucapan atau doa restu untuk mempelai..." required></textarea>
+                            </div>
+
+                            <button type="submit" id="btnKirimSemua" class="btn mt-2 w-100 btn-kirim-custom">
+                                Kirim Konfirmasi & Ucapan
+                            </button>
+                        </form>
+
+                        <hr class="garis-pemisah-2">
+
+                        <!-- Daftar Ucapan yang Masuk dari Tamu Lain -->
+                        <h4 class="judul-daftar-ucapan text-center">Ucapan Tamu Lainnya</h4>
+                        <div id="daftarUcapan" class="text-start wadah-scroll-ucapan">
+                            <p class="text-center text-muted small">Memuat ucapan...</p>
+                        </div>
+                    </div>
+                </div>
+
+                
                 <!--//! HALAMAN 5 -->
-                <div class="halaman-2 halaman-rekening">
+                <div class="halaman-5 halaman-rekening">
                     <div class="Hal5 animasi-scroll animasi-zoom">
                         <h1 class="hal-5">Wedding Gift</h1>
                     </div>
                         <div class="container-rekening animasi-scroll animasi-zoom">
                             <div class="bagian-atas">
                                 <img src="img/Halaman5/Rekening1.png" class="rekening1">
+                                <div class="card-rekening">
+                                    <div class="norek">
+                                        <p>Nomor Rekening</p>
+                                        <h3 id="NomorRek1" data-konten="rekening.0.norek"></h3>
+                                    </div>
+                                    <div class="nama-norek">
+                                        <p>a.n.</p>
+                                        <p1 data-konten="rekening.0.nama">Nama Pemilik</p1>
+                                    </div>
+                                    <div class="salin">
+                                        <button type="button" class="btn-salin" onclick="salinRekening('NomorRek1', this)">
+                                            <i class="bi bi-clipboard"></i> Salin</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="bagian-bawah">
-                                <img src="img/Halaman5/Rekening2.png" class="rekening1">
+                                <img src="img/Halaman5/Rekening21.png" class="rekening1">
+                                <div class="card-rekening">
+                                    <div class="norek">
+                                        <p>Nomor Rekening</p>
+                                        <h3 id="NomorRek2" data-konten="rekening.1.norek"></h3>
+                                    </div>
+                                    <div class="nama-norek">
+                                        <p>a.n.</p>
+                                        <p1 data-konten="rekening.1.nama">Nama Pemilik</p1>
+                                    </div>
+                                    <div class="salin">
+                                        <button type="button" class="btn-salin" onclick="salinRekening('NomorRek2', this)">
+                                            <i class="bi bi-clipboard"></i> Salin</button>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                     <div class="pohon-kiri-atas-pembungkus animasi-scroll animasi-kiri">
@@ -283,6 +365,9 @@
                     <img src="img/Halaman2/Motif2_2.png" alt="Motif Kiri" class="motif-kiri4">   
                     <img src="img/Halaman2/BingkaiHal2.png" class="bingkai-hal5 animasi-scroll animasi-zoom">
                 </div>
+
+                
+
 
 <!--//TODO HALAMAN 6 (GALERI PREWED) -->
                 <div class="halaman-6 d-flex flex-column align-items-center text-center justify-content-center">
@@ -347,59 +432,6 @@
                 </div>
 
 
-                
-
-                <!--//TODO HALAMAN RSVP & UCAPAN GABUNGAN -->
-                <div class="halaman-interaksi d-flex flex-column align-items-center text-center justify-content-center py-5">
-                    <div class="kapsul-pembungkus-interaksi w-100 p-4">
-                        
-                        <!-- Judul Bagian -->
-                        <div class="mb-4">
-                            <h3 id="nama-tamu" class="judul-utama-interaksi">Doa & Ucapan</h3>
-                        </div>
-
-                        <hr class="garis-pemisah">
-
-                        <!-- Form Gabungan RSVP & Ucapan -->
-                        <form id="formGabungan" class="d-flex flex-column gap-3 text-start">
-                            
-                            <!-- Kolom Nama Tamu -->
-                            <div>
-                                <label class="form-label small text-secondary fw-bold">Nama Anda:</label>
-                                <input type="text" id="namaPengirim" class="form-control input-custom" placeholder="Nama Anda..." required>
-                            </div>
-
-                            <!-- Konfirmasi Kehadiran -->
-                            <div>
-                                <label class="form-label small text-secondary fw-bold">Konfirmasi Kehadiran (RSVP):</label>
-                                <select id="rsvpStatus" class="form-select select-custom" required>
-                                    <option value="" disabled selected>Pilih Kehadiran...</option>
-                                    <option value="Hadir">Hadir</option>
-                                    <option value="Tidak Hadir">Tidak Hadir</option>
-                                    <option value="Masih Ragu-ragu">Masih Ragu-ragu</option>
-                                </select>
-                            </div>
-
-                            <!-- Ucapan & Doa Restu -->
-                            <div>
-                                <label class="form-label small text-secondary fw-bold">Ucapan & Doa Restu:</label>
-                                <textarea id="pesanUcapan" class="form-control textarea-custom" rows="3" placeholder="Tulis ucapan atau doa restu untuk mempelai..." required></textarea>
-                            </div>
-
-                            <button type="submit" id="btnKirimSemua" class="btn mt-2 w-100 btn-kirim-custom">
-                                Kirim Konfirmasi & Ucapan
-                            </button>
-                        </form>
-
-                        <hr class="garis-pemisah-2">
-
-                        <!-- Daftar Ucapan yang Masuk dari Tamu Lain -->
-                        <h4 class="judul-daftar-ucapan text-center">Ucapan Tamu Lainnya</h4>
-                        <div id="daftarUcapan" class="text-start wadah-scroll-ucapan">
-                            <p class="text-center text-muted small">Memuat ucapan...</p>
-                        </div>
-                    </div>
-                </div>
 
                 <footer class="text-center py-3">
                     <small>&copy; 2026 All. Design</small>
@@ -407,7 +439,7 @@
 
     <!-- Tag Audio (Sembunyikan kontroller bawaan browser) -->
     <audio id="bgMusic" loop>
-        <source src="Music/Bernaung.MP3" type="audio/mpeg">
+        <source src="Music/Bernaung.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
