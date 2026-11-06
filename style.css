@@ -1463,6 +1463,8 @@ h1.mertua {
 .closing-cover {
     position: relative;
     width: 100%;
+    height: 100vh;
+    height: 100svh;               /* tinggi layar HP yang sebenarnya */
     aspect-ratio: 4 / 6;          /* lebih pendek: 1 / 1 atau 5 / 4 */
     max-height: 100vh;
     max-height: 100svh;            /* tinggi layar HP yang sebenarnya */
