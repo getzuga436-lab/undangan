@@ -142,7 +142,9 @@
                             <h1 class="mempelai" data-konten="groom.nickname"></h1>
                             <h1 class="mertua" data-konten="groom.fullName"></h1>
                             <p class="mertua" data-konten="groom.childOrder"></p>
-                            <p class="mertua" data-konten="groom.parents"></p>
+                            <p class="mertua" data-konten="groom.father"></p>
+                            <p class="mertua">&</p>
+                            <p class="mertua" data-konten="groom.mother"></p>
                         </div>
                         <h2 class="dan animasi-scroll animasi-bawah">&</h2>
 
@@ -156,7 +158,9 @@
                             <h1 class="mempelai" data-konten="bride.nickname"></h1>
                             <h1 class="mertua" data-konten="bride.fullName"></h1>
                             <p class="mertua" data-konten="bride.childOrder"></p>
-                            <p class="mertua" data-konten="bride.parents"></p>
+                            <p class="mertua" data-konten="bride.father"></p>
+                            <p class="mertua">&</p>
+                            <p class="mertua" data-konten="bride.mother"></p>
                         </div>
                     </div>
                 </div>
@@ -376,26 +380,8 @@
                         <p class="subjudul-galeri animasi-scroll animasi-atas">Momen Bahagia Kami</p>
                     </div>
                     <div class="konten-galeri-baru d-flex flex-column align-items-center">
-                        <div class="galeri-grid">
-                            <div class="galeri-item item-1 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                                <img src="img/mempelai/prewed1.webp" alt="Prewedding 1" loading="lazy" decoding="async">
-                            </div>
-                            <div class="galeri-item item-2 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                                <img src="img/mempelai/prewed2.webp" alt="Prewedding 2" loading="lazy" decoding="async">
-                            </div>
-                            <div class="galeri-item item-3 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                                <img src="img/mempelai/prewed3.webp" alt="Prewedding 3" loading="lazy" decoding="async">
-                            </div>
-                            <div class="galeri-item item-4 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                                <img src="img/mempelai/prewed4.webp" alt="Prewedding 4" loading="lazy" decoding="async">
-                            </div>
-                            <div class="galeri-item item-5 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                                <img src="img/mempelai/prewed4.webp" alt="Prewedding 5" loading="lazy" decoding="async">
-                            </div>
-                            <div class="galeri-item item-6 animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                                <img src="img/mempelai/prewed1.webp" alt="Prewedding 6" loading="lazy" decoding="async">
-                            </div>                                                        
-                        </div>
+                        <!-- 17 foto akan di-render otomatis di sini -->
+                        <div id="galeriGrid" class="galeri-grid"></div>
                     </div>
                 </div>
 
@@ -432,6 +418,16 @@
                 </div>
 
 
+                <!-- //!CLOSING -->
+                <div class="closing-cover">
+                    <img src="img/closing/0K4A0315.JPG" alt="" loading="lazy" decoding="async">
+                    <div class="closing-teks">
+                        <p class="closing-salam">Terima kasih</p>
+                        <h2 class="closing-nama" data-konten="hero.names"></h2>
+                        <p class="closing-doa">Merupakan kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+                    </div>
+                </div>
+
 
                 <footer class="text-center py-3">
                     <small>&copy; 2026 All. Design</small>
@@ -439,7 +435,7 @@
 
     <!-- Tag Audio (Sembunyikan kontroller bawaan browser) -->
     <audio id="bgMusic" loop>
-        <source src="Music/Bernaung.MP3" type="audio/mpeg">
+        <source src="Music/Bernaung.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
@@ -450,6 +446,7 @@
 
     <script src="konten-undangan.js"></script>
     <script src="script.js"></script>
+    <script src="galeri.js"></script>
     <!-- Tambahkan script baru ini -->
     <script src="countdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

@@ -29,13 +29,15 @@ window.kontenUndangan = {
         nickname: "Aldi",
         fullName: "MUH. RISALDI, S.M.",
         childOrder: "Putra Pertama dari",
-        parents: "Bapak Sahardi dan Ibu Idawati"
+        father: "Bapak Sahardi",
+        mother: "Ibu Idawati"
     },
     bride: {
         nickname: "Rahmah",
         fullName: "HARDIYANTI RAHMAH, S.T.",
         childOrder: "Putri Pertama dari",
-        parents: "Bapak H. Muhammad Arsyad T. dan Ibu Hj. Rosniati"
+        father: "Bapak H. Muhammad Arsyad T.",
+        mother: "Ibu Hj. Rosniati"
     },
 
     // !LOKASI AKAD
@@ -45,14 +47,14 @@ window.kontenUndangan = {
             date: "Jumat, 20 November 2026",
             time: "10:00 WITA",
             location: "Gedung Asrama Haji Makassar",
-            address: ["Jl. Asrama H. Sudiang, Sudiang,", "Kec. Biringkanaya, Kota Makassar"]
+            address: ["Jl. Asrama H. Sudiang,", "Kec. Biringkanaya, Kota Makassar"]
         },
         {
             title: "Resepsi Mempelai Wanita",
             date: "Jumat, 20 November 2026",
             time: "13:00 - 15:00 WITA",
             location: "Gedung Asrama Haji Makassar",
-            address: ["Jl. Asrama H. Sudiang, Sudiang,", "Kec. Biringkanaya, Kota Makassar"],
+            address: ["Jl. Asrama H. Sudiang,", "Kec. Biringkanaya, Kota Makassar"],
             mapUrl: "https://maps.google.com/?q=WG7Q%2B65C,+Jl.+Asrama+H.+Sudiang,+Sudiang,+Kec.+Biringkanaya,+Kota+Makassar"
         },
         {

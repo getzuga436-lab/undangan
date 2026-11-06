@@ -654,7 +654,7 @@ body {
 }
 .bunga-pria {
     top: 30px;
-    left: -9px;
+    left: 9px;
     width: 38%;
     transform: rotate(-15deg);
 }
@@ -682,7 +682,7 @@ body {
 }
 .bunga-wanita {
     top: 60px;
-    right: -2px;
+    right: 7px;
     width: 38%;
     transform: scaley(-1) scalex(-1) rotate(-15deg);
 }
@@ -690,7 +690,7 @@ body {
 .foto-mempelai {
     position: relative;
     z-index: 7;
-    width: 60%;
+    width: 50%;
     object-fit: cover;
     margin: 0rem 0;
     border-radius: 128px;  
@@ -721,7 +721,7 @@ body {
     position: flex;
     justify-content: center;
     top: 30%;
-
+    
 }
 .dan {
     font-family: "Alex Brush", cursive;
@@ -732,11 +732,20 @@ body {
     padding: 1.5rem;
 }
 .mertua {
-    font-family: "times new roman", cursive;
+    font-family: "Times New Roman", serif;
     font-size: 0.95rem;
     margin: 0;
     line-height: 1.3;
-    padding: 0rem 1rem;
+    padding: 0 1rem;
+}
+
+h1.mertua {
+    font-family: "Times New Roman", serif;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem; /* SEBERAPA JAUH JARAK KE CHILD ORDER */
+    line-height: 1.3;
+    padding: 0 1rem;
 }
 
 
@@ -1089,23 +1098,19 @@ body {
 .halaman-6 {
     position: relative;
     margin: 0;
-    height: 1300px;
     z-index: 1;
-    background-image: linear-gradient(180deg, rgba(246, 243, 243, 0.447), rgba(74, 7, 7, 0.427));
+    background-image: linear-gradient(180deg, rgba(246, 243, 243, 0.900), rgba(74, 7, 7, 0.900));
     display: flex;
-    padding: 0rem 0.5rem 4rem 0.5rem;
     flex-direction: column;
+    padding: 2rem 0.5rem 4rem 0.5rem;   /* tinggi tidak lagi dikunci */
 }
-.judul {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    margin-top: 2;
-    top: 2rem;
-    z-index: 3;
+
+.halaman-6 .judul {
+    position: static;                    /* ikut alur, tidak melayang */
+    margin-bottom: 1rem;
 }
 .judul-galeri {
-    font-family: "times new roman";
+    font-family: "Great Vibes", cursive;
     font-size: 3.5rem;
     color: #771515;
     margin-bottom: 0.1rem;
@@ -1118,66 +1123,32 @@ body {
     color: #0c0c0c;
     margin-bottom: 1.5rem; /* Didekatkan sedikit jaraknya ke grid foto */
 }
+
 .konten-galeri-baru {
-    position: absolute;
-    top: 10rem;
+    position: relative;
     z-index: 5;
     width: 100%;
     max-width: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0rem 0.5rem 4rem 0.5rem;
+    padding: 0;                          /* padding bawah sudah ada di .halaman-6 */
 }
 
-/* 1. Atur jarak antar foto agar lebih rapat */
 .galeri-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px; /* Diubah dari 15px menjadi 8px agar lebih rapat */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
     width: 100%;
-    padding: 0 0px;
-}
-
-/* 2. Atur border dan ketegasan card galeri */
-.galeri-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0px; /* Dibuat sedikit lebih kotak/minimalis (sebelumnya 16px) */
-    background-color: #2b0606;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: 0px solid #5a1212;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .galeri-item img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 4 / 6;                 /* ganti 3 / 4 supaya lebih pendek */
     object-fit: cover;
     object-position: bottom;
     display: block;
     transition: transform 0.5s ease;
-}
-
-/* Penyesuaian tinggi seragam atau dinamis untuk gaya minimalis */
-.galeri-item img {
-    width: 100%;
-    aspect-ratio: 4 / 6;
-    object-fit: cover; 
-    display: block;
-}
-
-/* 3. Efek interaktif saat disentuh (Hover) yang bersih */
-.galeri-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    border-color: #8f2323; /* Border menyala tipis saat di-hover */
-    z-index: 10;
-}
-
-.galeri-item:hover img {
-    transform: scale(1.05);
 }
 
 /* =========================================
@@ -1242,8 +1213,9 @@ body {
 /*//! ============================== */
 .halaman-5 {
     margin: 0;
-    height: 80%;
-    min-height: 700px; /* Atau gunakan height: 700px; */
+    height: 100%;
+    min-height: 500px; /* Atau gunakan height: 700px; */
+    max-height: 650px; /* Batas maksimal tinggi halaman */
     background-color: rgb(118, 9, 9);
     position: relative;
     display: flex;
@@ -1484,6 +1456,88 @@ body {
     width: 100%;
     padding-right: 5px;
 }
+
+/*//! ============================== */
+            /*//! CLOSING */
+/*//! ============================== */
+.closing-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 6;          /* lebih pendek: 1 / 1 atau 5 / 4 */
+    max-height: 100vh;
+    max-height: 100svh;            /* tinggi layar HP yang sebenarnya */
+    overflow: hidden;
+}
+
+.closing-cover img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;            /* foto menutup kotak tanpa gepeng */
+    object-position: center 30%;  /* geser titik fokus agar wajah tidak terpotong */
+    display: block;
+}
+
+.closing-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        /* gradasi tipis di atas */
+        linear-gradient(to bottom,
+            rgba(253, 251, 251, 0.616) 0%,
+            rgba(0, 0, 0, 0) 25%),
+        /* gradasi di bawah untuk teks */
+        linear-gradient(to top,
+            rgba(50, 1, 1, 0.7) 0%,
+            rgba(0, 0, 0, 0.35) 45%,
+            rgba(0, 0, 0, 0) 75%);
+    pointer-events: none;
+}
+
+.closing-teks {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;                   /* di atas gradasi */
+    padding: 0 8% 9%;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.closing-teks > * { margin: 0; }
+
+.closing-salam {
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.closing-nama {
+    font-family: "Imperial Script", cursive;
+    margin: 0.3em 0 0.5em;
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+    line-height: 1.1;
+}
+
+.closing-doa {
+    font-size: clamp(0.8rem, 3.4vw, 0.95rem);
+    line-height: 1.5;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
