@@ -26,7 +26,7 @@ function renderGaleriOtomatis(totalFoto = namaFotoGaleri.length) {
     for (const [index, namaFoto] of namaFotoGaleri.slice(0, totalFoto).entries()) {
         htmlFoto += `
             <div class="galeri-item item-${index + 1} animasi-scroll animasi-zoom" onclick="bukaModal(this)">
-                <img src="img/Galeri/${namaFoto}" alt="Prewedding ${index + 1}" loading="lazy" decoding="async">
+                <img src="img/Galeri/${namaFoto.replace("_result.webp", "_thumb.jpg")}" data-full-src="img/Galeri/${namaFoto}" alt="Prewedding ${index + 1}" loading="lazy" decoding="async">
             </div>
         `;
     }

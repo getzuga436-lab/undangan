@@ -169,8 +169,11 @@ function bukaModal(element) {
     const modalImage = document.getElementById("modalImage");
 
     if (imgElement && modalImage) {
-        currentIndex = galeriImages.indexOf(imgElement.src);
-        modalImage.src = imgElement.src;
+        const fullImageSrc = imgElement.dataset.fullSrc
+            ? new URL(imgElement.dataset.fullSrc, document.baseURI).href
+            : imgElement.src;
+        currentIndex = galeriImages.indexOf(fullImageSrc);
+        modalImage.src = fullImageSrc;
         resetZoom();
 
         const myModal = new bootstrap.Modal(document.getElementById("imageModal"));
@@ -204,7 +207,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Siapkan galeri dan kontrol modal.
     const imgElements = document.querySelectorAll(".galeri-item img");
     galeriImages = Array.from(imgElements).map(function (img) {
-        return img.src;
+        return img.dataset.fullSrc
+            ? new URL(img.dataset.fullSrc, document.baseURI).href
+            : img.src;
     });
 
     const modal = document.getElementById("imageModal");

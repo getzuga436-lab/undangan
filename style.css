@@ -83,7 +83,7 @@ body {
     min-width: 450px;
     flex-shrink: 2; 
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     position: relative;
     background: url('img/prewed1.JPG');
     background-size: cover;
@@ -127,6 +127,7 @@ body {
     width: 100%;
     max-width: 450px;
     height: 100vh;
+    height: 100dvh;
     background: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.183)), url(img/cover.jpg);
     background-size: cover;
     background-position: center;
@@ -141,7 +142,7 @@ body {
 /* Saat tombol diklik dan class .terbuka ditambahkan via JS */
 .welcome-cover.terbuka {
     animation: none;
-    transform: translateY(-100vh) !important;
+    transform: translateY(-100%) !important;
     opacity: 0 !important;
     pointer-events: none;
     visibility: hidden;
@@ -1488,7 +1489,7 @@ h1.mertua {
     background:
         /* gradasi tipis di atas */
         linear-gradient(to bottom,
-            rgba(253, 251, 251, 0.616) 0%,
+            rgba(193, 190, 190, 0.616) 0%,
             rgba(0, 0, 0, 0) 25%),
         /* gradasi di bawah untuk teks */
         linear-gradient(to top,
